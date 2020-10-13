@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name=".Testowy" android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".Testowy"></activity>
         <activity android:name=".Terms" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".Dashboard" />
