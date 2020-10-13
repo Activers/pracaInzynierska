@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">pracaInzynierska</string>
+    <string name="appDesc">Witamy! Utwórz konto, aby dołączyć do społeczności i znaleść nowe osoby do ulubionych gier online.</string>
+    <string name="appTitle">IQTQ</string>
+    <string name="buttonRegisterEmail">E-MAIL</string>
+    <string name="buttonRegisterFacebook">FACEBOOK</string>
+    <string name="textViewAlreadyLogin">Jesteś już zarejestrowany? Zaloguj się</string>
+    <string name="textViewNewAcc">Stwórz nowe konto:</string>
+    <string name="editTextUsername">Nazwa użytkownika</string>
+    <string name="editTextPassword">Hasło</string>
+    <string name="editTextEmail">Adres E-mail</string>
+    <string name="buttonRegister">ZAREJESTRUJ</string>
+    <string name="textViewLogin">Zaloguj się</string>
+    <string name="textViewForgot">Nie pamiętam hasła:</string>
+    <string name="buttonLogin">ZALOGUJ</string>
+    <string name="textViewForgotEmail">Wpisz adres e-mail:</string>
+    <string name="buttonForgot">PRZYPOMNIJ HASŁO</string>
+</resources>

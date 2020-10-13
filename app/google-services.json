@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "241139433474",
+    "firebase_url": "https://pracainz-ddfd5.firebaseio.com",
+    "project_id": "pracainz-ddfd5",
+    "storage_bucket": "pracainz-ddfd5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241139433474:android:97fad2c9431151006de71b",
+        "android_client_info": {
+          "package_name": "com.example.pracainzynierska"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241139433474-q0tgqaesjuat5jhepqqcqv2dmttjop65.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjTj-lQ9brAz2eN0A_1q87qudZ7CUslsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241139433474-q0tgqaesjuat5jhepqqcqv2dmttjop65.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
