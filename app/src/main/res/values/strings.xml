@@ -15,4 +15,9 @@
     <string name="buttonLogin">ZALOGUJ</string>
     <string name="textViewForgotEmail">Wpisz adres e-mail:</string>
     <string name="buttonForgot">PRZYPOMNIJ HASŁO</string>
+    <string name="textViewContRegister">Dodatkowe informacje:</string>
+    <string name="editTextImie">Imię:</string>
+    <string name="editTextData">Podaj date urodzenia:</string>
+    <string name="textViewAddPic">Dodaj awatar:</string>
+
 </resources>

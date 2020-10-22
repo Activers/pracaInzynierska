@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/background"
@@ -36,30 +38,30 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="4"
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/textViewNewAcc"
+                android:id="@+id/textViewContRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="@string/textViewNewAcc"
+                android:text="@string/textViewContRegister"
                 android:textAllCaps="true"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editTextUsername"
+                android:id="@+id/editTextImie"
                 android:layout_width="326dp"
                 android:layout_height="53dp"
-                android:layout_below="@+id/textViewNewAcc"
+                android:layout_below="@+id/textViewContRegister"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
                 android:autofillHints=""
                 android:backgroundTint="#FFFFFF"
-                android:hint="@string/editTextUsername"
+                android:hint="@string/editTextImie"
                 android:inputType="textPersonName"
                 android:textColor="#FFFFFF"
                 android:textColorHighlight="#FFFFFF"
@@ -68,49 +70,67 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/editTextPassword"
+                android:id="@+id/editTextData"
                 android:layout_width="326dp"
                 android:layout_height="53dp"
-                android:layout_below="@+id/editTextUsername"
+                android:layout_below="@+id/editTextImie"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:autofillHints=""
                 android:backgroundTint="#FFFFFF"
-                android:hint="@string/editTextPassword"
-                android:inputType="textPassword"
+                android:hint="@string/editTextData"
+                android:inputType="date"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#CCCCCC"
                 android:textColorLink="#FFFFFF"
                 android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/editTextEmail"
+            <Spinner
+                android:id="@+id/spinnerCoutries"
                 android:layout_width="326dp"
                 android:layout_height="53dp"
-                android:layout_below="@+id/editTextPassword"
+                android:layout_below="@+id/editTextData"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:autofillHints=""
                 android:backgroundTint="#FFFFFF"
-                android:hint="@string/editTextEmail"
-                android:inputType="textEmailAddress"
-                android:selectAllOnFocus="false"
-                android:singleLine="false"
+                android:textSize="20sp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#CCCCCC"
                 android:textColorLink="#FFFFFF"
-                android:textSize="20sp" />
+                android:entries="@array/ArrayCountries"
+                />
 
-            <CheckBox
-                android:id="@+id/checkBoxTerms"
+            <ImageView
+                android:id="@+id/imageViewAvatar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/editTextEmail"
-                android:layout_marginStart="20dp"
+                android:layout_below="@+id/spinnerCoutries"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text=""
+                android:adjustViewBounds="true"
+                android:maxWidth="250px"
+                android:maxHeight="350px"
+                android:minWidth="250px"
+                android:minHeight="350px"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/defaultpic"
+                tools:srcCompat="@drawable/defaultpic" />
+
+            <TextView
+                android:id="@+id/textViewAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageViewAvatar"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/textViewAddPic"
+                android:textAllCaps="true"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -131,19 +151,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#424242"
                 android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textViewLogin"
-                android:layout_width="361dp"
-                android:layout_height="34dp"
-                android:layout_below="@+id/buttonRegister"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
-                android:text="@string/textViewAlreadyLogin"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>

@@ -19,6 +19,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Register extends AppCompatActivity {
@@ -27,6 +31,7 @@ public class Register extends AppCompatActivity {
     Button Register;
     TextView Login;
     FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
     ProgressBar progressBar;
     CheckBox checkBoxTerms;
     TextView textViewTerms;
@@ -43,6 +48,7 @@ public class Register extends AppCompatActivity {
         Login = findViewById(R.id.textViewLogin);
 
         fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBar);
         checkBoxTerms = findViewById(R.id.checkBoxTerms);
         textViewTerms = findViewById(R.id.textViewTerm);
@@ -65,8 +71,9 @@ public class Register extends AppCompatActivity {
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = Email.getText().toString().trim();
+                final String email = Email.getText().toString().trim();
                 String password = Password.getText().toString().trim();
+                final String login = Username.getText().toString();
 
                 if (checkBoxTerms.isChecked()){
                 }else{
@@ -92,8 +99,14 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            Map<String,Object> user = new HashMap<>();
+                            user.put("login",login);
+                            user.put("e-mail",email);
+                            String uid = fAuth.getCurrentUser().getUid();
+                            fStore.collection("users").document(uid).set(user);
                             Toast.makeText(Register.this, "Zostałeś pomyślnie zarejestrowany!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
                         }
                         //else {
                          //   Toast.makeText(Register.this, "Błąd rejestracji! Spróbuj ponownie później.", Toast.LENGTH_SHORT).show();
