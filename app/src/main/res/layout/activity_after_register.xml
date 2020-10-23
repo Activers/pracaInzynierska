@@ -53,7 +53,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editTextImie"
+                android:id="@+id/editTextName"
                 android:layout_width="326dp"
                 android:layout_height="53dp"
                 android:layout_below="@+id/textViewContRegister"
@@ -61,7 +61,7 @@
                 android:layout_marginTop="40dp"
                 android:autofillHints=""
                 android:backgroundTint="#FFFFFF"
-                android:hint="@string/editTextImie"
+                android:hint="@string/editTextName"
                 android:inputType="textPersonName"
                 android:textColor="#FFFFFF"
                 android:textColorHighlight="#FFFFFF"
@@ -70,16 +70,16 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/editTextData"
+                android:id="@+id/editTextAge"
                 android:layout_width="326dp"
                 android:layout_height="53dp"
-                android:layout_below="@+id/editTextImie"
+                android:layout_below="@+id/editTextName"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:autofillHints=""
                 android:backgroundTint="#FFFFFF"
-                android:hint="@string/editTextData"
-                android:inputType="date"
+                android:hint="@string/editTextAge"
+                android:inputType="number"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#CCCCCC"
                 android:textColorLink="#FFFFFF"
@@ -87,19 +87,16 @@
 
             <Spinner
                 android:id="@+id/spinnerCoutries"
+                android:background="@drawable/counteries_background"
                 android:layout_width="326dp"
                 android:layout_height="53dp"
-                android:layout_below="@+id/editTextData"
+                android:layout_below="@+id/editTextAge"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:autofillHints=""
-                android:backgroundTint="#FFFFFF"
                 android:textSize="20sp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#CCCCCC"
-                android:textColorLink="#FFFFFF"
-                android:entries="@array/ArrayCountries"
                 />
+
 
             <ImageView
                 android:id="@+id/imageViewAvatar"
@@ -107,12 +104,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/spinnerCoutries"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:adjustViewBounds="true"
-                android:maxWidth="250px"
-                android:maxHeight="350px"
-                android:minWidth="250px"
-                android:minHeight="350px"
+                android:background="@drawable/imagebackground"
+                android:maxWidth="280px"
+                android:maxHeight="280px"
+                android:minWidth="280px"
+                android:minHeight="280px"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/defaultpic"
                 tools:srcCompat="@drawable/defaultpic" />
@@ -122,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageViewAvatar"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_centerHorizontal="true"
                 android:text="@string/textViewAddPic"
                 android:textAllCaps="true"
@@ -140,14 +138,14 @@
             android:padding="10dp">
 
             <Button
-                android:id="@+id/buttonRegister"
+                android:id="@+id/buttonEndReg"
                 android:layout_width="209dp"
-                android:layout_height="57dp"
+                android:layout_height="65dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/buttonbackground"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/buttonRegister"
+                android:text="@string/buttonEndReg"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#424242"
                 android:textSize="24sp"

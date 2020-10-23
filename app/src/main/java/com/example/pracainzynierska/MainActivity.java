@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         buttonRegisterEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,AfterRegister.class));
+                startActivity(new Intent(MainActivity.this,Register.class));
             }
         });
 

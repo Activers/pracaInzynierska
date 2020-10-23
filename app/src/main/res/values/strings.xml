@@ -16,8 +16,8 @@
     <string name="textViewForgotEmail">Wpisz adres e-mail:</string>
     <string name="buttonForgot">PRZYPOMNIJ HASŁO</string>
     <string name="textViewContRegister">Dodatkowe informacje:</string>
-    <string name="editTextImie">Imię:</string>
-    <string name="editTextData">Podaj date urodzenia:</string>
+    <string name="editTextName">Imię:</string>
+    <string name="editTextAge">Podaj wiek:</string>
     <string name="textViewAddPic">Dodaj awatar:</string>
-
+    <string name="buttonEndReg">Dokończ rejestrację</string>
 </resources>
