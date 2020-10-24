@@ -13,7 +13,9 @@
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusable="false"
+        android:focusableInTouchMode="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,10 +25,11 @@
 
             <TextView
                 android:id="@+id/textViewAppName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="0dp"
                 android:text="@string/appTitle"
                 android:textColor="#FFFFFF"
                 android:textSize="55sp"
@@ -43,9 +46,9 @@
 
             <TextView
                 android:id="@+id/textViewContRegister"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:gravity="center"
                 android:text="@string/textViewContRegister"
                 android:textAllCaps="true"
                 android:textColor="#FFFFFF"
@@ -87,12 +90,12 @@
 
             <Spinner
                 android:id="@+id/spinnerCoutries"
-                android:background="@drawable/counteries_background"
-                android:layout_width="326dp"
+                android:background="@drawable/counteries_bg"
+                android:layout_width="318dp"
                 android:layout_height="53dp"
                 android:layout_below="@+id/editTextAge"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:autofillHints=""
                 android:textSize="20sp"
                 />
@@ -106,7 +109,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/imagebackground"
+                android:background="@drawable/image_bg"
                 android:maxWidth="280px"
                 android:maxHeight="280px"
                 android:minWidth="280px"
@@ -117,16 +120,16 @@
 
             <TextView
                 android:id="@+id/textViewAvatar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageViewAvatar"
+                android:gravity="center"
                 android:layout_marginTop="30dp"
-                android:layout_centerHorizontal="true"
                 android:text="@string/textViewAddPic"
                 android:textAllCaps="true"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
 
         </RelativeLayout>
@@ -143,7 +146,7 @@
                 android:layout_height="65dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/buttonbackground"
+                android:background="@drawable/button_bg"
                 android:fontFamily="sans-serif-light"
                 android:text="@string/buttonEndReg"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"

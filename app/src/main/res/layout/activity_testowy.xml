@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="vertical"
-    android:fillViewport="true"
-    >
+    android:fillViewport="true">
 
     <LinearLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:focusable="false"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="10">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="115dp"
             android:padding="10dp">
 
             <TextView
                 android:id="@+id/textViewAppName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
                 android:text="@string/appTitle"
                 android:textColor="#FFFFFF"
                 android:textSize="55sp"
@@ -33,121 +36,110 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+
+        <TextView
+            android:id="@+id/textViewNewAcc"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:padding="10dp">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/textViewNewAcc"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textViewNewAcc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="@string/textViewNewAcc"
-                android:textAllCaps="true"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+        <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="326dp"
+            android:layout_height="53dp"
+            android:layout_below="@+id/textViewNewAcc"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:autofillHints=""
+            android:backgroundTint="#FFFFFF"
+            android:hint="@string/editTextUsername"
+            android:inputType="textPersonName"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#CCCCCC"
+            android:textColorLink="#FFFFFF"
+            android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/editTextUsername"
-                android:layout_width="326dp"
-                android:layout_height="53dp"
-                android:layout_below="@+id/textViewNewAcc"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
-                android:autofillHints=""
-                android:backgroundTint="#FFFFFF"
-                android:hint="@string/editTextUsername"
-                android:inputType="textPersonName"
-                android:textColor="#FFFFFF"
-                android:textColorHighlight="#FFFFFF"
-                android:textColorHint="#CCCCCC"
-                android:textColorLink="#FFFFFF"
-                android:textSize="20sp" />
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="326dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="40dp"
+            android:autofillHints=""
+            android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:hint="@string/editTextPassword"
+            android:inputType="textPassword"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#CCCCCC"
+            android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/editTextPassword"
-                android:layout_width="326dp"
-                android:layout_height="53dp"
-                android:layout_below="@+id/editTextUsername"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:autofillHints=""
-                android:backgroundTint="#FFFFFF"
-                android:hint="@string/editTextPassword"
-                android:inputType="textPassword"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#CCCCCC"
-                android:textColorLink="#FFFFFF"
-                android:textSize="20sp" />
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="326dp"
+            android:layout_height="53dp"
+            android:layout_below="@+id/editTextUsername"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:autofillHints=""
+            android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:hint="@string/editTextEmail"
+            android:inputType="textEmailAddress"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#CCCCCC"
+            android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/editTextEmail"
-                android:layout_width="326dp"
-                android:layout_height="53dp"
-                android:layout_below="@+id/editTextPassword"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:autofillHints=""
-                android:backgroundTint="#FFFFFF"
-                android:hint="@string/editTextEmail"
-                android:inputType="textEmailAddress"
-                android:selectAllOnFocus="false"
-                android:singleLine="false"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#CCCCCC"
-                android:textColorLink="#FFFFFF"
-                android:textSize="20sp" />
-
-            <CheckBox
-                android:id="@+id/checkBoxTerms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/editTextEmail"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text=""
-                android:textColor="#FFFFFF"
-                android:textSize="14sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
+        <CheckBox
+            android:id="@+id/checkBoxTerms"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="10dp">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextEmail"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:text="Akceptuje regulamin oraz politykę prywatności"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/buttonRegister"
-                android:layout_width="209dp"
-                android:layout_height="57dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/buttonbackground"
-                android:fontFamily="sans-serif-light"
-                android:text="@string/buttonRegister"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#424242"
-                android:textSize="24sp"
-                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textViewLogin"
-                android:layout_width="361dp"
-                android:layout_height="34dp"
-                android:layout_below="@+id/buttonRegister"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
-                android:text="@string/textViewAlreadyLogin"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
 
-        </RelativeLayout>
 
+
+        <Button
+            android:id="@+id/buttonRegister"
+            android:layout_width="209dp"
+            android:layout_height="57dp"
+            android:layout_below="@+id/checkBoxTerms"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/button_bg"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/buttonRegister"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#424242"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/textViewLogin"
+            android:layout_width="361dp"
+            android:layout_height="34dp"
+            android:layout_below="@+id/buttonRegister"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:text="@string/textViewAlreadyLogin"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

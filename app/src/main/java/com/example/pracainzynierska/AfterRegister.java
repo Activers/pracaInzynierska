@@ -135,6 +135,8 @@ public class AfterRegister extends AppCompatActivity {
                     }
                 });
 
+                startActivity(new Intent(getApplicationContext(),Dashboard.class));
+
             }
         });
 
@@ -154,11 +156,12 @@ public class AfterRegister extends AppCompatActivity {
     }
     private void uploadImageToFirebase(Uri imageUri) {
 
+        final String TAG = "AfterRegister";
         final StorageReference fileRef = fStorage.child("users/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(AfterRegister.this,"Awatar dodany!", Toast.LENGTH_SHORT).show(); // zmienic na log w konsoli
+                Log.d(TAG, "Awatar został dodany"); // zmienic na log w konsoli
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -169,7 +172,7 @@ public class AfterRegister extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(AfterRegister.this,"Błąd, awatar nie został dodany!", Toast.LENGTH_SHORT).show(); // zmienic na log
+                Log.d(TAG, "Awatar nie został dodany"); // zmienic na log
             }
         });
 

@@ -1,23 +1,36 @@
 <resources>
+    <!--activity_main-->
     <string name="app_name">pracaInzynierska</string>
-    <string name="appDesc">Witamy! Utwórz konto, aby dołączyć do społeczności i znaleść nowe osoby do ulubionych gier online.</string>
     <string name="appTitle">IQTQ</string>
+    <string name="appDesc">Witamy! Utwórz konto, aby dołączyć do społeczności i znaleść nowe osoby do ulubionych gier online.</string>
     <string name="buttonRegisterEmail">E-MAIL</string>
     <string name="buttonRegisterFacebook">FACEBOOK</string>
-    <string name="textViewAlreadyLogin">Jesteś już zarejestrowany? Zaloguj się</string>
+    <!--activity_register-->
     <string name="textViewNewAcc">Stwórz nowe konto:</string>
     <string name="editTextUsername">Nazwa użytkownika</string>
     <string name="editTextPassword">Hasło</string>
     <string name="editTextEmail">Adres E-mail</string>
     <string name="buttonRegister">ZAREJESTRUJ</string>
+    <string name="textViewAlreadyLogin">Jesteś już zarejestrowany? Zaloguj się</string>
+    <string name="textViewAllTerms"></string>
+    <!--activity_login-->
     <string name="textViewLogin">Zaloguj się</string>
-    <string name="textViewForgot">Nie pamiętam hasła:</string>
     <string name="buttonLogin">ZALOGUJ</string>
+    <string name="textViewForgot">Nie pamiętam hasła:</string>
+    <!--activity_forgot_password-->
     <string name="textViewForgotEmail">Wpisz adres e-mail:</string>
     <string name="buttonForgot">PRZYPOMNIJ HASŁO</string>
+    <!--activity_after_register-->
     <string name="textViewContRegister">Dodatkowe informacje:</string>
     <string name="editTextName">Imię:</string>
     <string name="editTextAge">Podaj wiek:</string>
     <string name="textViewAddPic">Dodaj awatar:</string>
     <string name="buttonEndReg">Dokończ rejestrację</string>
+    <!--activity_dashboard-->
+    <string name="buttonFindPeople">ZNAJDŹ GRACZY</string>
+    <string name="buttonGoProfile">PROFIL\nUZYTKOWNIKA</string>
+    <string name="buttonChooseGames">WYBIERZ GRY</string>
+    <string name="buttonLogout">WYLOGUJ SIĘ</string>
+    <!--activity_game_choice-->
+    <string name="textViewChooseGame">WYBIERZ GRĘ:</string>
 </resources>

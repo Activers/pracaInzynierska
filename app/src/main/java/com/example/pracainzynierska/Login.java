@@ -73,6 +73,28 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()){
                             Toast.makeText(Login.this, "Zostałeś pomyślnie zalogowany!", Toast.LENGTH_SHORT).show();
                             //startActivity(new Intent(getApplicationContext(),AfterRegister.class));
+                            DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
+                            usersDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot document = task.getResult();
+                                        if (document.exists()) {
+                                            Log.d(TAG, "Document Snapshot data: " + document.getData());
+                                            String name = document.getString("name");
+                                            if (name == null) {
+                                                startActivity(new Intent(getApplicationContext(),AfterRegister.class));
+                                            } else {
+                                                startActivity(new Intent(getApplicationContext(),Dashboard.class));
+                                            }
+                                        } else {
+                                            Log.d(TAG, "No such document");
+                                        }
+                                    } else {
+                                        Log.d(TAG, "get failed with", task.getException());
+                                    }
+                                }
+                            });
                         }else{
                             Toast.makeText(Login.this, "Niepoprawny E-mail lub hasło!", Toast.LENGTH_SHORT).show();
                             //Toast.makeText(Login.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -82,28 +104,7 @@ public class Login extends AppCompatActivity {
                 });
 
                 //Czytanie z bazy danych dokumentu i przejscie do Dashboard lub AfterRegister
-                DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
-                usersDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                Log.d(TAG, "Document Snapshot data: " + document.getData());
-                                String name = document.getString("name");
-                                if (name == null) {
-                                    startActivity(new Intent(getApplicationContext(),AfterRegister.class));
-                                } else {
-                                    startActivity(new Intent(getApplicationContext(),Dashboard.class));
-                                }
-                            } else {
-                                Log.d(TAG, "No such document");
-                            }
-                        } else {
-                            Log.d(TAG, "get failed with", task.getException());
-                        }
-                    }
-                });
+
             }
         });
 

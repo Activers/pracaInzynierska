@@ -32,7 +32,6 @@ public class Register extends AppCompatActivity {
     TextView Login;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
-    ProgressBar progressBar;
     CheckBox checkBoxTerms;
     TextView textViewTerms;
 
@@ -49,11 +48,10 @@ public class Register extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        progressBar = findViewById(R.id.progressBar);
         checkBoxTerms = findViewById(R.id.checkBoxTerms);
-        textViewTerms = findViewById(R.id.textViewTerm);
+        textViewTerms = findViewById(R.id.textViewAllTerms);
 
-        textViewTerms.setText(Html.fromHtml("Akceptuje <u>Regulamin</u> oraz politykę prywatności"));
+        textViewTerms.setText(Html.fromHtml("<u>Kliknij tutaj</u> by wyświetlić regulamin"));
         textViewTerms.setTextSize(16);
 
         textViewTerms.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +62,7 @@ public class Register extends AppCompatActivity {
         });
 
         //if(fAuth.getCurrentUser() != null){
-        //    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+         //   startActivity(new Intent(getApplicationContext(),MainActivity.class));
         //    finish();
         //}
 
@@ -75,25 +73,28 @@ public class Register extends AppCompatActivity {
                 String password = Password.getText().toString().trim();
                 final String login = Username.getText().toString();
 
-                if (checkBoxTerms.isChecked()){
-                }else{
-                    Toast.makeText(Register.this, "Musisz zaakceptować regulamin!", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(login)){
+                    Username.setError("To pole jest wymagane!");
                     return;
                 }
                 if (TextUtils.isEmpty(password)){
                     Password.setError("To pole jest wymagane!");
                     return;
                 }
-                if (TextUtils.isEmpty(email)) {
-                    Email.setError("To pole jest wymagane!");
-                    return;
-                }
                 if (password.length() <= 6){
                     Password.setError("Hasło musi zawierać minimum 6 znaków");
                     return;
                 }
+                if (TextUtils.isEmpty(email)) {
+                    Email.setError("To pole jest wymagane!");
+                    return;
+                }
+                if (checkBoxTerms.isChecked()){
+                }else{
+                    Toast.makeText(Register.this, "Musisz zaakceptować regulamin!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                progressBar.setVisibility(View.VISIBLE);
 
                 fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -113,7 +114,6 @@ public class Register extends AppCompatActivity {
                         //}
                         if(fAuth.getCurrentUser() != null){
                             Toast.makeText(Register.this, "Takie konto już istnieje!", Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
