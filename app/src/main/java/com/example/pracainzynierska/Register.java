@@ -16,10 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,50 +73,57 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String email = Email.getText().toString().trim();
-                String password = Password.getText().toString().trim();
+                final String password = Password.getText().toString().trim();
                 final String login = Username.getText().toString();
 
-                if (TextUtils.isEmpty(login)){
+                if (TextUtils.isEmpty(login)){ // sprawdzenie loginu
                     Username.setError("To pole jest wymagane!");
                     return;
                 }
-                if (TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(password)){ // sprawdzenie hasla
                     Password.setError("To pole jest wymagane!");
                     return;
                 }
-                if (password.length() <= 6){
+                if (password.length() <= 6){ // sprawdzenie hasla
                     Password.setError("Hasło musi zawierać minimum 6 znaków");
                     return;
                 }
-                if (TextUtils.isEmpty(email)) {
+                if (TextUtils.isEmpty(email)) { // sprawdzenie maila
                     Email.setError("To pole jest wymagane!");
                     return;
                 }
-                if (checkBoxTerms.isChecked()){
-                }else{
+                if (checkBoxTerms.isChecked()){ // sprawdzenie akceptacji regulaminu
+                }else{ // po co dawac if z pustym argumentem i else? nie lepiej zrobic if (!checkBoxTerms.isChecked()) ?
                     Toast.makeText(Register.this, "Musisz zaakceptować regulamin!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-
-                fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fStore.collection("users").whereEqualTo("login",login).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Map<String,Object> user = new HashMap<>();
-                            user.put("login",login);
-                            user.put("e-mail",email);
-                            String uid = fAuth.getCurrentUser().getUid();
-                            fStore.collection("users").document(uid).set(user);
-                            Toast.makeText(Register.this, "Zostałeś pomyślnie zarejestrowany!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-
-                        }
-                        //else {
-                         //   Toast.makeText(Register.this, "Błąd rejestracji! Spróbuj ponownie później.", Toast.LENGTH_SHORT).show();
-                        //}
-                        if(fAuth.getCurrentUser() != null){
-                            Toast.makeText(Register.this, "Takie konto już istnieje!", Toast.LENGTH_SHORT).show();
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            Username.setError("Wybrany nick jest zajęty");
+                        } else {
+                            fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()){
+                                        Map<String,Object> user = new HashMap<>();
+                                        user.put("login",login);
+                                        user.put("e-mail",email);
+                                        String uid = fAuth.getCurrentUser().getUid();
+                                        fStore.collection("users").document(uid).set(user);
+                                        Toast.makeText(Register.this, "Zostałeś pomyślnie zarejestrowany!", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                    }
+                                    //else {
+                                    //   Toast.makeText(Register.this, "Błąd rejestracji! Spróbuj ponownie później.", Toast.LENGTH_SHORT).show();
+                                    //}
+                                    //if(fAuth.getCurrentUser() != null){ // czemu to mialo sluzyc?
+                                    //    Toast.makeText(Register.this, "Takie konto już istnieje!", Toast.LENGTH_SHORT).show();
+                                    //}
+                                }
+                            });
                         }
                     }
                 });

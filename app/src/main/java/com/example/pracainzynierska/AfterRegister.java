@@ -55,92 +55,95 @@ public class AfterRegister extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_register);
 
-        ProfileImage = findViewById(R.id.imageViewAvatar);
-        ChangeAvatar = findViewById(R.id.textViewAvatar);
-        Countries = findViewById(R.id.spinnerCoutries);
-        EndReg = findViewById(R.id.buttonEndReg);
-        Name = findViewById(R.id.editTextName);
-        Age = findViewById(R.id.editTextAge);
-        fAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
+            ProfileImage = findViewById(R.id.imageViewAvatar);
+            ChangeAvatar = findViewById(R.id.textViewAvatar);
+            Countries = findViewById(R.id.spinnerCoutries);
+            EndReg = findViewById(R.id.buttonEndReg);
+            Name = findViewById(R.id.editTextName);
+            Age = findViewById(R.id.editTextAge);
+            fAuth = FirebaseAuth.getInstance();
+            fStore = FirebaseFirestore.getInstance();
 
 
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.ArrayCountries, R.layout.countries_item);
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        Countries.setAdapter(adapter);
+            ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.ArrayCountries, R.layout.countries_item);
+            adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            Countries.setAdapter(adapter);
 
-        fStorage = FirebaseStorage.getInstance().getReference();
-        StorageReference profileRef = fStorage.child("users/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
-        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(ProfileImage);
-            }
-        });
-
-        ChangeAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent openGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(openGallery,1000);
-            }
-        });
-
-        ProfileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent openGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(openGallery,1000);
-            }
-        });
-
-        EndReg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = Name.getText().toString();
-                String age = Age.getText().toString();
-                String country = Countries.getSelectedItem().toString();
-
-                final String TAG = "AfterRegister";
-
-                if (TextUtils.isEmpty(name)){
-                    Name.setError("To pole jest wymagane!");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(age)){
-                    Age.setError("To pole jest wymagane!");
-                    return;
-                }
-
-                if (Integer.parseInt(age) > 100 || Integer.parseInt(age) <=0){
-                    Age.setError("Podaj poprawną wartość!");
-                    return;
-                }
-
-                DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
-                Map<String,Object> user = new HashMap<>();
-                user.put("name",name);
-                user.put("age",age);
-                user.put("country",country);
-                usersDocRef.update(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            try {
+                fStorage = FirebaseStorage.getInstance().getReference();
+                StorageReference profileRef = fStorage.child("users/" + fAuth.getCurrentUser().getUid() + "/profile.jpg");
+                profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Log.d(TAG, "Dane(name,age,country) dodane do bazy");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "Dane(name,age,country) nie dodane do bazy");
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(ProfileImage);
                     }
                 });
+            } catch (Exception e) {}
 
-                startActivity(new Intent(getApplicationContext(),Dashboard.class));
 
-            }
-        });
+            ChangeAvatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent openGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(openGallery, 1000);
+                }
+            });
 
+            ProfileImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent openGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(openGallery, 1000);
+                }
+            });
+
+            EndReg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String name = Name.getText().toString();
+                    String age = Age.getText().toString();
+                    String country = Countries.getSelectedItem().toString();
+
+                    final String TAG = "AfterRegister";
+
+                    if (TextUtils.isEmpty(name)) {
+                        Name.setError("To pole jest wymagane!");
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty(age)) {
+                        Age.setError("To pole jest wymagane!");
+                        return;
+                    }
+
+                    if (Integer.parseInt(age) > 100 || Integer.parseInt(age) <= 0) {
+                        Age.setError("Podaj poprawną wartość!");
+                        return;
+                    }
+
+                    DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("name", name);
+                    user.put("age", age);
+                    user.put("country", country);
+                    usersDocRef.update(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Log.d(TAG, "Dane(name,age,country) dodane do bazy");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d(TAG, "Dane(name,age,country) nie dodane do bazy");
+                        }
+                    });
+
+                    startActivity(new Intent(getApplicationContext(), Dashboard.class));
+
+                }
+            });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

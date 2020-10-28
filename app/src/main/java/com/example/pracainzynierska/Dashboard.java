@@ -3,8 +3,10 @@ package com.example.pracainzynierska;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -12,6 +14,8 @@ import android.widget.Toast;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Dashboard extends AppCompatActivity {
+
+    final String TAG = "Dashboard";
 
     Button FindPeople;
     Button GoProfile;
@@ -22,8 +26,6 @@ public class Dashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         FindPeople = findViewById(R.id.buttonFindPeople);
         GoProfile = findViewById(R.id.buttonGoProfile);
@@ -37,6 +39,17 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
+        Logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName); // nazwa preferencji / pliku gdzie skladowane beda klucz-wartosc
+                SharedPreferences preferences = getSharedPreferences(AUTO_LOGIN_PREF_NAME, MODE_PRIVATE);
+                preferences.edit().clear().apply(); //usuwa autologowanie po wylogowaniu sie
+                Log.i(TAG, "Usunieto autologowanie");
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        });
 
     }
 

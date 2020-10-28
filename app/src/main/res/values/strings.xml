@@ -17,6 +17,7 @@
     <string name="textViewLogin">Zaloguj się</string>
     <string name="buttonLogin">ZALOGUJ</string>
     <string name="textViewForgot">Nie pamiętam hasła:</string>
+    <string name="checkBoxRememberMe">Zapamiętaj mnie</string>
     <!--activity_forgot_password-->
     <string name="textViewForgotEmail">Wpisz adres e-mail:</string>
     <string name="buttonForgot">PRZYPOMNIJ HASŁO</string>
@@ -33,4 +34,6 @@
     <string name="buttonLogout">WYLOGUJ SIĘ</string>
     <!--activity_game_choice-->
     <string name="textViewChooseGame">WYBIERZ GRĘ:</string>
+    <!--preferences-->
+    <string name="autoLoginPreferenceName">autoLogin</string>
 </resources>

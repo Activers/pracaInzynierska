@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,9 +29,12 @@ public class Login extends AppCompatActivity {
     EditText Email,Password;
     Button Login;
     TextView Forgot;
-    FirebaseAuth fAuth;
-    FirebaseFirestore fStore;
-    ProgressBar progressBar;
+    FirebaseAuth fAuth; // autentykacja
+    FirebaseFirestore fStore; // baza danych firestore
+    ProgressBar progressBar; // progress zadania (obrajace sie kolko)
+
+    CheckBox rememberMe; //
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +50,15 @@ public class Login extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBar);
 
+        rememberMe = (CheckBox) findViewById(R.id.checkBoxRememberMe);
+        String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName); // nazwa preferencji / pliku gdzie skladowane beda klucz-wartosc
+        preferences = getSharedPreferences(AUTO_LOGIN_PREF_NAME, MODE_PRIVATE);
+
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = Email.getText().toString().trim();
-                String password = Password.getText().toString().trim();
+                final String email = Email.getText().toString().trim();
+                final String password = Password.getText().toString().trim();
                 final String TAG = "Login";
 
                 if (TextUtils.isEmpty(email)) {
@@ -67,6 +76,8 @@ public class Login extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
+
+
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -76,22 +87,38 @@ public class Login extends AppCompatActivity {
                             DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
                             usersDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) { //
                                     if (task.isSuccessful()) {
                                         DocumentSnapshot document = task.getResult();
                                         if (document.exists()) {
-                                            Log.d(TAG, "Document Snapshot data: " + document.getData());
+                                            Log.i(TAG, "Document Snapshot data: " + document.getData());
                                             String name = document.getString("name");
-                                            if (name == null) {
+
+                                            if (rememberMe.isChecked()) { // jezeli zaznaczony checkbox - zapisz preferencje autologowania
+
+                                                Boolean isChecked = rememberMe.isChecked();
+                                                SharedPreferences.Editor editor = preferences.edit();
+                                                editor.putString("pref_email", email);
+                                                editor.putString("pref_password", password);
+                                                editor.putBoolean("pref_automaticLogin", isChecked);
+                                                editor.apply();
+                                                Log.i(TAG, "Ustawiono autologowanie - zapisano email, password, check");
+                                                Toast.makeText(getApplicationContext(),"Autologowanie ustawione",Toast.LENGTH_SHORT).show();
+                                            } else { // jezeli odznaczony checkbox - wyczysc preferencje autologowania
+                                                preferences.edit().clear().apply();
+                                                Log.i(TAG, "Usunieto autologowanie");
+                                            }
+
+                                            if (name == null) { // wybranie dashboard lub after register zaleznie od uzupelnionych danych
                                                 startActivity(new Intent(getApplicationContext(),AfterRegister.class));
                                             } else {
                                                 startActivity(new Intent(getApplicationContext(),Dashboard.class));
                                             }
                                         } else {
-                                            Log.d(TAG, "No such document");
+                                            Log.i(TAG, "Nie znaleziono dokumentu");
                                         }
                                     } else {
-                                        Log.d(TAG, "get failed with", task.getException());
+                                        Log.i(TAG, "niepowodzenie spowodowane: ", task.getException());
                                     }
                                 }
                             });
@@ -102,9 +129,6 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 });
-
-                //Czytanie z bazy danych dokumentu i przejscie do Dashboard lub AfterRegister
-
             }
         });
 
