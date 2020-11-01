@@ -6,10 +6,12 @@
     <string name="buttonRegisterEmail">E-MAIL</string>
     <string name="buttonRegisterFacebook">FACEBOOK</string>
     <!--activity_register-->
+    <string name="textViewRegister">REJESTRACJA</string>
     <string name="textViewNewAcc">Stwórz nowe konto:</string>
     <string name="editTextUsername">Nazwa użytkownika</string>
     <string name="editTextPassword">Hasło</string>
-    <string name="editTextEmail">Adres E-mail</string>
+    <string name="editTextEmail">E-mail</string>
+    <string name="checkBoxTerms">Akceptuje regulamin oraz politykę prywatności</string>
     <string name="buttonRegister">ZAREJESTRUJ</string>
     <string name="textViewAlreadyLogin">Jesteś już zarejestrowany? Zaloguj się</string>
     <string name="textViewAllTerms"></string>
@@ -19,10 +21,12 @@
     <string name="textViewForgot">Nie pamiętam hasła:</string>
     <string name="checkBoxRememberMe">Zapamiętaj mnie</string>
     <!--activity_forgot_password-->
+    <string name="textViewResetPass">ZRESETUJ SWOJE HASŁO</string>
     <string name="textViewForgotEmail">Wpisz adres e-mail:</string>
-    <string name="buttonForgot">PRZYPOMNIJ HASŁO</string>
+    <string name="buttonForgot">ZRESETUJ</string>
     <!--activity_after_register-->
-    <string name="textViewContRegister">Dodatkowe informacje:</string>
+    <string name="textViewAftRegister">DODATKOWE INFORMACJE</string>
+    <string name="textViewContRegister">Uzupełnij dodatkowe informacje:</string>
     <string name="editTextName">Imię:</string>
     <string name="editTextAge">Podaj wiek:</string>
     <string name="textViewAddPic">Dodaj awatar:</string>

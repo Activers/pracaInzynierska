@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/bgtest3"
     android:fillViewport="true">
 
     <LinearLayout
@@ -23,37 +23,25 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/textViewAppName"
+                android:id="@+id/textViewLogin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
                 android:gravity="center"
-                android:text="@string/appTitle"
+                android:text="@string/textViewLogin"
+                android:textAllCaps="true"
+                android:fontFamily="sans-serif-light"
                 android:textColor="#FFFFFF"
-                android:textSize="55sp"
-                android:textStyle="bold" />
+                android:textSize="55sp" />
 
 
         </RelativeLayout>
 
 
-        <TextView
-            android:id="@+id/textViewNewAcc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/textViewLogin"
-            android:textAllCaps="true"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="326dp"
             android:layout_height="53dp"
-            android:layout_below="@+id/textViewNewAcc"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:autofillHints=""
             android:backgroundTint="#FFFFFF"
@@ -61,9 +49,10 @@
             android:hint="@string/editTextEmail"
             android:inputType="textEmailAddress"
             android:selectAllOnFocus="false"
+            android:gravity="center"
             android:singleLine="false"
             android:textColor="#FFFFFF"
-            android:textColorHint="#CCCCCC"
+            android:textColorHint="#FFFFFF"
             android:textSize="20sp" />
 
         <EditText
@@ -75,9 +64,10 @@
             android:backgroundTint="#FFFFFF"
             android:ems="10"
             android:hint="@string/editTextPassword"
+            android:gravity="center"
             android:inputType="textPassword"
             android:textColor="#FFFFFF"
-            android:textColorHint="#CCCCCC"
+            android:textColorHint="#FFFFFF"
             android:textSize="20sp" />
 
 
@@ -94,8 +84,6 @@
             android:id="@+id/buttonLogin"
             android:layout_width="209dp"
             android:layout_height="57dp"
-            android:layout_below="@+id/editTextPassword"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             android:background="@drawable/button_bg"
             android:fontFamily="sans-serif-light"
@@ -110,14 +98,13 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewForgot"
             android:layout_marginTop="10dp"
             android:visibility="invisible" />
 
         <TextView
             android:id="@+id/textViewForgot"
-            android:layout_width="361dp"
-            android:layout_height="34dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/textViewForgot"
             android:textAlignment="center"

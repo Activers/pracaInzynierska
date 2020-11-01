@@ -35,6 +35,13 @@ public class Dashboard extends AppCompatActivity {
         FindPeople.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),FindPeople.class));
+            }
+        });
+
+        ChooseGames.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),GameChoice.class));
             }
         });

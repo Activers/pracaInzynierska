@@ -82,6 +82,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            progressBar.setVisibility(View.INVISIBLE);
                             Toast.makeText(Login.this, "Zostałeś pomyślnie zalogowany!", Toast.LENGTH_SHORT).show();
                             //startActivity(new Intent(getApplicationContext(),AfterRegister.class));
                             DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
@@ -103,15 +104,17 @@ public class Login extends AppCompatActivity {
                                                 editor.putBoolean("pref_automaticLogin", isChecked);
                                                 editor.apply();
                                                 Log.i(TAG, "Ustawiono autologowanie - zapisano email, password, check");
-                                                Toast.makeText(getApplicationContext(),"Autologowanie ustawione",Toast.LENGTH_SHORT).show();
+                                                //Toast.makeText(getApplicationContext(),"Autologowanie ustawione",Toast.LENGTH_SHORT).show();
                                             } else { // jezeli odznaczony checkbox - wyczysc preferencje autologowania
                                                 preferences.edit().clear().apply();
                                                 Log.i(TAG, "Usunieto autologowanie");
                                             }
 
                                             if (name == null) { // wybranie dashboard lub after register zaleznie od uzupelnionych danych
+                                                progressBar.setVisibility(View.INVISIBLE);
                                                 startActivity(new Intent(getApplicationContext(),AfterRegister.class));
                                             } else {
+                                                progressBar.setVisibility(View.INVISIBLE);
                                                 startActivity(new Intent(getApplicationContext(),Dashboard.class));
                                             }
                                         } else {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/bgtest3"
     android:fillViewport="true">
 
     <LinearLayout
@@ -23,31 +23,19 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/textViewAppName"
+                android:id="@+id/textViewRegister"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
                 android:gravity="center"
-                android:text="@string/appTitle"
+                android:text="@string/textViewRegister"
+                android:fontFamily="sans-serif-light"
                 android:textColor="#FFFFFF"
-                android:textSize="55sp"
-                android:textStyle="bold" />
+                android:textSize="55sp" />
 
 
         </RelativeLayout>
 
-
-        <TextView
-            android:id="@+id/textViewNewAcc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:text="@string/textViewNewAcc"
-            android:textAllCaps="true"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editTextUsername"
@@ -58,9 +46,10 @@
             android:backgroundTint="#FFFFFF"
             android:hint="@string/editTextUsername"
             android:inputType="textPersonName"
+            android:gravity="center"
             android:textColor="#FFFFFF"
             android:textColorHighlight="#FFFFFF"
-            android:textColorHint="#CCCCCC"
+            android:textColorHint="#FFFFFF"
             android:textColorLink="#FFFFFF"
             android:textSize="20sp" />
 
@@ -74,8 +63,9 @@
             android:ems="10"
             android:hint="@string/editTextPassword"
             android:inputType="textPassword"
+            android:gravity="center"
             android:textColor="#FFFFFF"
-            android:textColorHint="#CCCCCC"
+            android:textColorHint="#FFFFFF"
             android:textSize="20sp" />
 
         <EditText
@@ -89,9 +79,10 @@
             android:hint="@string/editTextEmail"
             android:inputType="textEmailAddress"
             android:selectAllOnFocus="false"
+            android:gravity="center"
             android:singleLine="false"
             android:textColor="#FFFFFF"
-            android:textColorHint="#CCCCCC"
+            android:textColorHint="#FFFFFF"
             android:textSize="20sp" />
 
         <CheckBox
@@ -101,7 +92,7 @@
             android:layout_below="@+id/editTextEmail"
             android:layout_marginStart="5dp"
             android:layout_marginTop="30dp"
-            android:text="Akceptuje regulamin oraz politykę prywatności"
+            android:text="@string/checkBoxTerms"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
 

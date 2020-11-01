@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/mainLayout"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:focusable="false"
+    android:background="@drawable/bgtest3"
+    android:focusableInTouchMode="true">
+
+
+    <TextView
+        android:id="@+id/textViewChooseGame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="10"
-        android:focusable="false"
-        android:background="@drawable/bgtest3"
-        android:focusableInTouchMode="true">
-
-
-            <TextView
-                android:id="@+id/textViewChooseGame"
-                android:layout_width="match_parent"
-                android:layout_height="125dp"
-                android:gravity="center"
-                android:layout_marginTop="0dp"
-                android:text="@string/textViewChooseGame"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="35sp"
-                android:textStyle="bold" />
+        android:layout_height="125dp"
+        android:gravity="center"
+        android:layout_marginTop="0dp"
+        android:text="@string/textViewChooseGame"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="35sp"
+        android:textStyle="bold" />
 
     <View
         android:layout_width="match_parent"
@@ -112,8 +112,8 @@
 
         </LinearLayout>
 
-</ScrollView>
+    </ScrollView>
 
-    </LinearLayout>
+</LinearLayout>
 
 

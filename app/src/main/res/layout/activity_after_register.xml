@@ -2,160 +2,121 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/background"
-    android:orientation="vertical"
-    android:fillViewport="true"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgtest3"
+    android:fillViewport="true">
 
     <LinearLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:focusable="false"
-        android:focusableInTouchMode="true">
+        android:gravity="center"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:weightSum="10">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="165dp"
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/textViewAppName"
+                android:id="@+id/textViewAftRegister"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="0dp"
-                android:text="@string/appTitle"
-                android:textColor="#FFFFFF"
-                android:textSize="55sp"
-                android:textStyle="bold" />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/textViewContRegister"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/textViewContRegister"
-                android:textAllCaps="true"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/editTextName"
-                android:layout_width="326dp"
-                android:layout_height="53dp"
-                android:layout_below="@+id/textViewContRegister"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
-                android:autofillHints=""
-                android:backgroundTint="#FFFFFF"
-                android:hint="@string/editTextName"
-                android:inputType="textPersonName"
-                android:textColor="#FFFFFF"
-                android:textColorHighlight="#FFFFFF"
-                android:textColorHint="#CCCCCC"
-                android:textColorLink="#FFFFFF"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/editTextAge"
-                android:layout_width="326dp"
-                android:layout_height="53dp"
-                android:layout_below="@+id/editTextName"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:autofillHints=""
-                android:backgroundTint="#FFFFFF"
-                android:hint="@string/editTextAge"
-                android:inputType="number"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#CCCCCC"
-                android:textColorLink="#FFFFFF"
-                android:textSize="20sp" />
-
-            <Spinner
-                android:id="@+id/spinnerCoutries"
-                android:background="@drawable/counteries_bg"
-                android:layout_width="318dp"
-                android:layout_height="53dp"
-                android:layout_below="@+id/editTextAge"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:autofillHints=""
-                android:textSize="20sp"
-                />
-
-
-            <ImageView
-                android:id="@+id/imageViewAvatar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/spinnerCoutries"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/image_bg"
-                android:maxWidth="280px"
-                android:maxHeight="280px"
-                android:minWidth="280px"
-                android:minHeight="280px"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/defaultpic"
-                tools:srcCompat="@drawable/defaultpic" />
-
-            <TextView
-                android:id="@+id/textViewAvatar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/imageViewAvatar"
-                android:gravity="center"
-                android:layout_marginTop="30dp"
-                android:text="@string/textViewAddPic"
-                android:textAllCaps="true"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="10dp">
-
-            <Button
-                android:id="@+id/buttonEndReg"
-                android:layout_width="209dp"
-                android:layout_height="65dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/button_bg"
+                android:text="@string/textViewAftRegister"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/buttonEndReg"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#424242"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textColor="#FFFFFF"
+                android:textSize="55sp" />
+
 
         </RelativeLayout>
 
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="326dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#FFFFFF"
+            android:hint="@string/editTextName"
+            android:inputType="textPersonName"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextAge"
+            android:layout_width="326dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:autofillHints=""
+            android:backgroundTint="#FFFFFF"
+            android:hint="@string/editTextAge"
+            android:inputType="number"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinnerCoutries"
+            android:background="@drawable/counteries_bg"
+            android:layout_width="318dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
+            android:textSize="20sp"
+            />
+
+        <ImageView
+            android:id="@+id/imageViewAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/image_bg"
+            android:maxWidth="110dp"
+            android:maxHeight="110dp"
+            android:minWidth="110dp"
+            android:minHeight="110dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/defaultpic"
+            tools:srcCompat="@drawable/defaultpic" />
+
+        <TextView
+            android:id="@+id/textViewAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageViewAvatar"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="@string/textViewAddPic"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonEndReg"
+            android:layout_width="209dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="45dp"
+            android:background="@drawable/button_bg"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/buttonEndReg"
+            android:textColor="#424242"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

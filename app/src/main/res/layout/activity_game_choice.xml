@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/bgtest3"
     >
 
     <LinearLayout
@@ -36,67 +36,6 @@
 
 
         </RelativeLayout>
-
-
-            <Button
-        android:id="@+id/buttonLoL"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="@drawable/csgo"
-        android:fontFamily="sans-serif-light"
-        android:text=""
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#424242"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-        <Button
-            android:id="@+id/buttonCsgo"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/lol"
-            android:fontFamily="sans-serif-light"
-            android:text=""
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#424242"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-        <Button
-            android:id="@+id/buttonPubg"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/pubg"
-            android:fontFamily="sans-serif-light"
-            android:text=""
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#424242"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-        <Button
-            android:id="@+id/buttonApex"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/apex"
-            android:fontFamily="sans-serif-light"
-            android:text=""
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#424242"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-        <Button
-            android:id="@+id/buttonAmongUs"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/amongus"
-            android:fontFamily="sans-serif-light"
-            android:text=""
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#424242"
-            android:textSize="24sp"
-            android:textStyle="bold" />
 
 
 
