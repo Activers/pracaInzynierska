@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgtest3"
+    android:focusable="false"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+
+    <TextView
+        android:id="@+id/textViewChooseGame"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:layout_marginTop="0dp"
+        android:text="Profil użytkownika"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/white" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/imageViewAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="0dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/image_bg"
+            android:maxWidth="90dp"
+            android:maxHeight="90dp"
+            android:minWidth="90dp"
+            android:minHeight="90dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/defaultpic"
+            tools:srcCompat="@drawable/defaultpic" />
+
+        <LinearLayout
+            android:id="@+id/LinearLayout03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/LinearLayout04"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/editText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="left"
+                    android:paddingStart="20dp"
+                    android:text="Nazwa Uzytkownika:"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/editText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="left"
+                    android:paddingStart="20dp"
+                    android:text="Jezyk:"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/editText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="left"
+                    android:paddingStart="20dp"
+                    android:text="Wiek:"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/white" />
+
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/editTextOpis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="left"
+                android:paddingHorizontal="20dp"
+                android:text="Opis: Tu znajdzie sie opis gdy użytkownik go doda.."
+                android:textColor="#FFFFFF"
+                android:textSize="21sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/white" />
+
+            <TextView
+                android:id="@+id/editText54"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
+                android:text="GRY UŻYTKOWNIKA:"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/white" />
+
+            <Button
+                android:id="@+id/button346"
+                android:layout_width="290dp"
+                android:layout_height="77dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_bg"
+                android:fontFamily="sans-serif-light"
+                android:text="CS:GO"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#424242"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button3476"
+                android:layout_width="290dp"
+                android:layout_height="77dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_bg"
+                android:fontFamily="sans-serif-light"
+                android:text="League of Legends"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#424242"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button3046"
+                android:layout_width="290dp"
+                android:layout_height="77dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_bg"
+                android:fontFamily="sans-serif-light"
+                android:text="Call of Duty"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#424242"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button3346"
+                android:layout_width="290dp"
+                android:layout_height="77dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_bg"
+                android:fontFamily="sans-serif-light"
+                android:text="Among Us"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#424242"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>
+
+

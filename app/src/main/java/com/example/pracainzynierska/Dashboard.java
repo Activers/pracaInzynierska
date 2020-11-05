@@ -26,7 +26,7 @@ public class Dashboard extends AppCompatActivity {
 
     Button FindPeople;
     Button GoProfile;
-    Button ChooseGames;
+    Button Settings;
     Button Logout;
 
     @Override
@@ -34,20 +34,20 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
-        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+        //topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+       // bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
         FindPeople = findViewById(R.id.buttonFindPeople);
         GoProfile = findViewById(R.id.buttonGoProfile);
-        ChooseGames = findViewById(R.id.buttonChooseGames);
+        Settings = findViewById(R.id.buttonSettings);
         Logout = findViewById(R.id.buttonLogout);
-        appName = findViewById(R.id.textViewAppName);
+        appName = findViewById(R.id.editTextAppName);
 
-        appName.setAnimation(topAnim);
-        FindPeople.setAnimation(bottomAnim);
-        GoProfile.setAnimation(bottomAnim);
-        ChooseGames.setAnimation(bottomAnim);
-        Logout.setAnimation(bottomAnim);
+       // appName.setAnimation(topAnim);
+        //FindPeople.setAnimation(bottomAnim);
+        //GoProfile.setAnimation(bottomAnim);
+       // Settings.setAnimation(bottomAnim);
+        //Logout.setAnimation(bottomAnim);
 
 
         FindPeople.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +57,14 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
-        ChooseGames.setOnClickListener(new View.OnClickListener() {
+        GoProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MyProfile.class));
+            }
+        });
+
+        Settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),GameChoice.class));
