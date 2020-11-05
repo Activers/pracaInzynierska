@@ -25,66 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
     final String TAG = "MainActivity";
 
-    FirebaseAuth fAuth;
-    FirebaseFirestore fStore;
-
-    SharedPreferences preferences;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-            // SPRAWDZANIE AUTOLOGOWANIA
-            String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName); // nazwa preferencji / pliku gdzie skladowane beda klucz-wartosc
-            preferences = getSharedPreferences(AUTO_LOGIN_PREF_NAME, MODE_PRIVATE);
-            if (preferences.contains("pref_automaticLogin")) {
-
-
-                fAuth = FirebaseAuth.getInstance();
-                fStore = FirebaseFirestore.getInstance();
-
-                String email = preferences.getString("pref_email", "no data found");
-                String password = preferences.getString("pref_password", "no data found");
-
-                fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Zostałeś pomyślnie zalogowany!", Toast.LENGTH_SHORT).show();
-                            //startActivity(new Intent(getApplicationContext(),AfterRegister.class));
-                            DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
-                            usersDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        DocumentSnapshot document = task.getResult();
-                                        if (document.exists()) {
-                                            Log.i(TAG, "Document Snapshot data: " + document.getData());
-                                            String name = document.getString("name");
-                                            if (name == null) {
-                                                startActivity(new Intent(getApplicationContext(), AfterRegister.class));
-                                            } else {
-                                                startActivity(new Intent(getApplicationContext(), Dashboard.class));
-                                            }
-                                        } else {
-                                            Log.i(TAG, "Nie znaleziono dokumentu");
-                                        }
-                                    } else {
-                                        Log.i(TAG, "niepowodzenie spowodowane: ", task.getException());
-                                    }
-                                }
-                            });
-                        } else {
-                            Log.i(TAG, "Autologowanie zakończone niepowodzeniem");
-                            Toast.makeText(MainActivity.this, "Autologowanie zakończone niepowodzeniem!", Toast.LENGTH_SHORT).show();
-                            //Toast.makeText(Login.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-            // KONIEC SPRAWDZANIA AUTOLOGOWANIA
 
         Button buttonRegisterEmail = (Button) findViewById(R.id.buttonRegisterEmail);
         TextView textViewLogin = (TextView) findViewById(R.id.textViewLogin);

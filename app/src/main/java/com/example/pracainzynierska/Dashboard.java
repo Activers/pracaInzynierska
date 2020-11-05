@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -16,6 +19,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class Dashboard extends AppCompatActivity {
 
     final String TAG = "Dashboard";
+
+    Animation topAnim, bottomAnim;
+
+    TextView appName;
 
     Button FindPeople;
     Button GoProfile;
@@ -27,10 +34,21 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+
         FindPeople = findViewById(R.id.buttonFindPeople);
         GoProfile = findViewById(R.id.buttonGoProfile);
         ChooseGames = findViewById(R.id.buttonChooseGames);
         Logout = findViewById(R.id.buttonLogout);
+        appName = findViewById(R.id.textViewAppName);
+
+        appName.setAnimation(topAnim);
+        FindPeople.setAnimation(bottomAnim);
+        GoProfile.setAnimation(bottomAnim);
+        ChooseGames.setAnimation(bottomAnim);
+        Logout.setAnimation(bottomAnim);
+
 
         FindPeople.setOnClickListener(new View.OnClickListener() {
             @Override

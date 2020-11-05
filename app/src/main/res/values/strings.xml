@@ -1,8 +1,10 @@
 <resources>
-    <!--activity_main-->
     <string name="app_name">pracaInzynierska</string>
     <string name="appTitle">IQTQ</string>
-    <string name="appDesc">Witamy! Utwórz konto, aby dołączyć do społeczności i znaleść nowe osoby do ulubionych gier online.</string>
+    <!--activity_splash_screen-->
+    <string name="appSlogan">Aplikacja do znajdowania współgraczy</string>
+    <!--activity_main-->
+    <string name="appDesc">Witamy! Utwórz konto, aby dołączyć do społeczności i znaleźć nowe osoby do ulubionych gier online.</string>
     <string name="buttonRegisterEmail">E-MAIL</string>
     <string name="buttonRegisterFacebook">FACEBOOK</string>
     <!--activity_register-->

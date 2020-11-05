@@ -46,7 +46,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <Button
+            <!--<Button
                 android:id="@+id/buttonLoL"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
@@ -69,7 +69,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#424242"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold" /> -->
 
             <Button
                 android:id="@+id/buttonPubg"
