@@ -19,8 +19,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="145dp"
-            android:padding="10dp">
+            android:layout_height="135dp">
 
             <TextView
                 android:id="@+id/editTextAppName"
@@ -41,22 +40,20 @@
         <LinearLayout
             android:id="@+id/LinearLayout04"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:padding="15dp">
-            <Button
+            <ImageButton
                 android:id="@+id/buttonFindPeople"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_weight="1"
                 android:background="#33676767"
-                android:text="@string/buttonFindPeople"
-                android:textColor="#FFFFFF"
-                android:fontFamily="sans-serif-light"
-                android:textSize="22sp"
-                android:textStyle="bold"
+                android:src="@drawable/find_button"
+                android:scaleType="fitCenter"
+                android:padding="20dp"
                 >
-            </Button>
+            </ImageButton>
 
         </LinearLayout>
 
@@ -65,63 +62,56 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:padding="15dp">
-            <Button
+            <ImageButton
                 android:id="@+id/buttonGoProfile"
                 android:layout_width="250dp"
                 android:layout_height="150dp"
                 android:layout_marginEnd="10dp"
                 android:background="#33676767"
+                android:src="@drawable/profile_button"
+                android:scaleType="fitCenter"
+                android:padding="22dp"
                 android:layout_weight="1"
-                android:text="@string/buttonGoProfile"
-                android:textColor="#FFFFFF"
-                android:fontFamily="sans-serif-light"
-                android:textSize="22sp"
-                android:textStyle="bold"
                 >
-            </Button>
-            <Button
+            </ImageButton>
+            <ImageButton
                 android:id="@+id/buttonSettings"
                 android:layout_width="250dp"
                 android:layout_height="150dp"
                 android:layout_weight="1"
-                android:background="#33676767"
-                android:text="@string/buttonSettings"
-                android:textColor="#FFFFFF"
-                android:fontFamily="sans-serif-light"
-                android:textSize="22sp"
-                android:textStyle="bold">
-            </Button>
+                android:src="@drawable/settings_button"
+                android:scaleType="fitCenter"
+                android:padding="22dp"
+                android:background="#33676767">
+            </ImageButton>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/LinearLayout03"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:padding="15dp">
-            <Button
+            <ImageButton
                 android:id="@+id/buttonAbout"
                 android:layout_width="250dp"
                 android:layout_height="150dp"
                 android:layout_marginEnd="10dp"
                 android:background="#33676767"
                 android:layout_weight="1"
-                android:text="@string/buttonAbout"
-                android:textColor="#FFFFFF"
-                android:fontFamily="sans-serif-light"
-                android:textSize="22sp"
-                android:textStyle="bold">
-            </Button>
-            <Button
+                android:src="@drawable/about_button"
+                android:scaleType="fitCenter"
+                android:padding="22dp"
+                >
+            </ImageButton>
+            <ImageButton
                 android:id="@+id/buttonLogout"
                 android:layout_width="250dp"
                 android:layout_height="150dp"
                 android:layout_weight="1"
                 android:background="#33676767"
-                android:text="@string/buttonLogout"
-                android:textColor="#FFFFFF"
-                android:fontFamily="sans-serif-light"
-                android:textSize="22sp"
-                android:textStyle="bold">
-            </Button>
+                android:src="@drawable/logout_button"
+                android:scaleType="fitCenter"
+                android:padding="22dp">
+            </ImageButton>
         </LinearLayout>
 
 

@@ -20,7 +20,7 @@
     <!--activity_login-->
     <string name="textViewLogin">Zaloguj się</string>
     <string name="buttonLogin">ZALOGUJ</string>
-    <string name="textViewForgot">Nie pamiętam hasła:</string>
+    <string name="textViewForgot">Nie pamiętam hasła</string>
     <string name="checkBoxRememberMe">Zapamiętaj mnie</string>
     <!--activity_forgot_password-->
     <string name="textViewResetPass">ZRESETUJ SWOJE HASŁO</string>
@@ -44,6 +44,11 @@
     <string name="textViewChooseGame">WYBIERZ GRĘ:</string>
     <!--activity_game_MyProfile-->
     <string name="editTextProfile">PROFIL UŻYTKOWNIKA</string>
+    <string name="TextViewUsername">Użytkownik:</string>
+    <string name="TextViewLanguage">Język:</string>
+    <string name="TextViewAge">Wiek:</string>
+    <string name="TextViewDescription">Opis: Dodaj opis w zakładce ustawienia..</string>
+    <string name="TextViewUserGames">GRY UŻYTKOWNIKA</string>
     <!--preferences-->
     <string name="autoLoginPreferenceName">autoLogin</string>
 </resources>

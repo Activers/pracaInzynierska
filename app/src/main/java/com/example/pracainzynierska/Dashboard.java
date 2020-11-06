@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,10 +25,10 @@ public class Dashboard extends AppCompatActivity {
 
     TextView appName;
 
-    Button FindPeople;
-    Button GoProfile;
-    Button Settings;
-    Button Logout;
+    ImageButton FindPeople;
+    ImageButton GoProfile;
+    ImageButton Settings;
+    ImageButton Logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
