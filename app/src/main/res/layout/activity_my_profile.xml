@@ -7,28 +7,30 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgtest3"
+    android:background="@drawable/app_background"
     android:focusable="false"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
+    android:gravity="center"
     android:weightSum="10">
 
 
     <TextView
-        android:id="@+id/textViewChooseGame"
+        android:id="@+id/editTextProfile"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:gravity="center"
-        android:layout_marginTop="0dp"
-        android:text="Profil użytkownika"
+        android:layout_marginTop="5dp"
+        android:text="@string/editTextProfile"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="22sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <View
-        android:layout_width="match_parent"
+        android:layout_width="290dp"
         android:layout_height="2dp"
+        android:layout_marginTop="2dp"
         android:background="@android:color/white" />
 
     <LinearLayout
@@ -37,20 +39,20 @@
         android:layout_height="wrap_content"
         android:padding="15dp">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/imageViewAvatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="0dp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/image_bg"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/defpicresize"
+            app:riv_corner_radius="60dip"
+            app:riv_border_width="2dip"
+            app:riv_border_color="#333333"
+            app:riv_mutate_background="true"
             android:maxWidth="90dp"
             android:maxHeight="90dp"
             android:minWidth="90dp"
             android:minHeight="90dp"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/defaultpic"
-            tools:srcCompat="@drawable/defaultpic" />
+            />
 
         <LinearLayout
             android:id="@+id/LinearLayout03"
@@ -152,7 +154,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="GRY UŻYTKOWNIKA:"
                 android:textColor="#FFFFFF"
-                android:textSize="22sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <View

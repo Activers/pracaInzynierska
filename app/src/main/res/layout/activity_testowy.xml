@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:weightSum="10"
         android:focusable="false"
-        android:background="@drawable/bgtest3"
+        android:background="@drawable/app_background"
         android:focusableInTouchMode="true">
 
 
