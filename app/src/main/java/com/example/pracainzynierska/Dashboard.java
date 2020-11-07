@@ -2,11 +2,14 @@ package com.example.pracainzynierska;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -30,6 +33,7 @@ public class Dashboard extends AppCompatActivity {
     ImageButton Settings;
     ImageButton Logout;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,36 +55,112 @@ public class Dashboard extends AppCompatActivity {
         //Logout.setAnimation(bottomAnim);
 
 
-        FindPeople.setOnClickListener(new View.OnClickListener() {
+        FindPeople.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),FindPeople.class));
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        ImageButton view = (ImageButton ) v;
+                        view.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                        v.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+
+                        startActivity(new Intent(getApplicationContext(),FindPeople.class));
+
+                    case MotionEvent.ACTION_CANCEL: {
+                        ImageButton view = (ImageButton) v;
+                        view.getBackground().clearColorFilter();
+                        view.invalidate();
+                        break;
+                    }
+                }
+                return true;
             }
         });
 
-        GoProfile.setOnClickListener(new View.OnClickListener() {
+        GoProfile.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MyProfile.class));
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        ImageButton view = (ImageButton ) v;
+                        view.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                        v.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+
+                        startActivity(new Intent(getApplicationContext(),MyProfile.class));
+
+                    case MotionEvent.ACTION_CANCEL: {
+                        ImageButton view = (ImageButton) v;
+                        view.getBackground().clearColorFilter();
+                        view.invalidate();
+                        break;
+                    }
+                }
+                return true;
             }
         });
 
-        Settings.setOnClickListener(new View.OnClickListener() {
+        Settings.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),GameChoice.class));
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        ImageButton view = (ImageButton ) v;
+                        view.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                        v.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+
+                        startActivity(new Intent(getApplicationContext(),GameChoice.class));
+
+                    case MotionEvent.ACTION_CANCEL: {
+                        ImageButton view = (ImageButton) v;
+                        view.getBackground().clearColorFilter();
+                        view.invalidate();
+                        break;
+                    }
+                }
+                return true;
             }
         });
 
-        Logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName); // nazwa preferencji / pliku gdzie skladowane beda klucz-wartosc
-                SharedPreferences preferences = getSharedPreferences(AUTO_LOGIN_PREF_NAME, MODE_PRIVATE);
-                preferences.edit().clear().apply(); //usuwa autologowanie po wylogowaniu sie
-                Log.i(TAG, "Usunieto autologowanie");
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        Logout.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        ImageButton view = (ImageButton ) v;
+                        view.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                        v.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+
+                        String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName); // nazwa preferencji / pliku gdzie skladowane beda klucz-wartosc
+                        SharedPreferences preferences = getSharedPreferences(AUTO_LOGIN_PREF_NAME, MODE_PRIVATE);
+                        preferences.edit().clear().apply(); //usuwa autologowanie po wylogowaniu sie
+                        Log.i(TAG, "Usunieto autologowanie");
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+                    case MotionEvent.ACTION_CANCEL: {
+                        ImageButton view = (ImageButton) v;
+                        view.getBackground().clearColorFilter();
+                        view.invalidate();
+                        break;
+                    }
+                }
+                return true;
             }
         });
 
