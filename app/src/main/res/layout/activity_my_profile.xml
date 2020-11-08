@@ -157,59 +157,12 @@
                 android:layout_marginTop="10dp"
                 android:background="@android:color/white" />
 
-            <Button
-                android:id="@+id/button346"
-                android:layout_width="340dp"
-                android:layout_height="77dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/button_bg"
-                android:fontFamily="sans-serif-light"
-                android:text="CS:GO\nNick: Matix"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#424242"
-                android:textSize="24sp"
-                android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/button3476"
-                android:layout_width="340dp"
-                android:layout_height="77dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/button_bg"
-                android:fontFamily="sans-serif-light"
-                android:text="League of Legends\nNick: Matix"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#424242"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/button3046"
-                android:layout_width="340dp"
-                android:layout_height="77dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/button_bg"
-                android:fontFamily="sans-serif-light"
-                android:text="Call of Duty: Modern Warfare\nNick: Matix"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#424242"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/button3346"
-                android:layout_width="340dp"
-                android:layout_height="77dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="40dp"
-                android:background="@drawable/button_bg"
-                android:fontFamily="sans-serif-light"
-                android:text="Among Us\nDiscord: Matix#123123"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#424242"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
 
         </LinearLayout>
 

@@ -83,13 +83,13 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(Login.this, "Zostałeś pomyślnie zalogowany!", Toast.LENGTH_SHORT).show();
                             //startActivity(new Intent(getApplicationContext(),AfterRegister.class));
                             DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
                             usersDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) { //
                                     if (task.isSuccessful()) {
+                                        Toast.makeText(Login.this, "Zostałeś pomyślnie zalogowany!", Toast.LENGTH_SHORT).show();
                                         DocumentSnapshot document = task.getResult();
                                         if (document.exists()) {
                                             Log.i(TAG, "Document Snapshot data: " + document.getData());

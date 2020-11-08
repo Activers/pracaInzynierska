@@ -74,7 +74,7 @@ public class SplashScreen extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(SplashScreen.this, "Zostałeś pomyślnie zalogowany!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(SplashScreen.this, "Zostałeś pomyślnie zalogowany!", Toast.LENGTH_SHORT).show();
                         //startActivity(new Intent(getApplicationContext(),AfterRegister.class));
                         DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
                         usersDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
