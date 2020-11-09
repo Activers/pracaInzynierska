@@ -48,9 +48,6 @@
             />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,42 +55,42 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/TextViewUsername"
+                    android:id="@+id/textViewProfileUsername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:fontFamily="sans-serif-light"
                     android:gravity="left"
                     android:paddingStart="20dp"
-                    android:text="@string/TextViewUsername"
+                    android:text="@string/textViewProfileUsername"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                 <TextView
-                    android:id="@+id/TextViewLanguage"
+                    android:id="@+id/textViewCountry"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif-light"
                     android:gravity="left"
                     android:paddingStart="20dp"
-                    android:text="@string/TextViewLanguage"
+                    android:text="@string/textViewCountry"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                 <TextView
-                    android:id="@+id/editText3"
+                    android:id="@+id/textViewAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif-light"
                     android:gravity="left"
                     android:paddingStart="20dp"
-                    android:text="@string/TextViewAge"
+                    android:text="@string/textViewAge"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -101,7 +98,6 @@
 
 
             </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 
     <View
@@ -109,6 +105,50 @@
         android:layout_height="2dp"
         android:background="@android:color/white" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/TextViewDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="left"
+            android:paddingHorizontal="20dp"
+            android:text="@string/textViewDescription"
+            android:textColor="#FFFFFF"
+            android:textSize="21sp"
+            tools:ignore="RtlHardcoded" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white" />
+
+        <TextView
+            android:id="@+id/TextViewUserGames"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/textViewUserGames"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white" />
+    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -121,47 +161,14 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/TextViewDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-light"
-                android:gravity="left"
-                android:paddingHorizontal="20dp"
-                android:text="@string/TextViewDescription"
-                android:textColor="#FFFFFF"
-                android:textSize="21sp"
-                tools:ignore="RtlHardcoded" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/white" />
-
-            <TextView
-                android:id="@+id/TextViewUserGames"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-light"
-                android:text="@string/TextViewUserGames"
-                android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/white" />
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
                 />
 
         </LinearLayout>

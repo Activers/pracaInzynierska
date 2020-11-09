@@ -74,9 +74,9 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = Email.getText().toString().trim();
                 final String password = Password.getText().toString().trim();
-                final String login = Username.getText().toString();
+                final String username = Username.getText().toString();
 
-                if (TextUtils.isEmpty(login)){ // sprawdzenie loginu
+                if (TextUtils.isEmpty(username)){ // sprawdzenie username
                     Username.setError("To pole jest wymagane!");
                     return;
                 }
@@ -98,7 +98,7 @@ public class Register extends AppCompatActivity {
                     return;
                 }
 
-                fStore.collection("users").whereEqualTo("login",login).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                fStore.collection("users").whereEqualTo("username",username).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (!queryDocumentSnapshots.isEmpty()) {
@@ -109,7 +109,7 @@ public class Register extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()){
                                         Map<String,Object> user = new HashMap<>();
-                                        user.put("login",login);
+                                        user.put("username",username);
                                         user.put("e-mail",email);
                                         String uid = fAuth.getCurrentUser().getUid();
                                         fStore.collection("users").document(uid).set(user);

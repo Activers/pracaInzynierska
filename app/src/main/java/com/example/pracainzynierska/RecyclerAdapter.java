@@ -14,7 +14,8 @@ import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private static final String tag = "RecyclerView";
+    private static final String TAG = "RecyclerView";
+
     private Context mContext;
     private ArrayList<Model> modelList;
 
@@ -43,7 +44,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return 0;
+        return modelList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardViewProfile"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,17 +11,18 @@
     android:layout_marginStart="16dp"
     android:layout_marginTop="16dp"
     app:cardCornerRadius="40dp"
-    app:cardBackgroundColor="#664666"
     >
+    <!--app:cardBackgroundColor="#664666"-->
 
-    <LinearLayout
+
+    <RelativeLayout
         android:id="@+id/list_root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/app_background"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
-        android:background="?attr/selectableItemBackground"
         android:padding="14dp">
 
 
@@ -28,9 +30,9 @@
             android:id="@+id/list_game"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gra"
             android:gravity="center"
-            android:textColor="#424242"
+            android:text="Gra"
+            android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -38,12 +40,14 @@
             android:id="@+id/list_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_below="@+id/list_game"
             android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="Nick"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
-            android:textColor="#424242"
-            android:text="Nick" />
+            android:textStyle="bold"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

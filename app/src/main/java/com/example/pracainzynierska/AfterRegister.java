@@ -41,6 +41,8 @@ import java.util.Map;
 
 public class AfterRegister extends AppCompatActivity {
 
+    final String TAG = "AfterRegister";
+
     ImageView ProfileImage;
     TextView ChangeAvatar;
     Button EndReg;
@@ -105,7 +107,7 @@ public class AfterRegister extends AppCompatActivity {
                     String age = Age.getText().toString();
                     String country = Countries.getSelectedItem().toString();
 
-                    final String TAG = "AfterRegister";
+
 
                     if (TextUtils.isEmpty(name)) {
                         Name.setError("To pole jest wymagane!");

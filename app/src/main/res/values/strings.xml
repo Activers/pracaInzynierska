@@ -44,11 +44,11 @@
     <string name="textViewChooseGame">WYBIERZ GRĘ:</string>
     <!--activity_game_MyProfile-->
     <string name="editTextProfile">PROFIL UŻYTKOWNIKA</string>
-    <string name="TextViewUsername">Użytkownik:</string>
-    <string name="TextViewLanguage">Język:</string>
-    <string name="TextViewAge">Wiek:</string>
-    <string name="TextViewDescription">Opis: Dodaj opis w zakładce ustawienia..</string>
-    <string name="TextViewUserGames">GRY UŻYTKOWNIKA</string>
+    <string name="textViewProfileUsername">Użytkownik:</string>
+    <string name="textViewCountry">Kraj:</string>
+    <string name="textViewAge">Wiek:</string>
+    <string name="textViewDescription">Opis: Dodaj opis w zakładce ustawienia..</string>
+    <string name="textViewUserGames">GRY UŻYTKOWNIKA</string>
     <!--preferences-->
     <string name="autoLoginPreferenceName">autoLogin</string>
 </resources>
