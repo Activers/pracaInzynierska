@@ -28,13 +28,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -54,7 +52,6 @@ public class MyProfile extends AppCompatActivity {
 
     private ArrayList<Model> modelList;
     private RecyclerAdapter recyclerAdapter; // lub RecyclerView.Adapter
-    private Context mContext;
 
     TextView username, country, age;
 
@@ -102,22 +99,11 @@ public class MyProfile extends AppCompatActivity {
         ClearAll();
 
         GetDataFromFirebase();
-
-
     }
 
     private void GetDataFromFirebase() {
 
         ////tu skonczylem https://www.youtube.com/watch?v=BrDX6VTgTkg minuta 31:15
-
-        // Dane na sztywno
-/*      modelList.add(new Model("League of Legends","Activers"));
-        modelList.add(new Model("CS:GO", "Yarrowacai"));
-        modelList.add(new Model("PUBG", "Matix123"));
-        modelList.add(new Model("DOTA 2", "NieGrajWTo"));
-        Integer lol = modelList.size();
-        Toast.makeText(this, lol.toString(), Toast.LENGTH_SHORT).show();*/
-
 
         // sciaganie i ustawianie danych profilowych z bazy
         DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
@@ -139,13 +125,14 @@ public class MyProfile extends AppCompatActivity {
                     String pubgUsername = usernamesMap.get("PUBG");
 
                     if (apexUsername != null) {
-                        //list_root.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.apex));
-//                        Color color =
-//                        Drawable drawable =
-//                        list_root.setBackground();
-//                        cardView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.apex));
-//                        list_root.setBackground(Drawable.createFromPath("C:\\Users\\Tomek\\Desktop\\STUDIA\\INZYNIERKA\\PracaInzynierska\\app\\src\\main\\res\\drawable\\apex.jpg"));
-                        modelList.add(new Model("Apex Legends","Nick: " + apexUsername));
+                        // testy dodawania backgroundu do cardview z drawable - pewnie trzeba przez imageView
+                        /*list_root.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.apex));
+                        Color color =
+                        Drawable drawable =
+                        list_root.setBackground();
+                        cardView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.apex));
+                        list_root.setBackground(Drawable.createFromPath("C:\\Users\\Tomek\\Desktop\\STUDIA\\INZYNIERKA\\PracaInzynierska\\app\\src\\main\\res\\drawable\\apex.jpg"));*/
+                        modelList.add(new Model("APEX","Nick: " + apexUsername));
                     }
 
                     if (csgoUsername != null) {
@@ -157,19 +144,19 @@ public class MyProfile extends AppCompatActivity {
                     }
 
                     if (pubgUsername != null) {
-                        modelList.add(new Model("Player Unknown Battleground","Nick: " + pubgUsername));
+                        modelList.add(new Model("PUBG","Nick: " + pubgUsername));
                     }
                 } else {
                     Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
                 }
+
+                // wyswietlanie listy poprzez adepter i recyclerview
+                recyclerAdapter = new RecyclerAdapter(getApplicationContext(), modelList);
+                recyclerView.setAdapter(recyclerAdapter); // wlozenie listy do recyclerView
+                recyclerAdapter.notifyDataSetChanged();
             }
         });
         // koniec rzeczy zwiazanych z baza
-
-        // wyswietlanie listy poprzez adepter i recyclerview
-        recyclerAdapter = new RecyclerAdapter(getApplicationContext(), modelList);
-        recyclerView.setAdapter(recyclerAdapter);
-        recyclerAdapter.notifyDataSetChanged();
     }
 
     private void ClearAll(){
@@ -179,11 +166,7 @@ public class MyProfile extends AppCompatActivity {
                 recyclerAdapter.notifyDataSetChanged();
             }
         }
-
         modelList = new ArrayList<>();
-
-
     }
-
 
 }
