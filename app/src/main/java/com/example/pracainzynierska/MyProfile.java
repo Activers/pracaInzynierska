@@ -3,25 +3,18 @@ package com.example.pracainzynierska;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
-import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,7 +38,7 @@ public class MyProfile extends AppCompatActivity {
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     StorageReference fStorage;
-    CircleImageView ProfileImage;
+    CircleImageView ProfileImage,addGame;
     RecyclerView recyclerView;
 
     LinearLayoutManager layoutManager; // lub RecyclerView.LayoutManager
@@ -53,10 +46,11 @@ public class MyProfile extends AppCompatActivity {
     private ArrayList<Model> modelList;
     private RecyclerAdapter recyclerAdapter; // lub RecyclerView.Adapter
 
-    TextView username, country, age;
+    TextView username, country, age, addGame2;
 
     RelativeLayout list_root;
-    CardView cardView;
+    CardView List;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +59,8 @@ public class MyProfile extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         ProfileImage = findViewById(R.id.imageViewAvatar);
+        addGame = findViewById(R.id.imageViewAddGame);
+        addGame2 = findViewById(R.id.textViewAddGame);
         recyclerView = findViewById(R.id.list);
         fStore = FirebaseFirestore.getInstance();
 
@@ -73,7 +69,7 @@ public class MyProfile extends AppCompatActivity {
         age = findViewById(R.id.textViewAge);
 
         list_root = findViewById(R.id.list_root);
-        cardView = findViewById(R.id.cardViewProfile);
+        List = findViewById(R.id.cardViewProfile);
 
 
         /// to jest na profilowe to dziala
@@ -89,6 +85,21 @@ public class MyProfile extends AppCompatActivity {
         } catch (Exception e) {}
         ///tu sie konczy profilowe
 
+
+        addGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyProfile.this,ChooseGame.class));
+            }
+        });
+
+
+        addGame2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyProfile.this,ChooseGame.class));
+            }
+        });
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
@@ -125,13 +136,6 @@ public class MyProfile extends AppCompatActivity {
                     String pubgUsername = usernamesMap.get("PUBG");
 
                     if (apexUsername != null) {
-                        // testy dodawania backgroundu do cardview z drawable - pewnie trzeba przez imageView
-                        /*list_root.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.apex));
-                        Color color =
-                        Drawable drawable =
-                        list_root.setBackground();
-                        cardView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.apex));
-                        list_root.setBackground(Drawable.createFromPath("C:\\Users\\Tomek\\Desktop\\STUDIA\\INZYNIERKA\\PracaInzynierska\\app\\src\\main\\res\\drawable\\apex.jpg"));*/
                         modelList.add(new Model("APEX","Nick: " + apexUsername));
                     }
 

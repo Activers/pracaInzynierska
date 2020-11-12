@@ -12,21 +12,15 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Dashboard extends AppCompatActivity {
 
     final String TAG = "Dashboard";
 
     Animation topAnim, bottomAnim;
-
-    TextView appName;
 
     ImageButton FindPeople;
     ImageButton GoProfile;
@@ -46,7 +40,6 @@ public class Dashboard extends AppCompatActivity {
         GoProfile = findViewById(R.id.buttonGoProfile);
         Settings = findViewById(R.id.buttonSettings);
         Logout = findViewById(R.id.buttonLogout);
-        appName = findViewById(R.id.editTextAppName);
 
        // appName.setAnimation(topAnim);
         //FindPeople.setAnimation(bottomAnim);
@@ -120,7 +113,7 @@ public class Dashboard extends AppCompatActivity {
                     }
                     case MotionEvent.ACTION_UP:
 
-                        startActivity(new Intent(getApplicationContext(),GameChoice.class));
+                        startActivity(new Intent(getApplicationContext(), com.example.pracainzynierska.Settings.class));
 
                     case MotionEvent.ACTION_CANCEL: {
                         ImageButton view = (ImageButton) v;

@@ -4,8 +4,9 @@
     <!--activity_splash_screen-->
     <string name="appSlogan">Aplikacja do znajdowania współgraczy</string>
     <!--activity_main-->
+    <string name="imageViewLogo">"Logo"</string>
     <string name="appDesc">Witamy! Utwórz konto, aby dołączyć do społeczności i znaleźć nowe osoby do ulubionych gier online.</string>
-    <string name="buttonRegisterEmail">E-MAIL</string>
+    <string name="buttonRegisterEmail">UTWÓRZ KONTO</string>
     <string name="buttonRegisterFacebook">FACEBOOK</string>
     <!--activity_register-->
     <string name="textViewRegister">REJESTRACJA</string>
@@ -34,7 +35,7 @@
     <string name="textViewAddPic">Dodaj awatar:</string>
     <string name="buttonEndReg">Dokończ rejestrację</string>
     <!--activity_dashboard-->
-    <string name="editTextAppName">- IQTQ -</string>
+    <string name="editTextAppName">IQTQ</string>
     <string name="buttonFindPeople">ZNAJDŹ GRACZY</string>
     <string name="buttonGoProfile">PROFIL</string>
     <string name="buttonAbout">O APLIKACJI</string>
@@ -43,12 +44,13 @@
     <!--activity_game_choice-->
     <string name="textViewChooseGame">WYBIERZ GRĘ:</string>
     <!--activity_game_MyProfile-->
-    <string name="editTextProfile">PROFIL UŻYTKOWNIKA</string>
+    <string name="editTextProfile">MÓJ PROFIL</string>
     <string name="textViewProfileUsername">Użytkownik:</string>
     <string name="textViewCountry">Kraj:</string>
     <string name="textViewAge">Wiek:</string>
-    <string name="textViewDescription">Opis: Dodaj opis w zakładce ustawienia..</string>
+    <string name="textViewDescription">Dodaj opis w zakładce ustawienia..</string>
     <string name="textViewUserGames">GRY UŻYTKOWNIKA</string>
+    <string name="textViewAddGame">DODAJ GRĘ</string>
     <!--preferences-->
     <string name="autoLoginPreferenceName">autoLogin</string>
 </resources>

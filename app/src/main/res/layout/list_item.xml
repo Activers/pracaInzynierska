@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/list_roots"
     android:layout_width="match_parent"
@@ -6,12 +7,12 @@
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
-    android:padding="14dp">
-<androidx.cardview.widget.CardView
+    android:padding="15dp">
+
+<androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardViewProfile"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="8dp"
     android:layout_marginEnd="16dp"
     android:layout_marginLeft="16dp"
@@ -21,12 +22,10 @@
     app:cardCornerRadius="40dp">
     <!--app:cardBackgroundColor="#664666"-->
 
-
     <RelativeLayout
         android:id="@+id/list_root"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@drawable/app_background"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
@@ -39,23 +38,37 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Gra"
-            android:textColor="#FFFFFF"
+            android:textColor="#424242"
             android:textSize="24sp"
             android:textStyle="bold" />
+
+        <View
+            android:id="@+id/list_line"
+            android:layout_width="300dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="5dp"
+
+            android:layout_height="1dp"
+            android:layout_below="@+id/list_game"
+            android:background="#424242" />
+
 
         <TextView
             android:id="@+id/list_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/list_game"
-            android:layout_marginTop="4dp"
+            android:layout_below="@+id/list_line"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="Nick"
-            android:textColor="#FFFFFF"
+            android:textColor="#424242"
             android:textSize="20sp"
             android:textStyle="bold"/>
+
+
 
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
+
 </RelativeLayout>

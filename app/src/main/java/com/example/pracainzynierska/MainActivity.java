@@ -8,10 +8,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,29 +30,51 @@ public class MainActivity extends AppCompatActivity {
 
     final String TAG = "MainActivity";
 
+    Animation buttonAnim;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button buttonRegisterEmail = (Button) findViewById(R.id.buttonRegisterEmail);
-        TextView textViewLogin = (TextView) findViewById(R.id.textViewLogin);
+        final Button buttonRegisterEmail = (Button) findViewById(R.id.buttonRegisterEmail);
+        final TextView textViewLogin = (TextView) findViewById(R.id.textViewLogin);
 
-        buttonRegisterEmail.setOnClickListener(new View.OnClickListener() {
+        buttonAnim = AnimationUtils.loadAnimation(this,R.anim.button_push_animation);
+
+
+        buttonRegisterEmail.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,Register.class));
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if(event.getAction()==MotionEvent.ACTION_DOWN){
+                   buttonRegisterEmail.startAnimation(buttonAnim);
+                }else if(event.getAction()==MotionEvent.ACTION_UP){
+                    startActivity(new Intent(getApplicationContext(),Register.class));
+                }
+                return true;
             }
         });
 
-        textViewLogin.setOnClickListener(new View.OnClickListener() {
+
+        textViewLogin.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,Login.class));
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==MotionEvent.ACTION_DOWN){
+                    textViewLogin.startAnimation(buttonAnim);
+                }else if(event.getAction()==MotionEvent.ACTION_UP){
+                    startActivity(new Intent(getApplicationContext(),Login.class));
+                }
+
+                return true;
             }
         });
 
     }
+
+
+
 
     boolean singleBack = false;
 

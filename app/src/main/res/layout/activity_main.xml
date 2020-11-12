@@ -19,10 +19,11 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="125dp"
+            android:layout_height="235dp"
+            android:gravity="center"
             android:padding="10dp">
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/textViewAppName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -31,7 +32,14 @@
                 android:text="@string/appTitle"
                 android:textColor="#FFFFFF"
                 android:textSize="65sp"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
+
+            <ImageView
+                android:id="@+id/imageViewLogo"
+                android:layout_width="168dp"
+                android:layout_height="300dp"
+                android:src="@drawable/logo_text"
+                android:contentDescription="@string/imageViewLogo" />
 
 
         </RelativeLayout>
@@ -40,7 +48,7 @@
             android:id="@+id/textViewappDesc"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="sans-serif-light"
             android:text="@string/appDesc"
             android:gravity="center"
@@ -49,8 +57,8 @@
 
         <Button
             android:id="@+id/buttonRegisterEmail"
-            android:layout_width="259dp"
-            android:layout_height="57dp"
+            android:layout_width="285dp"
+            android:layout_height="60dp"
             android:layout_marginTop="60dp"
             android:background="@drawable/button_bg"
             android:fontFamily="sans-serif-light"
@@ -59,24 +67,13 @@
             android:textSize="28sp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/buttonRegisterFacebook"
-            android:layout_width="259dp"
-            android:layout_height="57dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/button_fb_bg"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/buttonRegisterFacebook"
-            android:textColor="#FFFFFF"
-            android:textSize="28sp"
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:layout_marginBottom="35dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="75dp"
             android:text="@string/textViewLogin"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
