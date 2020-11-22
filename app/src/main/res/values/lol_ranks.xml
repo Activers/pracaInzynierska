@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="ArrayLolRanks">
-        <item>Srebro I</item>
-        <item>Srebro II</item>
-        <item>Srebro III</item>
+        <item>Żelazo IV</item>
+        <item>Żelazo III</item>
+        <item>Żelazo II</item>
+        <item>Żelazo I</item>
+        <item>Brąz IV</item>
+        <item>Brąz III</item>
+        <item>Brąz II</item>
+        <item>Brąz I</item>
         <item>Srebro IV</item>
-        <item>Elitarne srebro</item>
-        <item>Mistrzowskie elitarne srebro</item>
-        <item>Złoty laur I</item>
-        <item>Złoty laur II</item>
-        <item>Złoty laur III</item>
-        <item>Mistrzowski złoty laur</item>
-        <item>Mistrzowski obrońca I</item>
-        <item>Mistrzowski obrońca II</item>
-        <item>Elitarny mistrzowski obrońca</item>
-        <item>Wybitny mistrzowski obrońca</item>
-        <item>Legendarny orzeł</item>
-        <item>Mistrzowski legendarny orzeł</item>
-        <item>Mistrzowska pierwsza klasa</item>
-        <item>Elita światowa</item>
+        <item>Srebro III</item>
+        <item>Srebro II</item>
+        <item>Srebro I</item>
+        <item>Złoto IV</item>
+        <item>Złoto III</item>
+        <item>Złoto II</item>
+        <item>Złoto I</item>
+        <item>Platyna IV</item>
+        <item>Platyna III</item>
+        <item>Platyna II</item>
+        <item>Platyna I</item>
+        <item>Diament IV</item>
+        <item>Diament III</item>
+        <item>Diament II</item>
+        <item>Diament I</item>
+        <item>Mistrz</item>
+        <item>Super Mistrz</item>
     </string-array>
 </resources>
