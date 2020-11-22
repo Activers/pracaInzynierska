@@ -12,7 +12,13 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChooseGame"></activity>
+        <activity android:name=".ApexData"></activity>
+        <activity android:name=".PubgData" />
+        <activity android:name=".AmongUsData" />
+        <activity android:name=".FortniteData" />
+        <activity android:name=".LolData" />
+        <activity android:name=".CsgoData" />
+        <activity android:name=".ChooseGame" />
         <activity android:name=".MyProfile" />
         <activity android:name=".SplashScreen">
             <intent-filter>

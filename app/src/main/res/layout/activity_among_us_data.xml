@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:gravity="center"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textViewAddAmongInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="@string/textViewAddAmongInfo"
+                android:fontFamily="sans-serif-light"
+                android:textColor="#FFFFFF"
+                android:textSize="38sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="30dp"
+            android:layout_height="3dp"
+            android:background="@android:color/white"/>
+
+
+
+        <TextView
+            android:id="@+id/textViewAmongNick"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/textViewAmongNick"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/editTextAmongNick"
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:backgroundTint="#FFFFFF"
+            android:inputType="textPersonName"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="19sp"
+            android:autofillHints="" />
+
+
+        <TextView
+            android:id="@+id/textViewAmongUseMic"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/textViewAmongUseMic"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <Spinner
+            android:id="@+id/spinnerAmongUseMic"
+            android:background="@drawable/spinner_bg"
+            android:layout_width="318dp"
+            android:layout_height="53dp"
+            android:autofillHints=""
+            android:textSize="19sp"
+            />
+
+
+        <TextView
+            android:id="@+id/textViewAmongPrefHours"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/textViewAmongPrefHours"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <Spinner
+            android:id="@+id/spinnerAmongPrefHours"
+            android:background="@drawable/spinner_bg"
+            android:layout_width="318dp"
+            android:layout_height="53dp"
+            android:autofillHints=""
+            android:textSize="19sp"
+            />
+
+        <TextView
+            android:id="@+id/textViewAmongRank"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/textViewAmongRank"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <Spinner
+            android:id="@+id/spinnerAmongRank"
+            android:background="@drawable/spinner_bg"
+            android:layout_width="318dp"
+            android:layout_height="53dp"
+            android:autofillHints=""
+            android:textSize="19sp"
+            />
+
+        <TextView
+            android:id="@+id/textViewAmongBio"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/textViewAmongBio"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/editTextAmongBio"
+            android:inputType="textMultiLine"
+            android:maxLength="80"
+            android:gravity="center_horizontal"
+            android:lines="3"
+            android:minLines="1"
+            android:maxLines="5"
+            android:layout_height="wrap_content"
+            android:layout_width="318dp"
+            android:scrollbars="vertical"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="19sp"
+            android:autofillHints="" />
+
+        <Button
+            android:id="@+id/buttonAddAmong"
+            android:layout_width="209dp"
+            android:layout_height="65dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/button_bg"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/buttonAddAmong"
+            android:textColor="#424242"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>

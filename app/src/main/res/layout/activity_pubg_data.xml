@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:gravity="center"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textViewAddPubgInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/textViewAddPubgInfo"
+                android:fontFamily="sans-serif-light"
+                android:textColor="#FFFFFF"
+                android:textSize="32sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="30dp"
+            android:layout_height="3dp"
+            android:background="@android:color/white"/>
+
+        <TextView
+            android:id="@+id/textViewPubgNick"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/textViewPubgNick"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/editTextPubgNick"
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:backgroundTint="#FFFFFF"
+            android:inputType="textPersonName"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="19sp"
+            android:autofillHints="" />
+
+
+        <TextView
+            android:id="@+id/textViewPubgUseMic"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/textViewPubgUseMic"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <Spinner
+            android:id="@+id/spinnerPubgUseMic"
+            android:background="@drawable/spinner_bg"
+            android:layout_width="318dp"
+            android:layout_height="53dp"
+            android:autofillHints=""
+            android:textSize="19sp"
+            />
+
+
+        <TextView
+            android:id="@+id/textViewPubgPrefHours"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/textViewPubgPrefHours"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <Spinner
+            android:id="@+id/spinnerPubgPrefHours"
+            android:background="@drawable/spinner_bg"
+            android:layout_width="318dp"
+            android:layout_height="53dp"
+            android:autofillHints=""
+            android:textSize="19sp"
+            />
+
+        <TextView
+            android:id="@+id/textViewPubgRank"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/textViewPubgRank"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <Spinner
+            android:id="@+id/spinnerPubgRank"
+            android:background="@drawable/spinner_bg"
+            android:layout_width="318dp"
+            android:layout_height="53dp"
+            android:autofillHints=""
+            android:textSize="19sp"
+            />
+
+        <TextView
+            android:id="@+id/textViewPubgBio"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/textViewPubgBio"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/editTextPubgBio"
+            android:inputType="textMultiLine"
+            android:maxLength="80"
+            android:gravity="center_horizontal"
+            android:lines="3"
+            android:minLines="1"
+            android:maxLines="5"
+            android:layout_height="wrap_content"
+            android:layout_width="318dp"
+            android:scrollbars="vertical"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="19sp"
+            android:autofillHints="" />
+
+
+
+        <Button
+            android:id="@+id/buttonAddPubg"
+            android:layout_width="209dp"
+            android:layout_height="65dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/button_bg"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/buttonAddPubg"
+            android:textColor="#424242"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>

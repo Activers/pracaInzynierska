@@ -18,10 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.common.api.Batch;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -66,7 +63,7 @@ public class AfterRegister extends AppCompatActivity {
             fStore = FirebaseFirestore.getInstance();
 
 
-            ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.ArrayCountries, R.layout.countries_item);
+            ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.ArrayCountries, R.layout.spinner_item);
             adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
             Countries.setAdapter(adapter);
 

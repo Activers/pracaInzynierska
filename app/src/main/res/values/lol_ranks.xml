@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ArrayLolRanks">
+        <item>Srebro I</item>
+        <item>Srebro II</item>
+        <item>Srebro III</item>
+        <item>Srebro IV</item>
+        <item>Elitarne srebro</item>
+        <item>Mistrzowskie elitarne srebro</item>
+        <item>Złoty laur I</item>
+        <item>Złoty laur II</item>
+        <item>Złoty laur III</item>
+        <item>Mistrzowski złoty laur</item>
+        <item>Mistrzowski obrońca I</item>
+        <item>Mistrzowski obrońca II</item>
+        <item>Elitarny mistrzowski obrońca</item>
+        <item>Wybitny mistrzowski obrońca</item>
+        <item>Legendarny orzeł</item>
+        <item>Mistrzowski legendarny orzeł</item>
+        <item>Mistrzowska pierwsza klasa</item>
+        <item>Elita światowa</item>
+    </string-array>
+</resources>

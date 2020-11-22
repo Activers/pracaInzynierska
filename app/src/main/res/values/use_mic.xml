@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ArrayUseMic">
+        <item>Tak</item>
+        <item>Nie</item>
+
+    </string-array>
+</resources>
