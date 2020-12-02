@@ -43,7 +43,7 @@
     <string name="buttonLogout">WYLOGUJ SIĘ</string>
     <!--activity_game_choice-->
     <string name="textViewChooseGame">WYBIERZ GRĘ:</string>
-    <!--activity_game_MyProfile-->
+    <!--activity_my_profile-->
     <string name="editTextProfile">MÓJ PROFIL</string>
     <string name="textViewProfileUsername">Użytkownik:</string>
     <string name="textViewCountry">Kraj:</string>
@@ -51,54 +51,60 @@
     <string name="textViewDescription">Dodaj opis w zakładce ustawienia..</string>
     <string name="textViewUserGames">GRY UŻYTKOWNIKA</string>
     <string name="textViewAddGame">DODAJ GRĘ</string>
-    <!--activity_game_CsgoData-->
+    <!--activity_csgo_data-->
     <string name="textViewAddCsgoInfo">COUNTER STRIKE: GLOBAL OFFENSIVE</string>
     <string name="textViewCsgoNick">Podaj nick na Steam:</string>
     <string name="textViewCsgoUseMic">Komunikacja przez mikrofon:</string>
     <string name="textViewCsgoPrefHours">Wybierz preferowane godziny:</string>
     <string name="textViewCsgoRank">Wybierz rangę:</string>
-    <string name="textViewCsgoBio">Dodaj opis (80 znaków):</string>
+    <string name="textViewCsgoDesc">Dodaj opis (80 znaków):</string>
     <string name="buttonAddCsgo">DODAJ GRĘ</string>
-    <!--activity_game_LolData-->
+    <!--activity_lol_data-->
     <string name="textViewAddLolInfo">LEAGUE OF LEGENDS</string>
     <string name="textViewLolNick">Podaj nick na Riot Games:</string>
     <string name="textViewLolUseMic">Komunikacja przez mikrofon:</string>
     <string name="textViewLolPrefHours">Wybierz preferowane godziny:</string>
     <string name="textViewLolRank">Wybierz rangę:</string>
-    <string name="textViewLolBio">Dodaj opis (80 znaków):</string>
+    <string name="textViewLolDesc">Dodaj opis (80 znaków):</string>
     <string name="buttonAddLol">DODAJ GRĘ</string>
-    <!--activity_game_FortniteData-->
+    <!--activity_fortnite_data-->
     <string name="textViewAddFortniteInfo">FORTNITE</string>
     <string name="textViewFortniteNick">Podaj nick na Epic Games:</string>
     <string name="textViewFortniteUseMic">Komunikacja przez mikrofon:</string>
     <string name="textViewFortnitePrefHours">Wybierz preferowane godziny:</string>
     <string name="textViewFortniteRank">Wybierz poziom umiejętności:</string>
-    <string name="textViewFortniteBio">Dodaj opis (80 znaków):</string>
+    <string name="textViewFortniteDesc">Dodaj opis (80 znaków):</string>
     <string name="buttonAddFortnite">DODAJ GRĘ</string>
-    <!--activity_game_AmongUsData-->
-    <string name="textViewAddAmongInfo">AMONG US</string>
-    <string name="textViewAmongNick">Podaj nick na Discord:</string>
+    <!--activity_among_us_data-->
+    <string name="textViewAddAmongUsInfo">AMONG US</string>
+    <string name="textViewAmongUsNick">Podaj nick na Discord:</string>
     <string name="textViewAmongUseMic">Komunikacja przez mikrofon:</string>
-    <string name="textViewAmongPrefHours">Wybierz preferowane godziny:</string>
-    <string name="textViewAmongRank">Wybierz poziom umiejętności:</string>
-    <string name="textViewAmongBio">Dodaj opis (80 znaków):</string>
-    <string name="buttonAddAmong">DODAJ GRĘ</string>
-    <!--activity_game_PubgData-->
+    <string name="textViewAmongUsPrefHours">Wybierz preferowane godziny:</string>
+    <string name="textViewAmongUsRank">Wybierz poziom umiejętności:</string>
+    <string name="textViewAmongUsDesc">Dodaj opis (80 znaków):</string>
+    <string name="buttonAddAmongUs">DODAJ GRĘ</string>
+    <!--activity_pubg_data-->
     <string name="textViewAddPubgInfo">PLAYERUNKNOWN BATTLEGROUNDS</string>
     <string name="textViewPubgNick">Podaj nick na Steam:</string>
     <string name="textViewPubgUseMic">Komunikacja przez mikrofon:</string>
     <string name="textViewPubgPrefHours">Wybierz preferowane godziny:</string>
     <string name="textViewPubgRank">Wybierz rangę:</string>
-    <string name="textViewPubgBio">Dodaj opis (80 znaków):</string>
+    <string name="textViewPubgDesc">Dodaj opis (80 znaków):</string>
     <string name="buttonAddPubg">DODAJ GRĘ</string>
-    <!--activity_game_ApexData-->
+    <!--activity_apex_data-->
     <string name="textViewAddApexInfo">APEX: LEGENDS</string>
     <string name="textViewApexNick">Podaj nick na Origin:</string>
     <string name="textViewApexUseMic">Komunikacja przez mikrofon:</string>
     <string name="textViewApexPrefHours">Wybierz preferowane godziny:</string>
     <string name="textViewApexRank">Wybierz rangę:</string>
-    <string name="textViewApexBio">Dodaj opis (80 znaków):</string>
+    <string name="textViewApexDesc">Dodaj opis (80 znaków):</string>
     <string name="buttonAddApex">DODAJ GRĘ</string>
+    <!--activity_csgo_profile-->
+    <!--activity_lol_profile-->
+    <!--activity_fortnite_profile-->
+    <!--activity_among_us_profile-->
+    <!--activity_pubg_profile-->
+    <!--activity_apex_profile-->
     <!--preferences-->
     <string name="autoLoginPreferenceName">autoLogin</string>
 </resources>

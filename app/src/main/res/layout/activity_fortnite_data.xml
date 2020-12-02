@@ -138,12 +138,12 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="sans-serif-light"
-            android:text="@string/textViewFortniteBio"
+            android:text="@string/textViewFortniteDesc"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/editTextFortniteBio"
+            android:id="@+id/editTextFortniteDesc"
             android:inputType="textMultiLine"
             android:maxLength="80"
             android:gravity="center_horizontal"

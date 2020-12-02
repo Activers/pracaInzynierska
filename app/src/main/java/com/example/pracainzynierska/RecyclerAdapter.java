@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     private Context mContext;
     private ArrayList<Model> modelList;
+    private OnItemClickedListener mListener;
+
+    public interface OnItemClickedListener {
+        void onItemClick(int postion);
+        void onDeleteClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickedListener listener) {
+        mListener = listener;
+    }
 
     public RecyclerAdapter(Context mContext, ArrayList<Model> modelList) {
         this.mContext = mContext;
@@ -29,9 +40,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public RecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item,parent,false);
+                .inflate(R.layout.recyclerview_item_my_profile,parent,false);
 
-        return new ViewHolder(view);
+        return new ViewHolder(view, mListener);
     }
 
     @Override
@@ -46,16 +57,42 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return modelList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView textViewGame;
         TextView textViewUser;
+        ImageView imageViewDelete;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, final OnItemClickedListener listener) {
             super(itemView);
 
-            textViewGame = itemView.findViewById(R.id.list_game);
-            textViewUser = itemView.findViewById(R.id.list_username);
+            textViewGame = itemView.findViewById(R.id.textViewGame);
+            textViewUser = itemView.findViewById(R.id.textViewUsername);
+            imageViewDelete = itemView.findViewById(R.id.imageViewDelete);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+
+            imageViewDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onDeleteClick(position);
+                        }
+                    }
+                }
+            });
 
         }
     }

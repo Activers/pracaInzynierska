@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class ChooseGame extends AppCompatActivity {
+public class AddGame extends AppCompatActivity {
 
     Button AddCsgoGame;
     Button AddLolGame;
@@ -19,7 +19,7 @@ public class ChooseGame extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_game);
+        setContentView(R.layout.activity_add_game);
 
         AddCsgoGame = findViewById(R.id.buttonCsgo);
         AddLolGame = findViewById(R.id.buttonLol);

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/list_roots"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewFindPeople"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="40dp">
+        <!--app:cardBackgroundColor="#664666"-->
+
+        <RelativeLayout
+            android:id="@+id/list_root"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <!-- ranga czy zdjecie profilowe? -->
+            <ImageView
+                android:id="@+id/imageViewRank"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/defaultpic"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/textViewNick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imageViewRank"
+                android:layout_toLeftOf="@id/imageViewMic"
+                android:gravity="center"
+                android:text="Nick"
+                android:textColor="#424242"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/list_line"
+                android:layout_width="300dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/imageViewRank"
+                android:layout_toLeftOf="@id/imageViewMic"
+                android:layout_marginHorizontal="15dp"
+                android:layout_height="1dp"
+                android:layout_below="@+id/textViewGame"
+                android:background="#424242" />
+
+
+            <TextView
+                android:id="@+id/textViewRank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/list_line"
+                android:layout_toRightOf="@+id/imageViewRank"
+                android:layout_toLeftOf="@id/imageViewMic"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="Ranga"
+                android:textColor="#424242"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/imageViewMic"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_mic_on"
+                android:layout_alignParentEnd="true"/>
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -27,7 +27,7 @@ public class SplashScreen extends AppCompatActivity {
 
     final String TAG = "SplashScreen";
 
-    private static int SPLASH_SCREEN_DELAY = 5000;
+    private static int SPLASH_SCREEN_DELAY = 4000;
 
     Animation topAnim, bottomAnim;
     ImageView imageLogo;
@@ -54,7 +54,8 @@ public class SplashScreen extends AppCompatActivity {
         appName = findViewById(R.id.textViewAppName);
         appSlogan = findViewById(R.id.textViewAppSlogan);
 
-        imageLogo.setAnimation(topAnim);
+        imageLogo.setAnimation(topAnim); // czasem apka wywala przy starcie i ta linia jest powodem - pewnie probuje zrobic animacje jak jeszcze nic sie nie zadeklarowalo jak przy bazie? (cos zamula?)
+                                         // Caused by: java.lang.NullPointerException: Attempt to invoke virtual method 'void android.view.View.setAnimation(android.view.animation.Animation)' on a null object reference
         appName.setAnimation(bottomAnim);
         appSlogan.setAnimation(bottomAnim);
 

@@ -13,12 +13,12 @@
 
 
     <TextView
-        android:id="@+id/textViewChooseGame"
+        android:id="@+id/textViewAddGame"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:gravity="center"
         android:layout_marginTop="0dp"
-        android:text="@string/textViewChooseGame"
+        android:text="@string/textViewAddGame"
         android:fontFamily="sans-serif-light"
         android:textAlignment="center"
         android:textColor="#FFFFFF"

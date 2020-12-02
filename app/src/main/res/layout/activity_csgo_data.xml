@@ -135,12 +135,12 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="sans-serif-light"
-            android:text="@string/textViewCsgoBio"
+            android:text="@string/textViewCsgoDesc"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/editTextCsgoBio"
+            android:id="@+id/editTextCsgoDesc"
             android:inputType="textMultiLine"
             android:maxLength="80"
             android:gravity="center_horizontal"

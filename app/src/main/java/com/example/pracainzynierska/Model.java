@@ -19,6 +19,10 @@ public class Model {
         this.mUser = mUser;
     }
 
+    public void changeGameText(String text) {
+        this.mGame = text;
+    }
+
     public String getmGame() {
         return mGame;
     }

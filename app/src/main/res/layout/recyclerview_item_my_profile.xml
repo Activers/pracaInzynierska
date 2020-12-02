@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/list_roots"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,7 +10,7 @@
     android:orientation="vertical"
     android:padding="15dp">
 
-<androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.cardview.widget.CardView
     android:id="@+id/cardViewProfile"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -33,9 +34,11 @@
 
 
         <TextView
-            android:id="@+id/list_game"
-            android:layout_width="match_parent"
+            android:id="@+id/textViewGame"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/imageViewDelete"
             android:gravity="center"
             android:text="Gra"
             android:textColor="#424242"
@@ -47,17 +50,20 @@
             android:layout_width="300dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="5dp"
-
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/imageViewDelete"
             android:layout_height="1dp"
-            android:layout_below="@+id/list_game"
+            android:layout_below="@+id/textViewGame"
             android:background="#424242" />
 
 
         <TextView
-            android:id="@+id/list_username"
+            android:id="@+id/textViewUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/list_line"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/imageViewDelete"
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="Nick"
@@ -65,6 +71,12 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
 
+        <ImageView
+            android:id="@+id/imageViewDelete"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_delete_cardview"
+            android:layout_alignParentEnd="true"/>
 
 
     </RelativeLayout>

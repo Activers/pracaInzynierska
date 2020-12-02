@@ -138,12 +138,12 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="sans-serif-light"
-            android:text="@string/textViewApexBio"
+            android:text="@string/textViewApexDesc"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/editTextApexBio"
+            android:id="@+id/editTextApexDesc"
             android:inputType="textMultiLine"
             android:maxLength="80"
             android:gravity="center_horizontal"

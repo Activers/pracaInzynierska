@@ -23,12 +23,12 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/textViewAddAmongInfo"
+                android:id="@+id/textViewAddAmongUsInfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
-                android:text="@string/textViewAddAmongInfo"
+                android:text="@string/textViewAddAmongUsInfo"
                 android:fontFamily="sans-serif-light"
                 android:textColor="#FFFFFF"
                 android:textSize="38sp" />
@@ -45,17 +45,17 @@
 
 
         <TextView
-            android:id="@+id/textViewAmongNick"
+            android:id="@+id/textViewAmongUsNick"
             android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:fontFamily="sans-serif-light"
-            android:text="@string/textViewAmongNick"
+            android:text="@string/textViewAmongUsNick"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/editTextAmongNick"
+            android:id="@+id/editTextAmongUsNick"
             android:layout_width="326dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
@@ -92,18 +92,18 @@
 
 
         <TextView
-            android:id="@+id/textViewAmongPrefHours"
+            android:id="@+id/textViewAmongUsPrefHours"
             android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="sans-serif-light"
-            android:text="@string/textViewAmongPrefHours"
+            android:text="@string/textViewAmongUsPrefHours"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
 
         <Spinner
-            android:id="@+id/spinnerAmongPrefHours"
+            android:id="@+id/spinnerAmongUsPrefHours"
             android:background="@drawable/spinner_bg"
             android:layout_width="318dp"
             android:layout_height="53dp"
@@ -112,18 +112,18 @@
             />
 
         <TextView
-            android:id="@+id/textViewAmongRank"
+            android:id="@+id/textViewAmongUsRank"
             android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="sans-serif-light"
-            android:text="@string/textViewAmongRank"
+            android:text="@string/textViewAmongUsRank"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
 
         <Spinner
-            android:id="@+id/spinnerAmongRank"
+            android:id="@+id/spinnerAmongUsRank"
             android:background="@drawable/spinner_bg"
             android:layout_width="318dp"
             android:layout_height="53dp"
@@ -132,18 +132,18 @@
             />
 
         <TextView
-            android:id="@+id/textViewAmongBio"
+            android:id="@+id/textViewAmongUsDesc"
             android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="sans-serif-light"
-            android:text="@string/textViewAmongBio"
+            android:text="@string/textViewAmongUsDesc"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/editTextAmongBio"
+            android:id="@+id/editTextAmongUsDesc"
             android:inputType="textMultiLine"
             android:maxLength="80"
             android:gravity="center_horizontal"
@@ -162,14 +162,14 @@
             android:autofillHints="" />
 
         <Button
-            android:id="@+id/buttonAddAmong"
+            android:id="@+id/buttonAddAmongUs"
             android:layout_width="209dp"
             android:layout_height="65dp"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="35dp"
             android:background="@drawable/button_bg"
             android:fontFamily="sans-serif-light"
-            android:text="@string/buttonAddAmong"
+            android:text="@string/buttonAddAmongUs"
             android:textColor="#424242"
             android:textSize="24sp"
             android:textStyle="bold" />
