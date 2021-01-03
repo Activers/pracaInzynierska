@@ -6,4 +6,12 @@
         <item>Zaawansowany</item>
         <item>Profesjonalista</item>
     </string-array>
+
+    <string-array name="ArrayFilterFortniteRanks">
+        <item>Brak Filtru</item>
+        <item>Początkujący</item>
+        <item>Doświadczony</item>
+        <item>Zaawansowany</item>
+        <item>Profesjonalista</item>
+    </string-array>
 </resources>

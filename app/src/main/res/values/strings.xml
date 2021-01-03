@@ -99,12 +99,23 @@
     <string name="textViewApexRank">Wybierz rangę:</string>
     <string name="textViewApexDesc">Dodaj opis (80 znaków):</string>
     <string name="buttonAddApex">DODAJ GRĘ</string>
-    <!--activity_csgo_profile-->
-    <!--activity_lol_profile-->
-    <!--activity_fortnite_profile-->
-    <!--activity_among_us_profile-->
-    <!--activity_pubg_profile-->
-    <!--activity_apex_profile-->
+    <!--activity_players-->
+    <string name="textViewPlayersFilter">Filtruj</string>
+    <!--popup_window-->
+    <string name="textViewPopupWindowNick">Nazwa:</string>
+    <string name="textViewPopupWindowRank">Ranga:</string>
+    <string name="textViewPopupWindowMic">Mikrofon:</string>
+    <string name="textViewPopupWindowHours">Godziny:</string>
+    <string name="textViewPopupWindowDesc">Opis:</string>
+    <string name="buttonPopupWindowBack">Wróć</string>
+    <!--filter_popup_window-->
+    <string name="textViewFilterPopupWindowTitle">Filtruj na podstawie:</string>
+    <string name="textViewFilterPopupWindowCountry">Kraj:</string>
+    <string name="textViewFilterPopupWindowAge">Wiek:</string>
+    <string name="editTextFilterPopupWindowAgeHint">Brak Filtru - Podaj wiek:</string>
+    <string name="textViewFilterPopupWindowRank">Ranga:</string>
+    <string name="textViewFilterPopupWindowMic">Mikrofon:</string>
+    <string name="textViewFilterPopupWindowHours">Godziny:</string>
     <!--preferences-->
     <string name="autoLoginPreferenceName">autoLogin</string>
 </resources>

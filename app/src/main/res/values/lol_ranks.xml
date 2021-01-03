@@ -28,4 +28,34 @@
         <item>Mistrz</item>
         <item>Super Mistrz</item>
     </string-array>
+
+    <string-array name="ArrayFilterLolRanks">
+        <item>Brak Filtru</item>
+        <item>Żelazo IV</item>
+        <item>Żelazo III</item>
+        <item>Żelazo II</item>
+        <item>Żelazo I</item>
+        <item>Brąz IV</item>
+        <item>Brąz III</item>
+        <item>Brąz II</item>
+        <item>Brąz I</item>
+        <item>Srebro IV</item>
+        <item>Srebro III</item>
+        <item>Srebro II</item>
+        <item>Srebro I</item>
+        <item>Złoto IV</item>
+        <item>Złoto III</item>
+        <item>Złoto II</item>
+        <item>Złoto I</item>
+        <item>Platyna IV</item>
+        <item>Platyna III</item>
+        <item>Platyna II</item>
+        <item>Platyna I</item>
+        <item>Diament IV</item>
+        <item>Diament III</item>
+        <item>Diament II</item>
+        <item>Diament I</item>
+        <item>Mistrz</item>
+        <item>Super Mistrz</item>
+    </string-array>
 </resources>

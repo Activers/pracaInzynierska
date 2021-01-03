@@ -6,4 +6,12 @@
         <item>Wieczorem</item>
         <item>W nocy</item>
     </string-array>
+
+    <string-array name="ArrayFilterPrefHours">
+        <item>Brak Filtru</item>
+        <item>Rano</item>
+        <item>Po południu</item>
+        <item>Wieczorem</item>
+        <item>W nocy</item>
+    </string-array>
 </resources>

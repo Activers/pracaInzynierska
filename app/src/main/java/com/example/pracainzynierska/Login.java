@@ -128,6 +128,7 @@ public class Login extends AppCompatActivity {
                         }else{
                             Toast.makeText(Login.this, "Niepoprawny E-mail lub hasło!", Toast.LENGTH_SHORT).show();
                             //Toast.makeText(Login.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "Niezalogowano bo: ", task.getException());
                             progressBar.setVisibility(View.INVISIBLE);
                         }
                     }

@@ -78,9 +78,17 @@ public class CsgoData extends AppCompatActivity {
     }
 
     private void InsertIntoDatabase() {
-        DocumentReference csgoDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("csgo");
-        DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
+
+        Map<String,Object> profileData = new HashMap<>();
+        profileData.put("username", MyProfile.globalUsername);
+        profileData.put("country", MyProfile.globalCountry);
+        profileData.put("age", MyProfile.globalAge);
+
         WriteBatch batch = fStore.batch();
+
+        // MyProfile
+        DocumentReference usersGamesDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("csgo");
+        DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
 
         Map<String, Object> csgoData = new HashMap<>();
         csgoData.put("nick", CsgoNick.getText().toString());
@@ -89,15 +97,23 @@ public class CsgoData extends AppCompatActivity {
         csgoData.put("rank", CsgoRanks.getSelectedItem().toString());
         csgoData.put("desc", CsgoDesc.getText().toString());
 
-        ///// UPDATE tylko dziala jak jest utworzony juz dokument
-               /*batch.update(csgoDocRef,"steam", CsgoNick.getText().toString());
-               batch.update(csgoDocRef,"mic", CsgoUseMic.getSelectedItem().toString());
-               batch.update(csgoDocRef,"hours", CsgoPrefHours.getSelectedItem().toString());
-               batch.update(csgoDocRef,"rank", CsgoRanks.getSelectedItem().toString());
-               batch.update(csgoDocRef,"desc", CsgoDesc.getText().toString());*/
-
-        batch.set(csgoDocRef,csgoData);
+        batch.set(usersGamesDocRef,csgoData);
         batch.update(usersDocRef,"usernames.csgo",CsgoNick.getText().toString());
+        // End MyProfile
+
+        // Players
+        DocumentReference gamesDocRef = fStore.collection("games").document("csgo");
+        DocumentReference gamesPlayersDocRef = fStore.collection("games").document("csgo").collection("players").document(MyProfile.globalUsername);
+
+        Map<String, Object> csgoPlayersData = new HashMap<>();
+        csgoPlayersData.putAll(csgoData);
+        csgoPlayersData.putAll(profileData);
+
+        batch.set(gamesPlayersDocRef, csgoPlayersData);
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".nick", CsgoNick.getText().toString());
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".mic", CsgoUseMic.getSelectedItem().toString());
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".rank", CsgoRanks.getSelectedItem().toString());
+        // End Players
 
         batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

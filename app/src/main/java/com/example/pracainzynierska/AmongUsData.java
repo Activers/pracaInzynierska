@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 
@@ -74,9 +75,17 @@ public class AmongUsData extends AppCompatActivity {
     }
 
     private void InsertIntoDatabase() {
-        DocumentReference amongusDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("amongus");
-        DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
+
+        Map<String,Object> profileData = new HashMap<>();
+        profileData.put("username", MyProfile.globalUsername);
+        profileData.put("country", MyProfile.globalCountry);
+        profileData.put("age", MyProfile.globalAge);
+
         WriteBatch batch = fStore.batch();
+
+        // MyProfile
+        DocumentReference usersGamesDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("amongus");
+        DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
 
         Map<String, Object> amongusData = new HashMap<>();
         amongusData.put("nick", AmongUsNick.getText().toString());
@@ -85,8 +94,24 @@ public class AmongUsData extends AppCompatActivity {
         amongusData.put("rank", AmongUsRanks.getSelectedItem().toString());
         amongusData.put("desc", AmongUsDesc.getText().toString());
 
-        batch.set(amongusDocRef,amongusData);
+        batch.set(usersGamesDocRef,amongusData);
         batch.update(usersDocRef,"usernames.amongus",AmongUsNick.getText().toString());
+        // End MyProfile
+
+        // Players
+        DocumentReference gamesDocRef = fStore.collection("games").document("amongus");
+        DocumentReference gamesPlayersDocRef = fStore.collection("games").document("amongus").collection("players").document(MyProfile.globalUsername);
+
+        Map<String, Object> amongusPlayersData = new HashMap<>();
+        amongusPlayersData.putAll(amongusData);
+        amongusPlayersData.putAll(profileData);
+
+        batch.set(gamesPlayersDocRef, amongusPlayersData);
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".nick", AmongUsNick.getText().toString());
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".mic", AmongUseMic.getSelectedItem().toString());
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".rank", AmongUsRanks.getSelectedItem().toString());
+        // End Players
+
 
         batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

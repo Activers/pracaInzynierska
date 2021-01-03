@@ -6,36 +6,59 @@ package com.example.pracainzynierska;
 
 public class Model {
 
-    String mGame, mUser;
-
+    String Nick, Username;
+    String Game; // Myprofile
+    String Rank, Avatar, Mic; // Players
 
     public Model(){
 
     }
 
-    public Model(String mGame, String mUser) {
+    public Model(String Game, String Nick) {
 
-        this.mGame = mGame;
-        this.mUser = mUser;
+        this.Game = Game;
+        this.Nick = Nick;
     }
+
+    public Model(String Username, String Nick, String Rank, String Mic) {
+        this.Username = Username;
+        this.Nick = Nick;
+        this.Rank = Rank;
+        this.Mic = Mic;
+    }
+
+
+    public String getNick() {
+        return Nick;
+    }
+    public void setNick(String nick) { this.Nick = nick; }
+
+    public String getUsername() { return Username; }
+    public void setUsername(String username) { Username = username; }
 
     public void changeGameText(String text) {
-        this.mGame = text;
+        this.Game = text;
     }
 
-    public String getmGame() {
-        return mGame;
-    }
 
-    public void setmGame(String mGame) {
-        this.mGame = mGame;
+    // MyProfile
+    public String getGame() {
+        return Game;
     }
+    public void setGame(String game) {
+        this.Game = game;
+    }
+    // End MyProfile
 
-    public String getmUser() {
-        return mUser;
-    }
 
-    public void setmUser(String mUser) {
-        this.mUser = mUser;
-    }
+    // Players
+    public String getRank() { return Rank; }
+    public void setRank(String rank) { this.Rank = rank; }
+
+    public String getAvatar() { return Avatar; }
+    public void setAvatar(String avatar) { this.Avatar = avatar; }
+
+    public String getMic() { return Mic; }
+    public void setMic(String mic) { this.Mic = mic; }
+    // End Players
 }

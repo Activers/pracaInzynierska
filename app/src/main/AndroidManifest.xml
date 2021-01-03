@@ -12,12 +12,7 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PubgProfile" />
-        <activity android:name=".LolProfile" />
-        <activity android:name=".FortniteProfile" />
-        <activity android:name=".CsgoProfile" />
-        <activity android:name=".ApexProfile" />
-        <activity android:name=".AmongUsProfile" />
+        <activity android:name=".Players"/>
         <activity android:name=".ApexData" />
         <activity android:name=".PubgData" />
         <activity android:name=".AmongUsData" />
@@ -41,9 +36,6 @@
             android:resource="@xml/color_spinner_layout" />
 
         <activity android:name=".AfterRegister" />
-        <activity
-            android:name=".Testowy"
-            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Terms" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".Dashboard" />

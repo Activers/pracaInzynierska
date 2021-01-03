@@ -73,9 +73,17 @@ public class PubgData extends AppCompatActivity {
     }
 
     private void InsertIntoDatabase() {
+
+        Map<String,Object> profileData = new HashMap<>();
+        profileData.put("username", MyProfile.globalUsername);
+        profileData.put("country", MyProfile.globalCountry);
+        profileData.put("age", MyProfile.globalAge);
+
+        WriteBatch batch = fStore.batch();
+
+        // MyProfile
         DocumentReference pubgDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("pubg");
         DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
-        WriteBatch batch = fStore.batch();
 
         Map<String, Object> pubgData = new HashMap<>();
         pubgData.put("nick", PubgNick.getText().toString());
@@ -86,6 +94,21 @@ public class PubgData extends AppCompatActivity {
 
         batch.set(pubgDocRef,pubgData);
         batch.update(usersDocRef,"usernames.pubg",PubgNick.getText().toString());
+        // End MyProfile
+
+        // Players
+        DocumentReference gamesDocRef = fStore.collection("games").document("pubg");
+        DocumentReference gamesPlayersDocRef = fStore.collection("games").document("pubg").collection("players").document(MyProfile.globalUsername);
+
+        Map<String, Object> pubgPlayersData = new HashMap<>();
+        pubgPlayersData.putAll(pubgData);
+        pubgPlayersData.putAll(profileData);
+
+        batch.set(gamesPlayersDocRef, pubgPlayersData);
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".nick", PubgNick.getText().toString());
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".mic", PubgUseMic.getSelectedItem().toString());
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".rank", PubgRanks.getSelectedItem().toString());
+        // End Players
 
         batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

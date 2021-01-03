@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,17 +23,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private OnItemClickedListener mListener;
 
     public interface OnItemClickedListener {
-        void onItemClick(int postion);
+        void onItemClick(int position);
         void onDeleteClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickedListener listener) {
-        mListener = listener;
-    }
+            mListener = listener;
+        }
 
     public RecyclerAdapter(Context mContext, ArrayList<Model> modelList) {
-        this.mContext = mContext;
-        this.modelList = modelList;
+            this.mContext = mContext;
+            this.modelList = modelList;
     }
 
     @NonNull
@@ -48,8 +49,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.textViewGame.setText(modelList.get(position).getmGame());
-        holder.textViewUser.setText(modelList.get(position).getmUser());
+        holder.textViewGame.setText(modelList.get(position).getGame());
+        holder.textViewUser.setText(modelList.get(position).getNick());
     }
 
     @Override
@@ -62,6 +63,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView textViewGame;
         TextView textViewUser;
         ImageView imageViewDelete;
+        RelativeLayout relativeLayout;
 
         public ViewHolder(@NonNull View itemView, final OnItemClickedListener listener) {
             super(itemView);
@@ -69,8 +71,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             textViewGame = itemView.findViewById(R.id.textViewGame);
             textViewUser = itemView.findViewById(R.id.textViewUsername);
             imageViewDelete = itemView.findViewById(R.id.imageViewDelete);
+            relativeLayout = itemView.findViewById(R.id.list_root);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (listener != null) {

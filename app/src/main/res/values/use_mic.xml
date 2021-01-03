@@ -3,6 +3,11 @@
     <string-array name="ArrayUseMic">
         <item>Tak</item>
         <item>Nie</item>
+    </string-array>
 
+    <string-array name="ArrayFilterUseMic">
+        <item>Brak Filtru</item>
+        <item>Tak</item>
+        <item>Nie</item>
     </string-array>
 </resources>

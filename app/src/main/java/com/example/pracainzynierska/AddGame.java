@@ -28,6 +28,7 @@ public class AddGame extends AppCompatActivity {
         AddPubgGame = findViewById(R.id.buttonPubg);
         AddApexGame = findViewById(R.id.buttonApex);
 
+
         AddCsgoGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,10 +70,5 @@ public class AddGame extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), ApexData.class));
             }
         });
-
-
-
-
-
     }
 }

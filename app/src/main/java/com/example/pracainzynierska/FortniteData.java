@@ -73,9 +73,17 @@ public class FortniteData extends AppCompatActivity {
     }
 
     private void InsertIntoDatabase() {
-        DocumentReference fortniteDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("fortnite");
-        DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
+
+        Map<String,Object> profileData = new HashMap<>();
+        profileData.put("username", MyProfile.globalUsername);
+        profileData.put("country", MyProfile.globalCountry);
+        profileData.put("age", MyProfile.globalAge);
+
         WriteBatch batch = fStore.batch();
+
+        // MyProfile
+        DocumentReference usersGamesDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("fortnite");
+        DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
 
         Map<String, Object> fortniteData = new HashMap<>();
         fortniteData.put("nick", FortniteNick.getText().toString());
@@ -84,8 +92,23 @@ public class FortniteData extends AppCompatActivity {
         fortniteData.put("rank", FortniteRanks.getSelectedItem().toString());
         fortniteData.put("desc", FortniteDesc.getText().toString());
 
-        batch.set(fortniteDocRef,fortniteData);
+        batch.set(usersGamesDocRef,fortniteData);
         batch.update(usersDocRef,"usernames.fortnite",FortniteNick.getText().toString());
+        // End MyProfile
+
+        // Players
+        DocumentReference gamesDocRef = fStore.collection("games").document("fortnite");
+        DocumentReference gamesPlayersDocRef = fStore.collection("games").document("fortnite").collection("players").document(MyProfile.globalUsername);
+
+        Map<String, Object> fortnitePlayersData = new HashMap<>();
+        fortnitePlayersData.putAll(fortniteData);
+        fortnitePlayersData.putAll(profileData);
+
+        batch.set(gamesPlayersDocRef, fortnitePlayersData);
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".nick", FortniteNick.getText().toString());
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".mic", FortniteUseMic.getSelectedItem().toString());
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".rank", FortniteRanks.getSelectedItem().toString());
+        // End Players
 
         batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

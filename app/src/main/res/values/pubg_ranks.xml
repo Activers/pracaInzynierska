@@ -10,4 +10,16 @@
         <item>Master</item>
         <item>Grandmaster</item>
     </string-array>
+
+    <string-array name="ArrayFilterPubgRanks">
+        <item>Brak Filtru</item>
+        <item>Bronze</item>
+        <item>Silver</item>
+        <item>Gold</item>
+        <item>Platinum</item>
+        <item>Diamond</item>
+        <item>Elite</item>
+        <item>Master</item>
+        <item>Grandmaster</item>
+    </string-array>
 </resources>

@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -75,9 +76,17 @@ public class ApexData extends AppCompatActivity {
     }
 
     private void InsertIntoDatabase() {
-        DocumentReference apexDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("apex");
-        DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
+
+        Map<String,Object> profileData = new HashMap<>();
+        profileData.put("username", MyProfile.globalUsername);
+        profileData.put("country", MyProfile.globalCountry);
+        profileData.put("age", MyProfile.globalAge);
+
         WriteBatch batch = fStore.batch();
+
+        // MyProfile
+        DocumentReference usersGamesDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("apex");
+        DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
 
         Map<String, Object> apexData = new HashMap<>();
         apexData.put("nick", ApexNick.getText().toString());
@@ -86,14 +95,30 @@ public class ApexData extends AppCompatActivity {
         apexData.put("rank", ApexRanks.getSelectedItem().toString());
         apexData.put("desc", ApexDesc.getText().toString());
 
-        batch.set(apexDocRef,apexData);
+        batch.set(usersGamesDocRef,apexData);
         batch.update(usersDocRef,"usernames.apex",ApexNick.getText().toString());
+        // End MyProfile
+
+        // Players
+        DocumentReference gamesDocRef = fStore.collection("games").document("apex");
+        DocumentReference gamesPlayersDocRef = fStore.collection("games").document("apex").collection("players").document(MyProfile.globalUsername);
+
+        Map<String, Object> apexPlayersData = new HashMap<>();
+        apexPlayersData.putAll(apexData);
+        apexPlayersData.putAll(profileData);
+
+        batch.set(gamesPlayersDocRef, apexPlayersData);
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".nick", ApexNick.getText().toString());
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".mic", ApexUseMic.getSelectedItem().toString());
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".rank", ApexRanks.getSelectedItem().toString());
+        // End Players
 
         batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Log.d(TAG, "Batch command commited");
                 startActivity(new Intent(getApplicationContext(), MyProfile.class));
+                if (!task.isSuccessful()) { Log.d(TAG, "Batch Failure!!!: " + task.getException()); }
             }
         });
     }

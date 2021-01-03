@@ -8,10 +8,10 @@
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="10dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewFindPeople"
+        android:id="@+id/cardViewPlayers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -24,7 +24,7 @@
         <!--app:cardBackgroundColor="#664666"-->
 
         <RelativeLayout
-            android:id="@+id/list_root"
+            android:id="@+id/relativeLayoutPlayersCardView"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:clickable="true"
@@ -33,19 +33,22 @@
             android:padding="14dp">
 
             <!-- ranga czy zdjecie profilowe? -->
-            <ImageView
-                android:id="@+id/imageViewRank"
-                android:layout_width="50dp"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageViewPlayersAvatar"
+                android:layout_width="75dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/defaultpic"
-                android:layout_alignParentStart="true"/>
+                android:layout_alignParentStart="true"
+                android:layout_gravity="bottom|center_horizontal"
+                android:src="@drawable/defpicresize"
+                app:civ_border_color="#787878"
+                app:civ_border_width="2dp"/>
 
             <TextView
-                android:id="@+id/textViewNick"
+                android:id="@+id/textViewPlayersNick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/imageViewRank"
-                android:layout_toLeftOf="@id/imageViewMic"
+                android:layout_toRightOf="@+id/imageViewPlayersAvatar"
+                android:layout_toLeftOf="@id/imageViewPlayersMic"
                 android:gravity="center"
                 android:text="Nick"
                 android:textColor="#424242"
@@ -57,21 +60,21 @@
                 android:layout_width="300dp"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="5dp"
-                android:layout_toRightOf="@+id/imageViewRank"
-                android:layout_toLeftOf="@id/imageViewMic"
+                android:layout_toRightOf="@+id/imageViewPlayersAvatar"
+                android:layout_toLeftOf="@id/imageViewPlayersMic"
                 android:layout_marginHorizontal="15dp"
                 android:layout_height="1dp"
-                android:layout_below="@+id/textViewGame"
+                android:layout_below="@+id/textViewPlayersNick"
                 android:background="#424242" />
 
 
             <TextView
-                android:id="@+id/textViewRank"
+                android:id="@+id/textViewPlayersRank"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/list_line"
-                android:layout_toRightOf="@+id/imageViewRank"
-                android:layout_toLeftOf="@id/imageViewMic"
+                android:layout_toRightOf="@+id/imageViewPlayersAvatar"
+                android:layout_toLeftOf="@id/imageViewPlayersMic"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="Ranga"
@@ -80,11 +83,11 @@
                 android:textStyle="bold"/>
 
             <ImageView
-                android:id="@+id/imageViewMic"
+                android:id="@+id/imageViewPlayersMic"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_mic_on"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_mic_off"/>
 
 
         </RelativeLayout>

@@ -76,9 +76,16 @@ public class LolData extends AppCompatActivity {
 
     private void InsertIntoDatabase() {
 
+        Map<String,Object> profileData = new HashMap<>();
+        profileData.put("username", MyProfile.globalUsername);
+        profileData.put("country", MyProfile.globalCountry);
+        profileData.put("age", MyProfile.globalAge);
+
+        WriteBatch batch = fStore.batch();
+
+        // MyProfile
         DocumentReference lolDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("lol");
         DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
-        WriteBatch batch = fStore.batch();
 
         Map<String, Object> lolData = new HashMap<>();
         lolData.put("nick", LolNick.getText().toString());
@@ -89,6 +96,21 @@ public class LolData extends AppCompatActivity {
 
         batch.set(lolDocRef,lolData);
         batch.update(usersDocRef,"usernames.lol",LolNick.getText().toString());
+        // End MyProfile
+
+        // Players
+        DocumentReference gamesDocRef = fStore.collection("games").document("lol");
+        DocumentReference gamesPlayersDocRef = fStore.collection("games").document("lol").collection("players").document(MyProfile.globalUsername);
+
+        Map<String, Object> lolPlayersData = new HashMap<>();
+        lolPlayersData.putAll(lolData);
+        lolPlayersData.putAll(profileData);
+
+        batch.set(gamesPlayersDocRef, lolPlayersData);
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".nick", LolNick.getText().toString());
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".mic", LolUseMic.getSelectedItem().toString());
+        batch.update(gamesDocRef,"players." + MyProfile.globalUsername + ".rank", LolRanks.getSelectedItem().toString());
+        // End Players
 
         batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

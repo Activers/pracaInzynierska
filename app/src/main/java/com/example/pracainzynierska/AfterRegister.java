@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -48,6 +49,8 @@ public class AfterRegister extends AppCompatActivity {
     StorageReference fStorage;
     FirebaseFirestore fStore;
 
+    String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,9 +70,20 @@ public class AfterRegister extends AppCompatActivity {
             adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
             Countries.setAdapter(adapter);
 
+            DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
+            usersDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        username = task.getResult().getString("username");
+                    }
+                }
+            });
+
+
             try {
                 fStorage = FirebaseStorage.getInstance().getReference();
-                StorageReference profileRef = fStorage.child("users/" + fAuth.getCurrentUser().getUid() + "/profile.jpg");
+                StorageReference profileRef = fStorage.child("users/" + username + "/profile.jpg");
                 profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -77,7 +91,6 @@ public class AfterRegister extends AppCompatActivity {
                     }
                 });
             } catch (Exception e) {}
-
 
             ChangeAvatar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -158,7 +171,7 @@ public class AfterRegister extends AppCompatActivity {
     private void uploadImageToFirebase(Uri imageUri) {
 
         final String TAG = "AfterRegister";
-        final StorageReference fileRef = fStorage.child("users/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
+        final StorageReference fileRef = fStorage.child("users/" + username + "/profile.jpg");
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -173,7 +186,7 @@ public class AfterRegister extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Awatar nie został dodany"); // zmienic na log
+                Log.d(TAG, "Awatar nie został dodany: " + e); // zmienic na log
             }
         });
 
