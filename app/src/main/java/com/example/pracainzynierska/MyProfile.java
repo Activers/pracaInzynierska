@@ -1,15 +1,18 @@
 package com.example.pracainzynierska;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,7 +49,9 @@ public class MyProfile extends AppCompatActivity {
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     StorageReference fStorage;
-    CircleImageView ProfileImage;
+    CircleImageView ProfileImage,AddAvatar;
+
+
     RecyclerView recyclerView;
 
     LinearLayoutManager layoutManager; // lub RecyclerView.LayoutManager
@@ -80,7 +87,7 @@ public class MyProfile extends AppCompatActivity {
         ProfileImage = findViewById(R.id.imageViewAvatar);
         recyclerView = findViewById(R.id.recyclerViewMyProfile);
         fStore = FirebaseFirestore.getInstance();
-
+        AddAvatar = findViewById(R.id.ImageViewAddAvatar);
         username = findViewById(R.id.textViewProfileUsername);
         country = findViewById(R.id.textViewCountry);
         age = findViewById(R.id.textViewAge);
@@ -146,6 +153,16 @@ public class MyProfile extends AppCompatActivity {
                     }
                 });
         }catch (Exception e) { Log.d(TAG, "RECYCLER LISTENER ERROR: " + e); }
+
+        AddAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent openGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(openGallery, 1000);
+            }
+        });
+
     }
 
     private void GetProfileDataFromFirebase() {
@@ -170,42 +187,44 @@ public class MyProfile extends AppCompatActivity {
 
                     DownloadProfileImage();
 
-                    Map<String,String> usernamesMap = (Map<String, String>) document.get("usernames");
-                    String csgoUsername = usernamesMap.get("csgo");
-                    String lolUsername = usernamesMap.get("lol");
-                    String fortniteUsername = usernamesMap.get("fortnite");
-                    String amongusUsername = usernamesMap.get("amongus");
-                    String pubgUsername = usernamesMap.get("pubg");
-                    String apexUsername = usernamesMap.get("apex");
+                    if (document.contains("usernames")) {
 
-                    if (csgoUsername != null) {
-                        modelList.add(new Model("CS:GO","Steam: " + csgoUsername));
+                        Map<String, String> usernamesMap = (Map<String, String>) document.get("usernames");
+                        String csgoUsername = usernamesMap.get("csgo");
+                        String lolUsername = usernamesMap.get("lol");
+                        String fortniteUsername = usernamesMap.get("fortnite");
+                        String amongusUsername = usernamesMap.get("amongus");
+                        String pubgUsername = usernamesMap.get("pubg");
+                        String apexUsername = usernamesMap.get("apex");
+
+                        if (csgoUsername != null) {
+                            modelList.add(new Model("CS:GO", "Steam: " + csgoUsername));
+                        }
+
+                        if (lolUsername != null) {
+                            modelList.add(new Model("League of Legends", "Riot Games: " + lolUsername));
+                        }
+
+                        if (fortniteUsername != null) {
+                            modelList.add(new Model("Fortnite", "Epic Games: " + fortniteUsername));
+                        }
+
+                        if (amongusUsername != null) {
+                            modelList.add(new Model("Among Us", "Discord: " + amongusUsername));
+                        }
+
+                        if (pubgUsername != null) {
+                            modelList.add(new Model("PUBG", "Steam: " + pubgUsername));
+                        }
+
+                        if (apexUsername != null) {
+                            modelList.add(new Model("APEX", "Origin: " + apexUsername));
+                        }
+
+                    } else {
+                        Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
                     }
-
-                    if (lolUsername != null) {
-                        modelList.add(new Model("League of Legends","Riot Games: " + lolUsername));
-                    }
-
-                    if (fortniteUsername != null) {
-                        modelList.add(new Model("Fortnite","Epic Games: " + fortniteUsername));
-                    }
-
-                    if (amongusUsername != null) {
-                        modelList.add(new Model("Among Us","Discord: " + amongusUsername));
-                    }
-
-                    if (pubgUsername != null) {
-                        modelList.add(new Model("PUBG","Steam: " + pubgUsername));
-                    }
-
-                    if (apexUsername != null) {
-                        modelList.add(new Model("APEX","Origin: " + apexUsername));
-                    }
-
-                } else {
-                    Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
                 }
-
                 // wyswietlanie listy poprzez adepter i recyclerview
                 //recyclerAdapter = new RecyclerAdapter(getApplicationContext(), modelList); // Jak jest tutaj zadeklarowane to jest error ze nie ma adaptera zadeklarowanego gdy listenera sie uzywa
                 recyclerView.setAdapter(recyclerAdapter); // wlozenie listy do recyclerView
@@ -568,6 +587,44 @@ public class MyProfile extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1000){
+            if(resultCode == Activity.RESULT_OK){
+                Uri imageUri = data.getData();
+
+                uploadImageToFirebase(imageUri);
+
+            }
+        }
+
+    }
+
+    private void uploadImageToFirebase(Uri imageUri) {
+
+
+        final StorageReference profileRef = fStorage.child("users/" + globalUsername + "/profile.jpg");
+        profileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.d(TAG, "Awatar został dodany"); // zmienic na log w konsoli
+                profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).resize(250, 300).noFade().rotate(270).into(ProfileImage);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, "Awatar nie został dodany"); // zmienic na log
+            }
+        });
+
     }
 
     private void DownloadProfileImage() {

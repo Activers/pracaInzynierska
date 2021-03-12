@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="ArrayPubgRanks">
+        <item>Bez rangi</item>
         <item>Bronze</item>
         <item>Silver</item>
         <item>Gold</item>
@@ -13,6 +14,7 @@
 
     <string-array name="ArrayFilterPubgRanks">
         <item>Brak Filtru</item>
+        <item>Bez rangi</item>
         <item>Bronze</item>
         <item>Silver</item>
         <item>Gold</item>

@@ -85,8 +85,8 @@ public class SplashScreen extends AppCompatActivity {
                                     DocumentSnapshot document = task.getResult();
                                     if (document.exists()) {
                                         Log.i(TAG, "Document Snapshot data: " + document.getData());
-                                        String name = document.getString("name");
-                                        if (name == null) {
+                                        String age = document.getString("age");
+                                        if (age == null) {
                                             intent = new Intent(SplashScreen.this,  AfterRegister.class);
                                         } else {
                                             intent = new Intent(SplashScreen.this,  Dashboard.class);

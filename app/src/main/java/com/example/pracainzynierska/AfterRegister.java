@@ -39,10 +39,7 @@ public class AfterRegister extends AppCompatActivity {
 
     final String TAG = "AfterRegister";
 
-    ImageView ProfileImage;
-    TextView ChangeAvatar;
     Button EndReg;
-    EditText Name;
     EditText Age;
     Spinner Countries;
     FirebaseAuth fAuth;
@@ -56,11 +53,8 @@ public class AfterRegister extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_register);
 
-            ProfileImage = findViewById(R.id.imageViewAvatar);
-            ChangeAvatar = findViewById(R.id.textViewAvatar);
             Countries = findViewById(R.id.spinnerCoutries);
             EndReg = findViewById(R.id.buttonEndReg);
-            Name = findViewById(R.id.editTextName);
             Age = findViewById(R.id.editTextAge);
             fAuth = FirebaseAuth.getInstance();
             fStore = FirebaseFirestore.getInstance();
@@ -81,46 +75,12 @@ public class AfterRegister extends AppCompatActivity {
             });
 
 
-            try {
-                fStorage = FirebaseStorage.getInstance().getReference();
-                StorageReference profileRef = fStorage.child("users/" + username + "/profile.jpg");
-                profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Picasso.get().load(uri).into(ProfileImage);
-                    }
-                });
-            } catch (Exception e) {}
-
-            ChangeAvatar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent openGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(openGallery, 1000);
-                }
-            });
-
-            ProfileImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent openGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(openGallery, 1000);
-                }
-            });
-
             EndReg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String name = Name.getText().toString();
                     String age = Age.getText().toString();
                     String country = Countries.getSelectedItem().toString();
 
-
-
-                    if (TextUtils.isEmpty(name)) {
-                        Name.setError("To pole jest wymagane!");
-                        return;
-                    }
 
                     if (TextUtils.isEmpty(age)) {
                         Age.setError("To pole jest wymagane!");
@@ -134,7 +94,6 @@ public class AfterRegister extends AppCompatActivity {
 
                     DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
                     Map<String, Object> user = new HashMap<>();
-                    user.put("name", name);
                     user.put("age", age);
                     user.put("country", country);
                     usersDocRef.update(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -155,40 +114,4 @@ public class AfterRegister extends AppCompatActivity {
             });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1000){
-            if(resultCode == Activity.RESULT_OK){
-                Uri imageUri = data.getData();
-
-                uploadImageToFirebase(imageUri);
-
-            }
-        }
-
-    }
-    private void uploadImageToFirebase(Uri imageUri) {
-
-        final String TAG = "AfterRegister";
-        final StorageReference fileRef = fStorage.child("users/" + username + "/profile.jpg");
-        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Log.d(TAG, "Awatar został dodany"); // zmienic na log w konsoli
-                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Picasso.get().load(uri).into(ProfileImage);
-                    }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Awatar nie został dodany: " + e); // zmienic na log
-            }
-        });
-
-    }
 }

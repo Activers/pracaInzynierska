@@ -5,47 +5,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_background"
-    >
+    android:fillViewport="true">
 
     <LinearLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="10"
         android:focusable="false"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:weightSum="10">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="115dp"
-            android:layout_weight="1"
+            android:layout_height="165dp"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/textViewChooseGame"
+                android:id="@+id/textViewSettings"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:layout_marginTop="0dp"
-                android:text="@string/textViewChooseGame"
-                android:textAlignment="center"
+                android:gravity="center"
+                android:text="@string/textViewSettings"
+                android:fontFamily="sans-serif-light"
                 android:textColor="#FFFFFF"
-                android:textSize="35sp"
-                android:textStyle="bold" />
+                android:textSize="55sp" />
 
 
-        </RelativeLayout>
+        </LinearLayout>
 
-
-
-
-
-
+        <Button
+            android:id="@+id/buttonChangeProfile"
+            android:layout_width="320dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/button_bg"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/buttonChangeProfile"
+            android:textColor="#424242"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/buttonChangePassword"
+            android:layout_width="250dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/button_bg"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/buttonChangePassword"
+            android:textColor="#424242"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
 
 
     </LinearLayout>
-
 
 </ScrollView>

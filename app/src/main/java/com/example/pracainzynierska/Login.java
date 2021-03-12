@@ -93,7 +93,7 @@ public class Login extends AppCompatActivity {
                                         DocumentSnapshot document = task.getResult();
                                         if (document.exists()) {
                                             Log.i(TAG, "Document Snapshot data: " + document.getData());
-                                            String name = document.getString("name");
+                                            String age = document.getString("age");
 
                                             if (rememberMe.isChecked()) { // jezeli zaznaczony checkbox - zapisz preferencje autologowania
 
@@ -110,7 +110,7 @@ public class Login extends AppCompatActivity {
                                                 Log.i(TAG, "Usunieto autologowanie");
                                             }
 
-                                            if (name == null) { // wybranie dashboard lub after register zaleznie od uzupelnionych danych
+                                            if (age == null) { // wybranie dashboard lub after register zaleznie od uzupelnionych danych
                                                 progressBar.setVisibility(View.INVISIBLE);
                                                 startActivity(new Intent(getApplicationContext(),AfterRegister.class));
                                             } else {

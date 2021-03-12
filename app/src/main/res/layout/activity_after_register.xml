@@ -12,14 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="false"
-        android:gravity="center"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:weightSum="10">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="165dp"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
             android:padding="10dp">
 
             <TextView
@@ -34,34 +35,20 @@
                 android:textSize="55sp" />
 
 
-        </RelativeLayout>
+        </LinearLayout>
 
-
-        <EditText
-            android:id="@+id/editTextName"
-            android:layout_width="326dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="#FFFFFF"
-            android:hint="@string/editTextName"
-            android:inputType="textPersonName"
-            android:gravity="center"
-            android:textColor="#FFFFFF"
-            android:textColorHighlight="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:textColorLink="#FFFFFF"
-            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/editTextAge"
             android:layout_width="326dp"
             android:layout_height="53dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
             android:autofillHints=""
             android:backgroundTint="#FFFFFF"
             android:hint="@string/editTextAge"
             android:inputType="number"
+            android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF"
             android:textColorLink="#FFFFFF"
@@ -71,46 +58,24 @@
             android:id="@+id/spinnerCoutries"
             android:background="@drawable/spinner_bg"
             android:layout_width="318dp"
+            android:layout_gravity="center"
             android:layout_height="53dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
+            android:textAlignment="center"
             android:autofillHints=""
             android:textSize="20sp"
             />
 
-        <ImageView
-            android:id="@+id/imageViewAvatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/image_bg"
-            android:maxWidth="110dp"
-            android:maxHeight="110dp"
-            android:minWidth="110dp"
-            android:minHeight="110dp"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/defaultpic"
-            tools:srcCompat="@drawable/defaultpic" />
-
-        <TextView
-            android:id="@+id/textViewAvatar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imageViewAvatar"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            android:text="@string/textViewAddPic"
-            android:textAllCaps="true"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:gravity="center|bottom">
         <Button
             android:id="@+id/buttonEndReg"
             android:layout_width="209dp"
             android:layout_height="65dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="45dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/button_bg"
             android:fontFamily="sans-serif-light"
             android:text="@string/buttonEndReg"
@@ -120,5 +85,6 @@
 
     </LinearLayout>
 
+    </LinearLayout>
 
 </ScrollView>

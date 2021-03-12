@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="ArrayCsgoRanks">
+        <item>Bez rangi</item>
         <item>Srebro I</item>
         <item>Srebro II</item>
         <item>Srebro III</item>
@@ -23,6 +24,7 @@
 
     <string-array name="ArrayFilterCsgoRanks">
         <item>Brak Filtru</item>
+        <item>Bez rangi</item>
         <item>Srebro I</item>
         <item>Srebro II</item>
         <item>Srebro III</item>

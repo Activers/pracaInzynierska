@@ -116,6 +116,14 @@
     <string name="textViewFilterPopupWindowRank">Ranga:</string>
     <string name="textViewFilterPopupWindowMic">Mikrofon:</string>
     <string name="textViewFilterPopupWindowHours">Godziny:</string>
+    <!--activity_settings-->
+    <string name="buttonChangePassword">ZMIEŃ HASŁO</string>
+    <string name="buttonChangeProfile">ZMIEŃ DANE PROFILOWE</string>
+    <!--activity_ResetPassword-->
+    <string name="textViewSettings">USTAWIENIA</string>
+    <string name="editTextNewPassword">Podaj nowe hasło:</string>
+    <string name="editTextRepeatNewPass">Powtórz nowe hasło:</string>
+    <string name="textViewNewPassword">ZMIEŃ HASŁO</string>
     <!--preferences-->
     <string name="autoLoginPreferenceName">autoLogin</string>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="ArrayLolRanks">
+        <item>Bez rangi</item>
         <item>Żelazo IV</item>
         <item>Żelazo III</item>
         <item>Żelazo II</item>
@@ -31,6 +32,7 @@
 
     <string-array name="ArrayFilterLolRanks">
         <item>Brak Filtru</item>
+        <item>Bez rangi</item>
         <item>Żelazo IV</item>
         <item>Żelazo III</item>
         <item>Żelazo II</item>
