@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="165dp"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textViewProfileData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="@string/textViewProfileData"
+                android:fontFamily="sans-serif-light"
+                android:textColor="#FFFFFF"
+                android:textSize="50sp" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/editTextAge"
+            android:layout_width="326dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:autofillHints=""
+            android:backgroundTint="#FFFFFF"
+            android:hint="@string/editTextAge"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextDesctiption"
+            android:layout_width="326dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:autofillHints=""
+            android:backgroundTint="#FFFFFF"
+            android:hint="@string/editTextDesctiption"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinnerCoutries"
+            android:background="@drawable/spinner_bg"
+            android:layout_width="318dp"
+            android:layout_gravity="center"
+            android:layout_height="53dp"
+            android:layout_marginTop="40dp"
+            android:textAlignment="center"
+            android:autofillHints=""
+            android:textSize="20sp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:gravity="center|bottom">
+            <Button
+                android:id="@+id/buttonEndReg"
+                android:layout_width="209dp"
+                android:layout_height="65dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_bg"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/buttonEndReg"
+                android:textColor="#424242"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

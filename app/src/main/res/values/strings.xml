@@ -124,6 +124,11 @@
     <string name="editTextNewPassword">Podaj nowe hasło:</string>
     <string name="editTextRepeatNewPass">Powtórz nowe hasło:</string>
     <string name="textViewNewPassword">ZMIEŃ HASŁO</string>
+    <!--activity_change_profile_data-->
+    <string name="textViewProfileData">ZMIEŃ DANE UŻYTKOWNIKA</string>
+    <string name="editTextDesctiption">Zmień opis:</string>
+
+
     <!--preferences-->
     <string name="autoLoginPreferenceName">autoLogin</string>
 </resources>
