@@ -56,7 +56,7 @@ public class ResetPassword extends AppCompatActivity {
                                 return;
                             }
                             if (!newPassword.equals(repeatNewPass)) {
-                                RepeatNewPass.setError("Hasła nie są takie same!!");
+                                RepeatNewPass.setError("Hasła nie są takie same!");
                                 return;
                             }
 

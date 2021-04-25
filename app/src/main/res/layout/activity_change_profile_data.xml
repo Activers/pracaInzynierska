@@ -38,7 +38,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/editTextAge"
+            android:id="@+id/editTextUpdateAge"
             android:layout_width="326dp"
             android:layout_height="53dp"
             android:layout_marginTop="50dp"
@@ -54,7 +54,7 @@
             android:textSize="20sp" />
 
         <Spinner
-            android:id="@+id/spinnerCoutries"
+            android:id="@+id/spinnerUpdateCoutries"
             android:background="@drawable/spinner_bg"
             android:layout_width="318dp"
             android:layout_gravity="center"
@@ -94,8 +94,9 @@
             android:layout_height="match_parent"
             android:layout_marginTop="50dp"
             android:gravity="center|bottom">
+
             <Button
-                android:id="@+id/buttonEndReg"
+                android:id="@+id/buttonUpdate"
                 android:layout_width="209dp"
                 android:layout_height="65dp"
                 android:layout_marginBottom="20dp"
