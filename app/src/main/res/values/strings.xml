@@ -121,12 +121,13 @@
     <string name="buttonChangeProfile">ZMIEŃ DANE PROFILOWE</string>
     <!--activity_ResetPassword-->
     <string name="textViewSettings">USTAWIENIA</string>
-    <string name="editTextNewPassword">Podaj nowe hasło:</string>
-    <string name="editTextRepeatNewPass">Powtórz nowe hasło:</string>
+    <string name="editTextOldPassword">Podaj stare hasło</string>
+    <string name="editTextNewPassword">Podaj nowe hasło</string>
+    <string name="editTextRepeatNewPass">Powtórz nowe hasło</string>
     <string name="textViewNewPassword">ZMIEŃ HASŁO</string>
     <!--activity_change_profile_data-->
     <string name="textViewProfileData">ZMIEŃ DANE UŻYTKOWNIKA</string>
-    <string name="editTextDesctiption">Zmień opis:</string>
+    <string name="editTextDesctiption">Dodaj opis:</string>
 
 
     <!--preferences-->
