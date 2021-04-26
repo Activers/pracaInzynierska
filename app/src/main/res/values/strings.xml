@@ -109,10 +109,10 @@
     <string name="textViewPopupWindowDesc">Opis:</string>
     <string name="buttonPopupWindowBack">Wróć</string>
     <!--filter_popup_window-->
-    <string name="textViewFilterPopupWindowTitle">Filtruj na podstawie:</string>
+    <string name="textViewFilterPopupWindowTitle">FILTRUJ NA PODSTAWIE:</string>
     <string name="textViewFilterPopupWindowCountry">Kraj:</string>
     <string name="textViewFilterPopupWindowAge">Wiek:</string>
-    <string name="editTextFilterPopupWindowAgeHint">Brak Filtru - Podaj wiek:</string>
+    <string name="editTextFilterPopupWindowAgeHint">Brak Filtru - Podaj wiek</string>
     <string name="textViewFilterPopupWindowRank">Ranga:</string>
     <string name="textViewFilterPopupWindowMic">Mikrofon:</string>
     <string name="textViewFilterPopupWindowHours">Godziny:</string>
