@@ -20,18 +20,41 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/editTextProfile"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="3dp"
-            android:gravity="center"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/editTextProfile"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="32sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/editTextProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/editTextProfile"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="32sp" />
+
+            <Button
+                android:id="@+id/buttonProfileEdit"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/button_bg"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Edytuj"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#424242"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
 
         <View
             android:layout_width="230dp"

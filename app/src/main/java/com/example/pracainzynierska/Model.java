@@ -1,5 +1,7 @@
 package com.example.pracainzynierska;
 
+import android.view.View;
+
 /**
  * Created by ankit on 22/1/18.
  */
@@ -9,6 +11,8 @@ public class Model {
     String Nick, Username;
     String Game; // Myprofile
     String Rank, Avatar, Mic; // Players
+
+    int Visibility = 4; // MyProfile Edit
 
     public Model(){
 
@@ -61,4 +65,9 @@ public class Model {
     public String getMic() { return Mic; }
     public void setMic(String mic) { this.Mic = mic; }
     // End Players
+
+    // Visibility MyProfile Edit
+    public int getVisibility() {return Visibility; }
+    public void setVisibility(int visibility) {this.Visibility = visibility; }
+    // End of Visibility
 }

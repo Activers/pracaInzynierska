@@ -51,6 +51,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         holder.textViewGame.setText(modelList.get(position).getGame());
         holder.textViewUser.setText(modelList.get(position).getNick());
+        holder.imageViewDelete.setVisibility(modelList.get(position).getVisibility());
     }
 
     @Override

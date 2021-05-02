@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -51,6 +52,7 @@ public class MyProfile extends AppCompatActivity {
     StorageReference fStorage;
     CircleImageView ProfileImage,AddAvatar;
 
+    Button ProfileEdit;
 
     RecyclerView recyclerView;
 
@@ -84,6 +86,7 @@ public class MyProfile extends AppCompatActivity {
         setContentView(R.layout.activity_my_profile);
 
         fAuth = FirebaseAuth.getInstance();
+        ProfileEdit = findViewById(R.id.buttonProfileEdit);
         ProfileImage = findViewById(R.id.imageViewAvatar);
         recyclerView = findViewById(R.id.recyclerViewMyProfile);
         fStore = FirebaseFirestore.getInstance();
@@ -98,6 +101,31 @@ public class MyProfile extends AppCompatActivity {
             DownloadProfileImage(); // pobranie zdjecia ze storage
         }
 
+        // Edit - pokazywanie sie usuwania gier z MyProfile
+        final boolean[] inEdit = {false};
+        ProfileEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (inEdit[0]) {
+                    ProfileEdit.setBackgroundResource(R.drawable.button_bg);
+                    inEdit[0] = false;
+
+                    for (int i=0; i < modelList.size(); i++) {
+                        modelList.get(i).setVisibility(4);
+                    }
+                }
+                else {
+                    ProfileEdit.setBackgroundResource(R.drawable.button_red_bg);
+                    inEdit[0] = true;
+
+                    for (int i=0; i < modelList.size(); i++) {
+                        modelList.get(i).setVisibility(0);
+                    }
+                }
+                recyclerView.setAdapter(recyclerAdapter);
+            }
+        });
+        // End MyProfile Edit
 
         relativeLayoutAddGame.setOnClickListener(new View.OnClickListener() {
             @Override
