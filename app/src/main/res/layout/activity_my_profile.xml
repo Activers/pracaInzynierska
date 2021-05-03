@@ -38,21 +38,18 @@
                 android:textColor="#FFFFFF"
                 android:textSize="32sp" />
 
-            <Button
-                android:id="@+id/buttonProfileEdit"
-                android:layout_width="80dp"
+
+
+            <ImageView
+                android:id="@+id/imageViewProfileEdit"
+                android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="10dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/button_bg"
-                android:fontFamily="sans-serif-light"
-                android:gravity="center"
-                android:text="Edytuj"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#424242"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/edit_icon" />
+
         </RelativeLayout>
 
 

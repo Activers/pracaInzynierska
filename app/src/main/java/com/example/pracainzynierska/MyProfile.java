@@ -52,7 +52,7 @@ public class MyProfile extends AppCompatActivity {
     StorageReference fStorage;
     CircleImageView ProfileImage,AddAvatar;
 
-    Button ProfileEdit;
+    ImageView ProfileEdit;
 
     RecyclerView recyclerView;
 
@@ -86,7 +86,7 @@ public class MyProfile extends AppCompatActivity {
         setContentView(R.layout.activity_my_profile);
 
         fAuth = FirebaseAuth.getInstance();
-        ProfileEdit = findViewById(R.id.buttonProfileEdit);
+        ProfileEdit = findViewById(R.id.imageViewProfileEdit);
         ProfileImage = findViewById(R.id.imageViewAvatar);
         recyclerView = findViewById(R.id.recyclerViewMyProfile);
         fStore = FirebaseFirestore.getInstance();
@@ -107,7 +107,7 @@ public class MyProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (inEdit[0]) {
-                    ProfileEdit.setBackgroundResource(R.drawable.button_bg);
+                    //ProfileEdit.setBackgroundResource(R.drawable.button_bg);
                     inEdit[0] = false;
 
                     for (int i=0; i < modelList.size(); i++) {
@@ -115,7 +115,7 @@ public class MyProfile extends AppCompatActivity {
                     }
                 }
                 else {
-                    ProfileEdit.setBackgroundResource(R.drawable.button_red_bg);
+                    //ProfileEdit.setBackgroundResource(R.drawable.button_red_bg);
                     inEdit[0] = true;
 
                     for (int i=0; i < modelList.size(); i++) {
