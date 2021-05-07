@@ -20,6 +20,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,11 +29,16 @@ public class LolData extends AppCompatActivity {
     final String TAG = "LolData";
 
     EditText LolNick, LolDesc;
-    Spinner LolUseMic,LolPrefHours,LolRanks;
-    Button LolAddGame;
+    Spinner LolUseMic,LolRanks;
+    Button LolAddGame, LolPrefHoursMorning, LolPrefHoursAfternoon, LolPrefHoursEvening, LolPrefHoursNight;
 
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
+
+    boolean prefMorning = false;
+    boolean prefAfternoon = false;
+    boolean prefEvening = false;
+    boolean prefNight = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +48,13 @@ public class LolData extends AppCompatActivity {
         LolNick = findViewById(R.id.editTextLolNick);
         LolDesc = findViewById(R.id.editTextLolDesc);
         LolUseMic = findViewById(R.id.spinnerLolUseMic);
-        LolPrefHours = findViewById(R.id.spinnerLolPrefHours);
         LolRanks = findViewById(R.id.spinnerLolRank);
         LolAddGame = findViewById(R.id.buttonAddLol);
+
+        LolPrefHoursMorning = findViewById(R.id.buttonLolPrefHoursMorning);
+        LolPrefHoursAfternoon = findViewById(R.id.buttonLolPrefHoursAfternoon);
+        LolPrefHoursEvening = findViewById(R.id.buttonLolPrefHoursEvening);
+        LolPrefHoursNight = findViewById(R.id.buttonLolPrefHoursNight);
 
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
@@ -53,15 +63,63 @@ public class LolData extends AppCompatActivity {
         adapterUseMic.setDropDownViewResource(R.layout.spinner_dropdown_item);
         LolUseMic.setAdapter(adapterUseMic);
 
-        ArrayAdapter adapterPrefHours =  ArrayAdapter.createFromResource(this,R.array.ArrayPrefHours,R.layout.spinner_item);
-        adapterPrefHours.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        LolPrefHours.setAdapter(adapterPrefHours);
-
         ArrayAdapter adapterRanks =  ArrayAdapter.createFromResource(this,R.array.ArrayLolRanks,R.layout.spinner_item);
         adapterRanks.setDropDownViewResource(R.layout.spinner_dropdown_item);
         LolRanks.setAdapter(adapterRanks);
 
-        Log.d(TAG, "PRZED LISTENEREM");
+        //Pref Hours
+        LolPrefHoursMorning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefMorning) {
+                    prefMorning = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefMorning = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        LolPrefHoursAfternoon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefAfternoon) {
+                    prefAfternoon = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefAfternoon = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        LolPrefHoursEvening.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefEvening) {
+                    prefEvening = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefEvening = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        LolPrefHoursNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefNight) {
+                    prefNight = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefNight = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+        // End of Pref Hours
 
         LolAddGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +148,12 @@ public class LolData extends AppCompatActivity {
         Map<String, Object> lolData = new HashMap<>();
         lolData.put("nick", LolNick.getText().toString());
         lolData.put("mic", LolUseMic.getSelectedItem().toString());
-        lolData.put("hours", LolPrefHours.getSelectedItem().toString());
+        ArrayList<String> prefHoursArrayList = new ArrayList<>();
+        if (prefMorning) prefHoursArrayList.add("Rano");
+        if (prefAfternoon) prefHoursArrayList.add("Po południu");
+        if (prefEvening) prefHoursArrayList.add("Wieczorem");
+        if (prefNight) prefHoursArrayList.add("W nocy");
+        lolData.put("hours", prefHoursArrayList);
         lolData.put("rank", LolRanks.getSelectedItem().toString());
         lolData.put("desc", LolDesc.getText().toString());
 

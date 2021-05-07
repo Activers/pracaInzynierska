@@ -20,6 +20,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,11 +29,16 @@ public class FortniteData extends AppCompatActivity {
     final String TAG = "FortniteData";
 
     EditText FortniteNick,FortniteDesc;
-    Spinner FortniteUseMic,FortnitePrefHours,FortniteRanks;
-    Button FortniteAddGame;
+    Spinner FortniteUseMic,FortniteRanks;
+    Button FortniteAddGame, FortnitePrefHoursMorning, FortnitePrefHoursAfternoon, FortnitePrefHoursEvening, FortnitePrefHoursNight;;
 
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
+
+    boolean prefMorning = false;
+    boolean prefAfternoon = false;
+    boolean prefEvening = false;
+    boolean prefNight = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +48,13 @@ public class FortniteData extends AppCompatActivity {
         FortniteNick = findViewById(R.id.editTextFortniteNick);
         FortniteDesc = findViewById(R.id.editTextFortniteDesc);
         FortniteUseMic = findViewById(R.id.spinnerFortniteUseMic);
-        FortnitePrefHours = findViewById(R.id.spinnerFortnitePrefHours);
         FortniteRanks = findViewById(R.id.spinnerFortniteRank);
         FortniteAddGame = findViewById(R.id.buttonAddFortnite);
+
+        FortnitePrefHoursMorning = findViewById(R.id.buttonFortnitePrefHoursMorning);
+        FortnitePrefHoursAfternoon = findViewById(R.id.buttonFortnitePrefHoursAfternoon);
+        FortnitePrefHoursEvening = findViewById(R.id.buttonFortnitePrefHoursEvening);
+        FortnitePrefHoursNight = findViewById(R.id.buttonFortnitePrefHoursNight);
 
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
@@ -53,13 +63,63 @@ public class FortniteData extends AppCompatActivity {
         adapterUseMic.setDropDownViewResource(R.layout.spinner_dropdown_item);
         FortniteUseMic.setAdapter(adapterUseMic);
 
-        ArrayAdapter adapterPrefHours =  ArrayAdapter.createFromResource(this,R.array.ArrayPrefHours,R.layout.spinner_item);
-        adapterPrefHours.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        FortnitePrefHours.setAdapter(adapterPrefHours);
-
         ArrayAdapter adapterRanks =  ArrayAdapter.createFromResource(this,R.array.ArrayFortniteRanks,R.layout.spinner_item);
         adapterRanks.setDropDownViewResource(R.layout.spinner_dropdown_item);
         FortniteRanks.setAdapter(adapterRanks);
+
+        //Pref Hours
+        FortnitePrefHoursMorning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefMorning) {
+                    prefMorning = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefMorning = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        FortnitePrefHoursAfternoon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefAfternoon) {
+                    prefAfternoon = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefAfternoon = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        FortnitePrefHoursEvening.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefEvening) {
+                    prefEvening = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefEvening = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        FortnitePrefHoursNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefNight) {
+                    prefNight = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefNight = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+        // End of Pref Hours
 
         FortniteAddGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +148,12 @@ public class FortniteData extends AppCompatActivity {
         Map<String, Object> fortniteData = new HashMap<>();
         fortniteData.put("nick", FortniteNick.getText().toString());
         fortniteData.put("mic", FortniteUseMic.getSelectedItem().toString());
-        fortniteData.put("hours", FortnitePrefHours.getSelectedItem().toString());
+        ArrayList<String> prefHoursArrayList = new ArrayList<>();
+        if (prefMorning) prefHoursArrayList.add("Rano");
+        if (prefAfternoon) prefHoursArrayList.add("Po południu");
+        if (prefEvening) prefHoursArrayList.add("Wieczorem");
+        if (prefNight) prefHoursArrayList.add("W nocy");
+        fortniteData.put("hours", prefHoursArrayList);
         fortniteData.put("rank", FortniteRanks.getSelectedItem().toString());
         fortniteData.put("desc", FortniteDesc.getText().toString());
 

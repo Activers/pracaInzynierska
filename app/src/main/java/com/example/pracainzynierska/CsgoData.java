@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -11,9 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,6 +25,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,11 +34,16 @@ public class CsgoData extends AppCompatActivity {
     final String TAG = "CsgoData";
 
     EditText CsgoNick, CsgoDesc;
-    Spinner CsgoUseMic,CsgoPrefHours,CsgoRanks;
-    Button CsgoAddGame;
+    Spinner CsgoUseMic,CsgoRanks;
+    Button CsgoAddGame, CsgoPrefHoursMorning, CsgoPrefHoursAfternoon, CsgoPrefHoursEvening, CsgoPrefHoursNight;
 
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
+
+    boolean prefMorning = false;
+    boolean prefAfternoon = false;
+    boolean prefEvening = false;
+    boolean prefNight = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +53,13 @@ public class CsgoData extends AppCompatActivity {
        CsgoNick = findViewById(R.id.editTextCsgoNick);
        CsgoDesc = findViewById(R.id.editTextCsgoDesc);
        CsgoUseMic = findViewById(R.id.spinnerCsgoUseMic);
-       CsgoPrefHours = findViewById(R.id.spinnerCsgoPrefHours);
        CsgoRanks = findViewById(R.id.spinnerCsgoRank);
        CsgoAddGame = findViewById(R.id.buttonAddCsgo);
+
+       CsgoPrefHoursMorning = findViewById(R.id.buttonCsgoPrefHoursMorning);
+       CsgoPrefHoursAfternoon = findViewById(R.id.buttonCsgoPrefHoursAfternoon);
+       CsgoPrefHoursEvening = findViewById(R.id.buttonCsgoPrefHoursEvening);
+       CsgoPrefHoursNight = findViewById(R.id.buttonCsgoPrefHoursNight);
 
        fStore = FirebaseFirestore.getInstance();
        fAuth = FirebaseAuth.getInstance();
@@ -55,14 +68,63 @@ public class CsgoData extends AppCompatActivity {
        adapterUseMic.setDropDownViewResource(R.layout.spinner_dropdown_item);
        CsgoUseMic.setAdapter(adapterUseMic);
 
-       ArrayAdapter adapterPrefHours =  ArrayAdapter.createFromResource(this,R.array.ArrayPrefHours,R.layout.spinner_item);
-       adapterPrefHours.setDropDownViewResource(R.layout.spinner_dropdown_item);
-       CsgoPrefHours.setAdapter(adapterPrefHours);
-
        ArrayAdapter adapterRanks =  ArrayAdapter.createFromResource(this,R.array.ArrayCsgoRanks,R.layout.spinner_item);
        adapterRanks.setDropDownViewResource(R.layout.spinner_dropdown_item);
        CsgoRanks.setAdapter(adapterRanks);
 
+       //Pref Hours
+       CsgoPrefHoursMorning.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+              if (prefMorning) {
+                  prefMorning = false;
+                  view.setBackgroundResource(R.drawable.button_bg);
+              } else {
+                  prefMorning = true;
+                  view.setBackgroundResource(R.drawable.button_green_bg);
+              }
+           }
+       });
+
+       CsgoPrefHoursAfternoon.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               if (prefAfternoon) {
+                   prefAfternoon = false;
+                   view.setBackgroundResource(R.drawable.button_bg);
+               } else {
+                   prefAfternoon = true;
+                   view.setBackgroundResource(R.drawable.button_green_bg);
+               }
+           }
+       });
+
+       CsgoPrefHoursEvening.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               if (prefEvening) {
+                   prefEvening = false;
+                   view.setBackgroundResource(R.drawable.button_bg);
+               } else {
+                   prefEvening = true;
+                   view.setBackgroundResource(R.drawable.button_green_bg);
+               }
+           }
+       });
+
+       CsgoPrefHoursNight.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               if (prefNight) {
+                   prefNight = false;
+                   view.setBackgroundResource(R.drawable.button_bg);
+               } else {
+                   prefNight = true;
+                   view.setBackgroundResource(R.drawable.button_green_bg);
+               }
+           }
+       });
+       // End of Pref Hours
 
        CsgoAddGame.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -76,6 +138,7 @@ public class CsgoData extends AppCompatActivity {
 
 
     }
+
 
     private void InsertIntoDatabase() {
 
@@ -93,7 +156,12 @@ public class CsgoData extends AppCompatActivity {
         Map<String, Object> csgoData = new HashMap<>();
         csgoData.put("nick", CsgoNick.getText().toString());
         csgoData.put("mic", CsgoUseMic.getSelectedItem().toString());
-        csgoData.put("hours", CsgoPrefHours.getSelectedItem().toString());
+        ArrayList<String> prefHoursArrayList = new ArrayList<>();
+        if (prefMorning) prefHoursArrayList.add("Rano");
+        if (prefAfternoon) prefHoursArrayList.add("Po południu");
+        if (prefEvening) prefHoursArrayList.add("Wieczorem");
+        if (prefNight) prefHoursArrayList.add("W nocy");
+        csgoData.put("hours", prefHoursArrayList);
         csgoData.put("rank", CsgoRanks.getSelectedItem().toString());
         csgoData.put("desc", CsgoDesc.getText().toString());
 

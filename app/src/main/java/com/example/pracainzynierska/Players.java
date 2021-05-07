@@ -75,9 +75,14 @@ public class Players extends AppCompatActivity {
     // End of Popup Window
 
     // Filter Popup Window
-    Button FilterPopupWindowSubmit;
+    Button FilterPopupWindowSubmit, FilterPopupWindowPrefHoursMorning, FilterPopupWindowPrefHoursAfternoon, FilterPopupWindowPrefHoursEvening, FilterPopupWindowPrefHoursNight;
     EditText FilterPopupWindowAge;
-    Spinner FilterPopupWindowCountry, FilterPopupWindowRank, FilterPopupWindowMic, FilterPopupWindowHours;
+    Spinner FilterPopupWindowCountry, FilterPopupWindowRank, FilterPopupWindowMic;
+
+    boolean prefMorning;
+    boolean prefAfternoon;
+    boolean prefEvening;
+    boolean prefNight;
     // End of Filter Popup Window
 
 
@@ -350,7 +355,7 @@ public class Players extends AppCompatActivity {
         popupWindowNick.setText(getResources().getString(R.string.textViewPopupWindowNick) + " " + document.getString("nick"));
         popupWindowRank.setText(getResources().getString(R.string.textViewPopupWindowRank) + " " + document.getString("rank"));
         popupWindowMic.setText(getResources().getString(R.string.textViewPopupWindowMic) + " " + document.getString("mic"));
-        popupWindowHours.setText(getResources().getString(R.string.textViewPopupWindowHours) + " " + document.getString("hours"));
+        popupWindowHours.setText(getResources().getString(R.string.textViewPopupWindowHours) + " " + document.get("hours").toString());
         popupWindowDesc.setText(getResources().getString(R.string.textViewPopupWindowDesc) + " " + document.getString("desc"));
     }
 
@@ -363,9 +368,18 @@ public class Players extends AppCompatActivity {
         FilterPopupWindowAge = windowPopupView.findViewById(R.id.editTextFilterPopupWindowAge);
         FilterPopupWindowRank = windowPopupView.findViewById(R.id.spinnerFilterPopupWindowRank);
         FilterPopupWindowMic = windowPopupView.findViewById(R.id.spinnerFilterPopupWindowMic);
-        FilterPopupWindowHours = windowPopupView.findViewById(R.id.spinnerFilterPopupWindowHours);
+
+        FilterPopupWindowPrefHoursMorning = windowPopupView.findViewById(R.id.buttonFilterPopupWindowPrefHoursMorning);
+        FilterPopupWindowPrefHoursAfternoon = windowPopupView.findViewById(R.id.buttonFilterPopupWindowPrefHoursAfternoon);
+        FilterPopupWindowPrefHoursEvening = windowPopupView.findViewById(R.id.buttonFilterPopupWindowPrefHoursEvening);
+        FilterPopupWindowPrefHoursNight = windowPopupView.findViewById(R.id.buttonFilterPopupWindowPrefHoursNight);
 
         FilterPopupWindowSubmit = windowPopupView.findViewById(R.id.buttonFilterPopupWindowSubmit);
+
+        prefMorning = false;
+        prefAfternoon = false;
+        prefEvening = false;
+        prefNight = false;
 
         // Country
         ArrayAdapter adapterCountries =  ArrayAdapter.createFromResource(this,R.array.ArrayFilterCountries,R.layout.spinner_item_filter);
@@ -409,9 +423,59 @@ public class Players extends AppCompatActivity {
         FilterPopupWindowMic.setAdapter(adapterUseMic);
 
         // Hours
-        ArrayAdapter adapterPrefHours =  ArrayAdapter.createFromResource(this,R.array.ArrayFilterPrefHours,R.layout.spinner_item_filter);
-        adapterPrefHours.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        FilterPopupWindowHours.setAdapter(adapterPrefHours);
+        //Pref Hours
+        FilterPopupWindowPrefHoursMorning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefMorning) {
+                    prefMorning = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefMorning = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        FilterPopupWindowPrefHoursAfternoon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefAfternoon) {
+                    prefAfternoon = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefAfternoon = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        FilterPopupWindowPrefHoursEvening.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefEvening) {
+                    prefEvening = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefEvening = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        FilterPopupWindowPrefHoursNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefNight) {
+                    prefNight = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefNight = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+        // End of Pref Hours
 
 
 
@@ -425,9 +489,12 @@ public class Players extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                CollectionReference playersDocRef = fStore.collection("games").document(game).collection("players");
+
                 int filterCount = 0;
-                String filtersKeys[] = new String[5];
-                String filtersValues[] = new String[5];
+                String[] filtersKeys = new String[5];
+                String[] filtersValues = new String[5];
+                ArrayList<String> hoursValuesList = new ArrayList<>();
 
                 if (FilterPopupWindowCountry.getSelectedItemId() > 0) {
                     filtersKeys[filterCount] = "country";
@@ -453,36 +520,52 @@ public class Players extends AppCompatActivity {
                     filterCount++;
                 }
 
-                if (FilterPopupWindowHours.getSelectedItemId() > 0) {
-                    filtersKeys[filterCount] = "hours";
-                    filtersValues[filterCount] = FilterPopupWindowHours.getSelectedItem().toString();
-                    filterCount++;
-                }
-
-                CollectionReference playersDocRef = fStore.collection("games").document(game).collection("players");
                 Query query = null;
-                switch (filterCount) { // ile filtrow ma byc zastosowanych
-                    case 0:
-                        query = playersDocRef;
-                        break;
-                    case 1:
-                        query = playersDocRef.whereEqualTo(filtersKeys[0], filtersValues[0]);
-                        break;
-                    case 2:
-                        query = playersDocRef.whereEqualTo(filtersKeys[0], filtersValues[0]).whereEqualTo(filtersKeys[1], filtersValues[1]);
-                        break;
-                    case 3:
-                        query = playersDocRef.whereEqualTo(filtersKeys[0], filtersValues[0]).whereEqualTo(filtersKeys[1], filtersValues[1]).whereEqualTo(filtersKeys[2], filtersValues[2]);
-                        break;
-                    case 4:
-                        query = playersDocRef.whereEqualTo(filtersKeys[0], filtersValues[0]).whereEqualTo(filtersKeys[1], filtersValues[1]).whereEqualTo(filtersKeys[2], filtersValues[2]).whereEqualTo(filtersKeys[3], filtersValues[3]);
-                        break;
-                    case 5:
-                        query = playersDocRef.whereEqualTo(filtersKeys[0], filtersValues[0]).whereEqualTo(filtersKeys[1], filtersValues[1]).whereEqualTo(filtersKeys[2], filtersValues[2]).whereEqualTo(filtersKeys[3], filtersValues[3]).whereEqualTo(filtersKeys[4], filtersValues[4]);
-                        break;
+                if (prefMorning || prefAfternoon || prefEvening || prefNight) {
+                    ArrayList<String> prefHoursArrayList = new ArrayList<>();
+                    if (prefMorning) prefHoursArrayList.add("Rano");
+                    if (prefAfternoon) prefHoursArrayList.add("Po południu");
+                    if (prefEvening) prefHoursArrayList.add("Wieczorem");
+                    if (prefNight) prefHoursArrayList.add("W nocy");
+                    filterCount++;
+                    Toast.makeText(Players.this, "Wchodze do queeeery", Toast.LENGTH_SHORT).show();
+
+                    switch (filterCount) { // ile zastosowac filtrow (z hours)
+                        case 1:
+                            query = playersDocRef.whereArrayContainsAny("hours", prefHoursArrayList);
+                            break;
+                        case 2:
+                            query = playersDocRef.whereEqualTo(filtersKeys[0], filtersValues[0]).whereArrayContainsAny("hours", prefHoursArrayList);
+                            break;
+                        case 3:
+                            query = playersDocRef.whereEqualTo(filtersKeys[0], filtersValues[0]).whereEqualTo(filtersKeys[1], filtersValues[1]).whereArrayContainsAny("hours", prefHoursArrayList);
+                            break;
+                        case 4:
+                            query = playersDocRef.whereEqualTo(filtersKeys[0], filtersValues[0]).whereEqualTo(filtersKeys[1], filtersValues[1]).whereEqualTo(filtersKeys[2], filtersValues[2]).whereArrayContainsAny("hours", prefHoursArrayList);
+                            break;
+                        case 5:
+                            query = playersDocRef.whereEqualTo(filtersKeys[0], filtersValues[0]).whereEqualTo(filtersKeys[1], filtersValues[1]).whereEqualTo(filtersKeys[2], filtersValues[2]).whereEqualTo(filtersKeys[3], filtersValues[3]).whereArrayContainsAny("hours", prefHoursArrayList);
+                            break;
+                    }
+                } else {
+                    switch (filterCount) { // ile zastosowac filtrow (bez hours)
+                        case 0:
+                            query = playersDocRef;
+                            break;
+                        case 1:
+                            query = playersDocRef.whereEqualTo(filtersKeys[0], filtersValues[0]);
+                            break;
+                        case 2:
+                            query = playersDocRef.whereEqualTo(filtersKeys[0], filtersValues[0]).whereEqualTo(filtersKeys[1], filtersValues[1]);
+                            break;
+                        case 3:
+                            query = playersDocRef.whereEqualTo(filtersKeys[0], filtersValues[0]).whereEqualTo(filtersKeys[1], filtersValues[1]).whereEqualTo(filtersKeys[2], filtersValues[2]);
+                            break;
+                        case 4:
+                            query = playersDocRef.whereEqualTo(filtersKeys[0], filtersValues[0]).whereEqualTo(filtersKeys[1], filtersValues[1]).whereEqualTo(filtersKeys[2], filtersValues[2]).whereEqualTo(filtersKeys[3], filtersValues[3]);
+                            break;
+                    }
                 }
-
-
                 if (query != null) {
                     query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
@@ -500,12 +583,12 @@ public class Players extends AppCompatActivity {
 
                                     Map<String, Object> playerDataMap = (Map<String, Object>) document.getData();
                                     String playerUsername = (String) playerDataMap.get("username");
-                                    String playerCountry = (String) playerDataMap.get("country");
-                                    String playerAge = (String) playerDataMap.get("age");
+                                    //String playerCountry = (String) playerDataMap.get("country");
+                                    //String playerAge = (String) playerDataMap.get("age");
 
                                     String playerNick = (String) playerDataMap.get("nick");
                                     String playerMic = (String) playerDataMap.get("mic");
-                                    String playerHours = (String) playerDataMap.get("hours");
+                                    //ArrayList<String> playerHours = (ArrayList<String>) playerDataMap.get("hours");
                                     String playerRank = (String) playerDataMap.get("rank");
                                     modelListPlayers.add(new Model(playerUsername, playerNick, playerRank, playerMic));
                                 }

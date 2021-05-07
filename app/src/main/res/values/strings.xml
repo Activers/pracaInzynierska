@@ -51,6 +51,11 @@
     <string name="textViewDescription">Dodaj opis w zakładce ustawienia..</string>
     <string name="textViewUserGames">GRY UŻYTKOWNIKA</string>
     <string name="textViewAddGame">DODAJ GRĘ</string>
+    <!--prefHours_data-->
+    <string name="textViewPrefHoursMorning">Rano</string>
+    <string name="textViewPrefHoursAfternoon">Po południu</string>
+    <string name="textViewPrefHoursEvening">Wieczorem</string>
+    <string name="textViewPrefHoursNight">W nocy</string>
     <!--activity_csgo_data-->
     <string name="textViewAddCsgoInfo">COUNTER STRIKE: GLOBAL OFFENSIVE</string>
     <string name="textViewCsgoNick">Podaj nick na Steam:</string>

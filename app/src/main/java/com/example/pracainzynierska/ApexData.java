@@ -21,6 +21,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,11 +30,16 @@ public class ApexData extends AppCompatActivity {
     final String TAG = "ApexData";
 
     EditText ApexNick, ApexDesc;
-    Spinner ApexUseMic,ApexPrefHours,ApexRanks;
-    Button ApexAddGame;
+    Spinner ApexUseMic,ApexRanks;
+    Button ApexAddGame, ApexPrefHoursMorning, ApexPrefHoursAfternoon, ApexPrefHoursEvening, ApexPrefHoursNight;;
 
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
+
+    boolean prefMorning = false;
+    boolean prefAfternoon = false;
+    boolean prefEvening = false;
+    boolean prefNight = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +49,13 @@ public class ApexData extends AppCompatActivity {
         ApexNick = findViewById(R.id.editTextApexNick);
         ApexDesc = findViewById(R.id.editTextApexDesc);
         ApexUseMic = findViewById(R.id.spinnerApexUseMic);
-        ApexPrefHours = findViewById(R.id.spinnerApexPrefHours);
         ApexRanks = findViewById(R.id.spinnerApexRank);
         ApexAddGame = findViewById(R.id.buttonAddApex);
+
+        ApexPrefHoursMorning = findViewById(R.id.buttonApexPrefHoursMorning);
+        ApexPrefHoursAfternoon = findViewById(R.id.buttonApexPrefHoursAfternoon);
+        ApexPrefHoursEvening = findViewById(R.id.buttonApexPrefHoursEvening);
+        ApexPrefHoursNight = findViewById(R.id.buttonApexPrefHoursNight);
 
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
@@ -55,13 +65,63 @@ public class ApexData extends AppCompatActivity {
         adapterUseMic.setDropDownViewResource(R.layout.spinner_dropdown_item);
         ApexUseMic.setAdapter(adapterUseMic);
 
-        ArrayAdapter adapterPrefHours =  ArrayAdapter.createFromResource(this,R.array.ArrayPrefHours,R.layout.spinner_item);
-        adapterPrefHours.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        ApexPrefHours.setAdapter(adapterPrefHours);
-
         ArrayAdapter adapterRanks =  ArrayAdapter.createFromResource(this,R.array.ArrayApexRanks,R.layout.spinner_item);
         adapterRanks.setDropDownViewResource(R.layout.spinner_dropdown_item);
         ApexRanks.setAdapter(adapterRanks);
+
+        //Pref Hours
+        ApexPrefHoursMorning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefMorning) {
+                    prefMorning = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefMorning = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        ApexPrefHoursAfternoon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefAfternoon) {
+                    prefAfternoon = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefAfternoon = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        ApexPrefHoursEvening.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefEvening) {
+                    prefEvening = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefEvening = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        ApexPrefHoursNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefNight) {
+                    prefNight = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefNight = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+        // End of Pref Hours
 
         ApexAddGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +151,12 @@ public class ApexData extends AppCompatActivity {
         Map<String, Object> apexData = new HashMap<>();
         apexData.put("nick", ApexNick.getText().toString());
         apexData.put("mic", ApexUseMic.getSelectedItem().toString());
-        apexData.put("hours", ApexPrefHours.getSelectedItem().toString());
+        ArrayList<String> prefHoursArrayList = new ArrayList<>();
+        if (prefMorning) prefHoursArrayList.add("Rano");
+        if (prefAfternoon) prefHoursArrayList.add("Po południu");
+        if (prefEvening) prefHoursArrayList.add("Wieczorem");
+        if (prefNight) prefHoursArrayList.add("W nocy");
+        apexData.put("hours", prefHoursArrayList);
         apexData.put("rank", ApexRanks.getSelectedItem().toString());
         apexData.put("desc", ApexDesc.getText().toString());
 

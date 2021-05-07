@@ -20,6 +20,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,11 +29,16 @@ public class PubgData extends AppCompatActivity {
     final String TAG = "PubgData";
 
     EditText PubgNick, PubgDesc;
-    Spinner PubgUseMic,PubgPrefHours,PubgRanks;
-    Button PubgAddGame;
+    Spinner PubgUseMic,PubgRanks;
+    Button PubgAddGame, PubgPrefHoursMorning, PubgPrefHoursAfternoon, PubgPrefHoursEvening, PubgPrefHoursNight;
 
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
+
+    boolean prefMorning = false;
+    boolean prefAfternoon = false;
+    boolean prefEvening = false;
+    boolean prefNight = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +48,13 @@ public class PubgData extends AppCompatActivity {
         PubgNick = findViewById(R.id.editTextPubgNick);
         PubgDesc = findViewById(R.id.editTextPubgDesc);
         PubgUseMic = findViewById(R.id.spinnerPubgUseMic);
-        PubgPrefHours = findViewById(R.id.spinnerPubgPrefHours);
         PubgRanks = findViewById(R.id.spinnerPubgRank);
         PubgAddGame = findViewById(R.id.buttonAddPubg);
+
+        PubgPrefHoursMorning = findViewById(R.id.buttonPubgPrefHoursMorning);
+        PubgPrefHoursAfternoon = findViewById(R.id.buttonPubgPrefHoursAfternoon);
+        PubgPrefHoursEvening = findViewById(R.id.buttonPubgPrefHoursEvening);
+        PubgPrefHoursNight = findViewById(R.id.buttonPubgPrefHoursNight);
 
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
@@ -53,13 +63,63 @@ public class PubgData extends AppCompatActivity {
         adapterUseMic.setDropDownViewResource(R.layout.spinner_dropdown_item);
         PubgUseMic.setAdapter(adapterUseMic);
 
-        ArrayAdapter adapterPrefHours =  ArrayAdapter.createFromResource(this,R.array.ArrayPrefHours,R.layout.spinner_item);
-        adapterPrefHours.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        PubgPrefHours.setAdapter(adapterPrefHours);
-
         ArrayAdapter adapterRanks =  ArrayAdapter.createFromResource(this,R.array.ArrayPubgRanks,R.layout.spinner_item);
         adapterRanks.setDropDownViewResource(R.layout.spinner_dropdown_item);
         PubgRanks.setAdapter(adapterRanks);
+
+        //Pref Hours
+        PubgPrefHoursMorning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefMorning) {
+                    prefMorning = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefMorning = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        PubgPrefHoursAfternoon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefAfternoon) {
+                    prefAfternoon = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefAfternoon = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        PubgPrefHoursEvening.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefEvening) {
+                    prefEvening = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefEvening = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+
+        PubgPrefHoursNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (prefNight) {
+                    prefNight = false;
+                    view.setBackgroundResource(R.drawable.button_bg);
+                } else {
+                    prefNight = true;
+                    view.setBackgroundResource(R.drawable.button_green_bg);
+                }
+            }
+        });
+        // End of Pref Hours
 
         PubgAddGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +148,12 @@ public class PubgData extends AppCompatActivity {
         Map<String, Object> pubgData = new HashMap<>();
         pubgData.put("nick", PubgNick.getText().toString());
         pubgData.put("mic", PubgUseMic.getSelectedItem().toString());
-        pubgData.put("hours", PubgPrefHours.getSelectedItem().toString());
+        ArrayList<String> prefHoursArrayList = new ArrayList<>();
+        if (prefMorning) prefHoursArrayList.add("Rano");
+        if (prefAfternoon) prefHoursArrayList.add("Po południu");
+        if (prefEvening) prefHoursArrayList.add("Wieczorem");
+        if (prefNight) prefHoursArrayList.add("W nocy");
+        pubgData.put("hours", prefHoursArrayList);
         pubgData.put("rank", PubgRanks.getSelectedItem().toString());
         pubgData.put("desc", PubgDesc.getText().toString());
 

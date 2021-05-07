@@ -674,7 +674,7 @@ public class MyProfile extends AppCompatActivity {
         popupWindowNick.setText(getResources().getString(R.string.textViewPopupWindowNick) + " " + document.getString("nick"));
         popupWindowRank.setText(getResources().getString(R.string.textViewPopupWindowRank) + " " + document.getString("rank"));
         popupWindowMic.setText(getResources().getString(R.string.textViewPopupWindowMic) + " " + document.getString("mic"));
-        popupWindowHours.setText(getResources().getString(R.string.textViewPopupWindowHours) + " " + document.getString("hours"));
+        popupWindowHours.setText(getResources().getString(R.string.textViewPopupWindowHours) + " " + document.get("hours").toString());
         popupWindowDesc.setText(getResources().getString(R.string.textViewPopupWindowDesc) + " " + document.getString("desc"));
     }
 
