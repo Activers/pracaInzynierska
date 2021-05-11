@@ -69,7 +69,7 @@ public class Login extends AppCompatActivity {
                     Password.setError("To pole jest wymagane!");
                     return;
                 }
-                if (password.length() <= 6){
+                if (password.length() < 6){
                     Password.setError("Hasło musi zawierać minimum 6 znaków");
                     return;
                 }

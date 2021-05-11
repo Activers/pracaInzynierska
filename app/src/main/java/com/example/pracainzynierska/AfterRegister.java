@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -89,6 +90,10 @@ public class AfterRegister extends AppCompatActivity {
 
                     if (Integer.parseInt(age) > 100 || Integer.parseInt(age) <= 0) {
                         Age.setError("Podaj poprawną wartość!");
+                        return;
+                    }
+                    if (Countries.getSelectedItemId() == 0) {
+                        Toast.makeText(AfterRegister.this, "Musisz wybrać kraj!", Toast.LENGTH_SHORT).show();
                         return;
                     }
 

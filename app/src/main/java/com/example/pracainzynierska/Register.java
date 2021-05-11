@@ -84,7 +84,7 @@ public class Register extends AppCompatActivity {
                     Password.setError("To pole jest wymagane!");
                     return;
                 }
-                if (password.length() <= 6){ // sprawdzenie hasla
+                if (password.length() < 6){ // sprawdzenie hasla
                     Password.setError("Hasło musi zawierać minimum 6 znaków");
                     return;
                 }
