@@ -56,10 +56,10 @@ public class MyProfile extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
-    LinearLayoutManager layoutManager; // lub RecyclerView.LayoutManager
+    LinearLayoutManager layoutManager; // or RecyclerView.LayoutManager
 
     private ArrayList<Model> modelList;
-    private RecyclerAdapter recyclerAdapter; // lub RecyclerView.Adapter (<-- to jest domyslne... a RecyclerAdapter to nasza klasa z dodanymi customowymi metodami)
+    private RecyclerAdapter recyclerAdapter; // or RecyclerView.Adapter (<-- to jest domyslne... a RecyclerAdapter to nasza klasa z dodanymi customowymi metodami)
 
     TextView username, country, age;
 
@@ -79,6 +79,8 @@ public class MyProfile extends AppCompatActivity {
     static String globalCountry;
     static String globalAge;
     // End of Global Variables
+
+    boolean inEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,21 +104,21 @@ public class MyProfile extends AppCompatActivity {
         }
 
         // Edit - pokazywanie sie usuwania gier z MyProfile
-        final boolean[] inEdit = {false};
+        inEdit = false;
         ProfileEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (inEdit[0]) {
+                if (inEdit) {
                     //ProfileEdit.setBackgroundResource(R.drawable.button_bg);
-                    inEdit[0] = false;
+                    inEdit = false;
 
                     for (int i=0; i < modelList.size(); i++) {
-                        modelList.get(i).setVisibility(4);
+                        modelList.get(i).setVisibility(8);
                     }
                 }
                 else {
                     //ProfileEdit.setBackgroundResource(R.drawable.button_red_bg);
-                    inEdit[0] = true;
+                    inEdit = true;
 
                     for (int i=0; i < modelList.size(); i++) {
                         modelList.get(i).setVisibility(0);
@@ -674,7 +676,10 @@ public class MyProfile extends AppCompatActivity {
         popupWindowNick.setText(getResources().getString(R.string.textViewPopupWindowNick) + " " + document.getString("nick"));
         popupWindowRank.setText(getResources().getString(R.string.textViewPopupWindowRank) + " " + document.getString("rank"));
         popupWindowMic.setText(getResources().getString(R.string.textViewPopupWindowMic) + " " + document.getString("mic"));
-        popupWindowHours.setText(getResources().getString(R.string.textViewPopupWindowHours) + " " + document.get("hours").toString());
+        String hours = document.get("hours").toString();
+        if (hours.contains("[") || hours.contains("]"))
+            hours = hours.substring(hours.indexOf("[")+1, hours.indexOf("]"));
+        popupWindowHours.setText(getResources().getString(R.string.textViewPopupWindowHours) + " " + hours);
         popupWindowDesc.setText(getResources().getString(R.string.textViewPopupWindowDesc) + " " + document.getString("desc"));
     }
 

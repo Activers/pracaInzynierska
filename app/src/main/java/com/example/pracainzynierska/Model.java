@@ -12,7 +12,7 @@ public class Model {
     String Game; // Myprofile
     String Rank, Avatar, Mic; // Players
 
-    int Visibility = 4; // MyProfile Edit
+    int Visibility = 8; // MyProfile Edit
 
     public Model(){
 

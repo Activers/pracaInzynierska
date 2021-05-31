@@ -131,6 +131,7 @@ public class CsgoData extends AppCompatActivity {
            public void onClick(View view) {
 
                if (TextUtils.isEmpty(CsgoNick.getText().toString())) { CsgoNick.setError("To pole jest wymagane"); return; }
+               if (!prefMorning && !prefAfternoon && !prefEvening && !prefNight) { Toast.makeText(CsgoData.this, "Zaznacz przynajmniej jedną preferowaną godzinę", Toast.LENGTH_SHORT).show(); return;}
 
                InsertIntoDatabase();
            }

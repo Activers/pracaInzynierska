@@ -22,10 +22,7 @@ public class Dashboard extends AppCompatActivity {
 
     Animation topAnim, bottomAnim;
 
-    ImageButton FindPeople;
-    ImageButton GoProfile;
-    ImageButton Settings;
-    ImageButton Logout;
+    ImageButton FindPeople, GoProfile, Settings, About, Logout;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -39,6 +36,7 @@ public class Dashboard extends AppCompatActivity {
         FindPeople = findViewById(R.id.buttonFindPeople);
         GoProfile = findViewById(R.id.buttonGoProfile);
         Settings = findViewById(R.id.buttonSettings);
+        About = findViewById(R.id.buttonAbout);
         Logout = findViewById(R.id.buttonLogout);
 
        // appName.setAnimation(topAnim);
@@ -126,6 +124,30 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
+        About.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        ImageButton view = (ImageButton ) v;
+                        view.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                        v.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+
+                        startActivity(new Intent(getApplicationContext(), com.example.pracainzynierska.About.class));
+
+                    case MotionEvent.ACTION_CANCEL: {
+                        ImageButton view = (ImageButton) v;
+                        view.getBackground().clearColorFilter();
+                        view.invalidate();
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
 
         Logout.setOnTouchListener(new View.OnTouchListener() {
 

@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -126,6 +127,7 @@ public class FortniteData extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (TextUtils.isEmpty(FortniteNick.getText().toString())) { FortniteNick.setError("To pole jest wymagane"); return; }
+                if (!prefMorning && !prefAfternoon && !prefEvening && !prefNight) { Toast.makeText(FortniteData.this, "Zaznacz przynajmniej jedną preferowaną godzinę", Toast.LENGTH_SHORT).show(); return;}
 
                 InsertIntoDatabase();
             }

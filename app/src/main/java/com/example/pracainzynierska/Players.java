@@ -53,10 +53,10 @@ public class Players extends AppCompatActivity {
     DocumentReference playersDocRef;
 
     RecyclerView recyclerViewPlayers;
-    LinearLayoutManager layoutManager; // lub RecyclerView.LayoutManager
+    LinearLayoutManager layoutManager; // or RecyclerView.LayoutManager
 
     private ArrayList<Model> modelListPlayers;
-    private RecyclerAdapterPlayers recyclerAdapterPlayers; // lub RecyclerView.Adapter (<-- to jest domyslne... a RecyclerAdapterPlayers to nasza klasa z dodanymi customowymi metodami)
+    private RecyclerAdapterPlayers recyclerAdapterPlayers; // or RecyclerView.Adapter (<-- to jest domyslne... a RecyclerAdapterPlayers to nasza klasa z dodanymi customowymi metodami)
 
 
     RelativeLayout relativeLayoutFilter;
@@ -94,7 +94,7 @@ public class Players extends AppCompatActivity {
 
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
-        fStorage = FirebaseStorage.getInstance().getReference(); // do usuniecia chyba ze zostaje sciaganie zdjec do cardView
+        fStorage = FirebaseStorage.getInstance().getReference();
 
         recyclerViewPlayers = findViewById(R.id.recyclerViewPlayers);
 
@@ -102,7 +102,6 @@ public class Players extends AppCompatActivity {
         imageViewGame = findViewById(R.id.imageViewPlayersGame);
 
         game = getIntent().getStringExtra("game");
-        //Toast.makeText(Players.this, "game: " + game, Toast.LENGTH_SHORT).show();
 
         if (game.equals("csgo")) {
             imageViewGame.setBackgroundResource(R.drawable.csgo);
@@ -147,7 +146,7 @@ public class Players extends AppCompatActivity {
 
         modelListPlayers = new ArrayList<>();
 
-        // ClearAll(); - nie wiem czy jest sens dodawac - w MyProfile niby jest ale to nie robi roznicy
+         ClearAll(); // nie wiem czy jest sens dodawac - w MyProfile niby jest ale to nie robi roznicy
 
         recyclerAdapterPlayers = new RecyclerAdapterPlayers(getApplicationContext(), modelListPlayers); // musi byc zadeklarowane przed sciagnieciem danych z bazy przez to ze lekko zamula
         recyclerViewPlayers.setAdapter(recyclerAdapterPlayers);
@@ -355,7 +354,10 @@ public class Players extends AppCompatActivity {
         popupWindowNick.setText(getResources().getString(R.string.textViewPopupWindowNick) + " " + document.getString("nick"));
         popupWindowRank.setText(getResources().getString(R.string.textViewPopupWindowRank) + " " + document.getString("rank"));
         popupWindowMic.setText(getResources().getString(R.string.textViewPopupWindowMic) + " " + document.getString("mic"));
-        popupWindowHours.setText(getResources().getString(R.string.textViewPopupWindowHours) + " " + document.get("hours").toString());
+        String hours = document.get("hours").toString();
+        if (hours.contains("[") || hours.contains("]"))
+            hours = hours.substring(hours.indexOf("[")+1, hours.indexOf("]"));
+        popupWindowHours.setText(getResources().getString(R.string.textViewPopupWindowHours) + " " + hours);
         popupWindowDesc.setText(getResources().getString(R.string.textViewPopupWindowDesc) + " " + document.getString("desc"));
     }
 
@@ -528,7 +530,7 @@ public class Players extends AppCompatActivity {
                     if (prefEvening) prefHoursArrayList.add("Wieczorem");
                     if (prefNight) prefHoursArrayList.add("W nocy");
                     filterCount++;
-                    Toast.makeText(Players.this, "Wchodze do queeeery", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Players.this, "Wchodze do query", Toast.LENGTH_SHORT).show();
 
                     switch (filterCount) { // ile zastosowac filtrow (z hours)
                         case 1:
