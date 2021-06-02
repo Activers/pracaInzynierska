@@ -1,10 +1,5 @@
 package com.example.pracainzynierska;
 
-import android.view.View;
-
-/**
- * Created by ankit on 22/1/18.
- */
 
 public class Model {
 
@@ -13,10 +8,6 @@ public class Model {
     String Rank, Avatar, Mic; // Players
 
     int Visibility = 8; // MyProfile Edit
-
-    public Model(){
-
-    }
 
     public Model(String Game, String Nick) {
 

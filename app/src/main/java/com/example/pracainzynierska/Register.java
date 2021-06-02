@@ -64,10 +64,6 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        //if(fAuth.getCurrentUser() != null){
-         //   startActivity(new Intent(getApplicationContext(),MainActivity.class));
-        //    finish();
-        //}
 
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,24 +72,23 @@ public class Register extends AppCompatActivity {
                 final String password = Password.getText().toString().trim();
                 final String username = Username.getText().toString();
 
-                if (TextUtils.isEmpty(username)){ // sprawdzenie username
+                if (TextUtils.isEmpty(username)){ // checking the username
                     Username.setError("To pole jest wymagane!");
                     return;
                 }
-                if (TextUtils.isEmpty(password)){ // sprawdzenie hasla
+                if (TextUtils.isEmpty(password)){ // checking the password
                     Password.setError("To pole jest wymagane!");
                     return;
                 }
-                if (password.length() < 6){ // sprawdzenie hasla
+                if (password.length() < 6){ // checking the password length
                     Password.setError("Hasło musi zawierać minimum 6 znaków");
                     return;
                 }
-                if (TextUtils.isEmpty(email)) { // sprawdzenie maila
+                if (TextUtils.isEmpty(email)) { // checking the email
                     Email.setError("To pole jest wymagane!");
                     return;
                 }
-                if (checkBoxTerms.isChecked()){ // sprawdzenie akceptacji regulaminu
-                }else{ // po co dawac if z pustym argumentem i else? nie lepiej zrobic if (!checkBoxTerms.isChecked()) ?
+                if (!checkBoxTerms.isChecked()){ // checking the rules
                     Toast.makeText(Register.this, "Musisz zaakceptować regulamin!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -116,12 +111,6 @@ public class Register extends AppCompatActivity {
                                         Toast.makeText(Register.this, "Zostałeś pomyślnie zarejestrowany!", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                                     }
-                                    //else {
-                                    //   Toast.makeText(Register.this, "Błąd rejestracji! Spróbuj ponownie później.", Toast.LENGTH_SHORT).show();
-                                    //}
-                                    //if(fAuth.getCurrentUser() != null){ // czemu to mialo sluzyc?
-                                    //    Toast.makeText(Register.this, "Takie konto już istnieje!", Toast.LENGTH_SHORT).show();
-                                    //}
                                 }
                             });
                         }

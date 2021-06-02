@@ -54,13 +54,13 @@ public class SplashScreen extends AppCompatActivity {
         appName = findViewById(R.id.textViewAppName);
         appSlogan = findViewById(R.id.textViewAppSlogan);
 
-        imageLogo.setAnimation(topAnim); // czasem apka wywala przy starcie i ta linia jest powodem - pewnie probuje zrobic animacje jak jeszcze nic sie nie zadeklarowalo jak przy bazie? (cos zamula?)
-                                         // Caused by: java.lang.NullPointerException: Attempt to invoke virtual method 'void android.view.View.setAnimation(android.view.animation.Animation)' on a null object reference
+        imageLogo.setAnimation(topAnim);
+
         appName.setAnimation(bottomAnim);
         appSlogan.setAnimation(bottomAnim);
 
-        // SPRAWDZANIE AUTOLOGOWANIA
-        String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName); // nazwa preferencji / pliku gdzie skladowane beda klucz-wartosc
+        // Verifying autologing
+        String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName); // preference name - file with key-value
         preferences = getSharedPreferences(AUTO_LOGIN_PREF_NAME, MODE_PRIVATE);
         if (preferences.contains("pref_automaticLogin")) {
 
@@ -75,8 +75,6 @@ public class SplashScreen extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        //Toast.makeText(SplashScreen.this, "Zostałeś pomyślnie zalogowany!", Toast.LENGTH_SHORT).show();
-                        //startActivity(new Intent(getApplicationContext(),AfterRegister.class));
                         DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
                         usersDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
@@ -105,7 +103,6 @@ public class SplashScreen extends AppCompatActivity {
                         Log.i(TAG, "Autologowanie zakończone niepowodzeniem");
                         Toast.makeText(SplashScreen.this, "Autologowanie zakończone niepowodzeniem!", Toast.LENGTH_SHORT).show();
                         intent = new Intent(SplashScreen.this,  MainActivity.class);
-                        //Toast.makeText(Login.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -113,11 +110,9 @@ public class SplashScreen extends AppCompatActivity {
             Log.i(TAG, "Wylaczone autologowanie - przejscie do MainActivity");
             intent = new Intent(SplashScreen.this,  MainActivity.class);
         }
-        // KONIEC SPRAWDZANIA AUTOLOGOWANIA
+        // Verifying autologing END
 
 
-
-        // Opoznione zalaczenie kolejnego activity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

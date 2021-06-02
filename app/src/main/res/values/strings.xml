@@ -98,7 +98,7 @@
     <string name="buttonAddPubg">DODAJ GRĘ</string>
     <!--activity_apex_data-->
     <string name="textViewAddApexInfo">APEX: LEGENDS</string>
-    <string name="textViewApexNick">Podaj nick na Origin:</string>
+    <string name="textViewApexNick">Podaj nick na Steam:</string>
     <string name="textViewApexUseMic">Komunikacja przez mikrofon:</string>
     <string name="textViewApexPrefHours">Wybierz preferowane godziny:</string>
     <string name="textViewApexRank">Wybierz rangę:</string>
@@ -107,7 +107,12 @@
     <!--activity_players-->
     <string name="textViewPlayersFilter">Filtruj</string>
     <!--popup_window-->
-    <string name="textViewPopupWindowNick">Nazwa:</string>
+    <string name="textViewPopupWindowNick">Nick:</string>
+    <string name="textViewPopupWindowNickSteam">Nick Steam:</string>
+    <string name="textViewPopupWindowNickDiscord">Nick Discord:</string>
+    <string name="textViewPopupWindowNickRiotGames">Nick Riot Games:</string>
+    <string name="textViewPopupWindowNickOrigin">Nick Origin:</string>
+    <string name="textViewPopupWindowNickEpicGames">Nick Epic Games:</string>
     <string name="textViewPopupWindowRank">Ranga:</string>
     <string name="textViewPopupWindowMic">Mikrofon:</string>
     <string name="textViewPopupWindowHours">Godziny:</string>

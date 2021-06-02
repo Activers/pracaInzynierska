@@ -16,8 +16,6 @@ import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private static final String TAG = "RecyclerView";
-
     private Context mContext;
     private ArrayList<Model> modelList;
     private OnItemClickedListener mListener;
@@ -52,6 +50,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.textViewGame.setText(modelList.get(position).getGame());
         holder.textViewUser.setText(modelList.get(position).getNick());
         holder.imageViewDelete.setVisibility(modelList.get(position).getVisibility());
+        switch (modelList.get(position).getGame()) {
+            case "CS:GO" :
+                holder.imageViewGameLogo.setImageResource(R.drawable.ic_csgo); break;
+            case "League of Legends" :
+                holder.imageViewGameLogo.setImageResource(R.drawable.ic_lol); holder.imageViewGameLogo.setScaleType(ImageView.ScaleType.CENTER_CROP); break;
+            case "Fortnite" :
+                holder.imageViewGameLogo.setImageResource(R.drawable.ic_fortnite); break;
+            case "Among Us" :
+                holder.imageViewGameLogo.setImageResource(R.drawable.ic_amongus); break;
+            case "PUBG" :
+                holder.imageViewGameLogo.setImageResource(R.drawable.ic_pubg); break;
+            case "APEX" :
+                holder.imageViewGameLogo.setImageResource(R.drawable.ic_apex); break;
+            default:
+                holder.imageViewGameLogo.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -64,6 +78,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView textViewGame;
         TextView textViewUser;
         ImageView imageViewDelete;
+        ImageView imageViewGameLogo;
         RelativeLayout relativeLayout;
 
         public ViewHolder(@NonNull View itemView, final OnItemClickedListener listener) {
@@ -72,6 +87,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             textViewGame = itemView.findViewById(R.id.textViewGame);
             textViewUser = itemView.findViewById(R.id.textViewUsername);
             imageViewDelete = itemView.findViewById(R.id.imageViewDelete);
+            imageViewGameLogo = itemView.findViewById(R.id.imageViewGameLogo);
             relativeLayout = itemView.findViewById(R.id.list_root);
 
             relativeLayout.setOnClickListener(new View.OnClickListener() {

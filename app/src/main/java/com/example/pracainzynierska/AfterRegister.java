@@ -44,7 +44,6 @@ public class AfterRegister extends AppCompatActivity {
     EditText Age;
     Spinner Countries;
     FirebaseAuth fAuth;
-    StorageReference fStorage;
     FirebaseFirestore fStore;
 
     String username;

@@ -3,6 +3,7 @@ package com.example.pracainzynierska;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,11 +29,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String TAG = "MainActivity";
 
     Animation buttonAnim;
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-
 
 
     boolean singleBack = false;

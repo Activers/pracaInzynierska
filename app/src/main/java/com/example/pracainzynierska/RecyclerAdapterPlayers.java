@@ -24,8 +24,6 @@ import java.util.ArrayList;
 
 public class RecyclerAdapterPlayers extends RecyclerView.Adapter<RecyclerAdapterPlayers.ViewHolder> {
 
-    private static final String TAG = "RecyclerViewPlayers";
-
     StorageReference fStorage;
 
     private Context mContext;

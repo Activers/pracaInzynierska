@@ -56,10 +56,10 @@ public class MyProfile extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
-    LinearLayoutManager layoutManager; // or RecyclerView.LayoutManager
+    LinearLayoutManager layoutManager; //or RecyclerView.LayoutManager
 
     private ArrayList<Model> modelList;
-    private RecyclerAdapter recyclerAdapter; // or RecyclerView.Adapter (<-- to jest domyslne... a RecyclerAdapter to nasza klasa z dodanymi customowymi metodami)
+    private RecyclerAdapter recyclerAdapter;
 
     TextView username, country, age;
 
@@ -100,26 +100,22 @@ public class MyProfile extends AppCompatActivity {
         relativeLayoutAddGame = findViewById(R.id.relativeLayoutAddGame);
 
         if (globalUsername != null) { // jest problem ze zmienna globalna ze przy pierwszym wejsciu do activity
-            DownloadProfileImage(); // pobranie zdjecia ze storage
+            DownloadProfileImage();
         }
 
-        // Edit - pokazywanie sie usuwania gier z MyProfile
+        // MyProfile Edit
         inEdit = false;
         ProfileEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (inEdit) {
-                    //ProfileEdit.setBackgroundResource(R.drawable.button_bg);
                     inEdit = false;
-
                     for (int i=0; i < modelList.size(); i++) {
                         modelList.get(i).setVisibility(8);
                     }
                 }
                 else {
-                    //ProfileEdit.setBackgroundResource(R.drawable.button_red_bg);
                     inEdit = true;
-
                     for (int i=0; i < modelList.size(); i++) {
                         modelList.get(i).setVisibility(0);
                     }
@@ -145,7 +141,7 @@ public class MyProfile extends AppCompatActivity {
 
         ClearAll();
 
-        recyclerAdapter = new RecyclerAdapter(getApplicationContext(), modelList); // musi byc zadeklarowane przed sciagnieciem danych z bazy przez to ze lekko zamula
+        recyclerAdapter = new RecyclerAdapter(getApplicationContext(), modelList); // have to be declared before downloading the data (even if the list is empty)
         recyclerView.setAdapter(recyclerAdapter);
 
         GetProfileDataFromFirebase();
@@ -153,19 +149,18 @@ public class MyProfile extends AppCompatActivity {
         try {
                 recyclerAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickedListener() {
                     @Override
-                    public void onItemClick(int postion) { // klikniecie (na okolo?) card view
+                    public void onItemClick(int position) {
 
-                        CreatePopupWindow(postion);
+                        CreatePopupWindow(position);
                     }
 
                     boolean deleteGameDoubleClick = false;
                     int lastPosition;
                     @Override
-                    public void onDeleteClick(int position) { // klikniecie w ikonke kosza usuwa obiekt
+                    public void onDeleteClick(int position) {
 
-                        if (deleteGameDoubleClick && lastPosition == position) { // dodany bajer ze trzeba nacisnac szybko dwukrotnie ikone aby usunac - zabezpieczenie przed missclickami
+                        if (deleteGameDoubleClick && lastPosition == position) {
                             RemoveItem(position);
-                            //Toast.makeText(MyProfile.this, "Usuwam item", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
@@ -196,8 +191,6 @@ public class MyProfile extends AppCompatActivity {
     }
 
     private void GetProfileDataFromFirebase() {
-
-        // sciaganie i ustawianie danych profilowych z bazy
         DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
         usersDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -212,8 +205,6 @@ public class MyProfile extends AppCompatActivity {
                     username.setText(getResources().getString(R.string.textViewProfileUsername) + " " + document.getString("username"));
                     country.setText(getResources().getString(R.string.textViewCountry) + " " + document.getString("country"));
                     age.setText(getResources().getString(R.string.textViewAge) + " " + document.getString("age"));
-
-                    ////// BRAKUJE JESZCZE OPISU
 
                     DownloadProfileImage();
 
@@ -248,21 +239,16 @@ public class MyProfile extends AppCompatActivity {
                         }
 
                         if (apexUsername != null) {
-                            modelList.add(new Model("APEX", "Origin: " + apexUsername));
+                            modelList.add(new Model("APEX", "Steam: " + apexUsername));
                         }
 
                     } else {
                         Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
                     }
                 }
-                // wyswietlanie listy poprzez adepter i recyclerview
-                //recyclerAdapter = new RecyclerAdapter(getApplicationContext(), modelList); // Jak jest tutaj zadeklarowane to jest error ze nie ma adaptera zadeklarowanego gdy listenera sie uzywa
-                recyclerView.setAdapter(recyclerAdapter); // wlozenie listy do recyclerView
-
-                //recyclerAdapter.notifyDataSetChanged();
+                recyclerView.setAdapter(recyclerAdapter);
             }
         });
-        // koniec rzeczy zwiazanych z baza
     }
 
     private void ClearAll(){
@@ -285,8 +271,8 @@ public class MyProfile extends AppCompatActivity {
             DocumentReference csgoDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("csgo");
             DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
 
-            batch.update(usersDocRef, "usernames.csgo", FieldValue.delete()); // usuwa dane pole z mapy
-            batch.delete(csgoDocRef); // usuwa caly dokument
+            batch.update(usersDocRef, "usernames.csgo", FieldValue.delete());
+            batch.delete(csgoDocRef);
             // End MyProfile
 
             // Players
@@ -316,8 +302,8 @@ public class MyProfile extends AppCompatActivity {
             DocumentReference lolDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("lol");
             DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
 
-            batch.update(usersDocRef, "usernames.lol", FieldValue.delete()); // usuwa dane pole z mapy
-            batch.delete(lolDocRef); // usuwa caly dokument
+            batch.update(usersDocRef, "usernames.lol", FieldValue.delete());
+            batch.delete(lolDocRef);
             // End MyProfile
 
             // Players
@@ -347,8 +333,8 @@ public class MyProfile extends AppCompatActivity {
             DocumentReference fortniteDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("fortnite");
             DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
 
-            batch.update(usersDocRef, "usernames.fortnite", FieldValue.delete()); // usuwa dane pole z mapy
-            batch.delete(fortniteDocRef); // usuwa caly dokument
+            batch.update(usersDocRef, "usernames.fortnite", FieldValue.delete());
+            batch.delete(fortniteDocRef);
             // End MyProfile
 
             // Players
@@ -378,8 +364,8 @@ public class MyProfile extends AppCompatActivity {
             DocumentReference amongusDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("amongus");
             DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
 
-            batch.update(usersDocRef, "usernames.amongus", FieldValue.delete()); // usuwa dane pole z mapy
-            batch.delete(amongusDocRef); // usuwa caly dokument
+            batch.update(usersDocRef, "usernames.amongus", FieldValue.delete());
+            batch.delete(amongusDocRef);
             // End MyProfile
 
             // Players
@@ -409,8 +395,8 @@ public class MyProfile extends AppCompatActivity {
             DocumentReference pubgDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("pubg");
             DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
 
-            batch.update(usersDocRef, "usernames.pubg", FieldValue.delete()); // usuwa dane pole z mapy
-            batch.delete(pubgDocRef); // usuwa caly dokument
+            batch.update(usersDocRef, "usernames.pubg", FieldValue.delete());
+            batch.delete(pubgDocRef);
             // End MyProfile
 
             // Players
@@ -440,8 +426,8 @@ public class MyProfile extends AppCompatActivity {
             DocumentReference apexDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("apex");
             DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
 
-            batch.update(usersDocRef, "usernames.apex", FieldValue.delete()); // usuwa dane pole z mapy
-            batch.delete(apexDocRef); // usuwa caly dokument
+            batch.update(usersDocRef, "usernames.apex", FieldValue.delete());
+            batch.delete(apexDocRef);
             // End MyProfile
 
             // Players
@@ -464,13 +450,6 @@ public class MyProfile extends AppCompatActivity {
         }
 
     }
-
-    private void ChangeItem(int position, String text) { // moze kiedys sie przyda (String do podmianki na co chcemy w Model)
-        modelList.get(position).changeGameText(text);
-        recyclerAdapter.notifyItemChanged(position);
-        Toast.makeText(MyProfile.this, "Item name changed!", Toast.LENGTH_SHORT).show();
-    }
-
 
 
     private void CreatePopupWindow(final int position) {
@@ -495,15 +474,14 @@ public class MyProfile extends AppCompatActivity {
 
         PopupWindowBack = windowPopupView.findViewById(R.id.buttonPopupWindowBack);
 
-        // uzupelnianie danych profilowych
+        // Filling up profile data
         popupWindowProfileImage.setImageDrawable(ProfileImage.getDrawable());
-
         popupWindowProfileUsername.setText(username.getText());
         popupWindowCountry.setText(country.getText());
         popupWindowAge.setText(age.getText());
 
 
-        // uzupelnianie danych danej gry
+        // Filling up specific game data
         if (gameName == "CS:GO") {
             popupWindowImageView.setBackgroundResource(R.drawable.csgo);
             DocumentReference csgoDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid()).collection("games").document("csgo");
@@ -512,7 +490,7 @@ public class MyProfile extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        InsertDocumentIntoPopupWindow(document);
+                        InsertDocumentIntoPopupWindow(document, gameName);
                     }
                     else {
                         Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
@@ -529,7 +507,7 @@ public class MyProfile extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        InsertDocumentIntoPopupWindow(document);
+                        InsertDocumentIntoPopupWindow(document, gameName);
                     }
                     else {
                         Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
@@ -546,7 +524,7 @@ public class MyProfile extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        InsertDocumentIntoPopupWindow(document);
+                        InsertDocumentIntoPopupWindow(document, gameName);
                     }
                     else {
                         Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
@@ -563,7 +541,7 @@ public class MyProfile extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        InsertDocumentIntoPopupWindow(document);
+                        InsertDocumentIntoPopupWindow(document, gameName);
                     }
                     else {
                         Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
@@ -580,7 +558,7 @@ public class MyProfile extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        InsertDocumentIntoPopupWindow(document);
+                        InsertDocumentIntoPopupWindow(document, gameName);
                     }
                     else {
                         Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
@@ -597,7 +575,7 @@ public class MyProfile extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        InsertDocumentIntoPopupWindow(document);
+                        InsertDocumentIntoPopupWindow(document, gameName);
                     }
                     else {
                         Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
@@ -605,7 +583,7 @@ public class MyProfile extends AppCompatActivity {
                 }
             });
         }
-        // koniec uzupelniania danych
+        // end of game data
 
         dialogBuilder.setView(windowPopupView);
         dialog = dialogBuilder.create();
@@ -640,7 +618,7 @@ public class MyProfile extends AppCompatActivity {
         profileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Log.d(TAG, "Awatar został dodany"); // zmienic na log w konsoli
+                Log.d(TAG, "Awatar został dodany");
                 profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -651,7 +629,7 @@ public class MyProfile extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Awatar nie został dodany"); // zmienic na log
+                Log.d(TAG, "Awatar nie został dodany");
             }
         });
 
@@ -660,7 +638,6 @@ public class MyProfile extends AppCompatActivity {
     private void DownloadProfileImage() {
         try {
             fStorage = FirebaseStorage.getInstance().getReference();
-            //StorageReference profileRef = fStorage.child("users/" + fAuth.getCurrentUser().getUid() + "/profile.jpg");
             StorageReference profileRef = fStorage.child("users/" + globalUsername + "/profile.jpg");
             profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
@@ -671,9 +648,24 @@ public class MyProfile extends AppCompatActivity {
         } catch (Exception e) {}
     }
 
-    private void InsertDocumentIntoPopupWindow(DocumentSnapshot document) { // precz kodzie spaghetti!
-        // uzupelnianie danych gry
-        popupWindowNick.setText(getResources().getString(R.string.textViewPopupWindowNick) + " " + document.getString("nick"));
+    private void InsertDocumentIntoPopupWindow(DocumentSnapshot document, String gameName) { // precz kodzie spaghetti!
+        // Filling up game data
+        String platform = "";
+        switch (gameName) {
+            case "CS:GO" :
+            case "PUBG" :
+            case "APEX" :
+                platform = getResources().getString(R.string.textViewPopupWindowNickSteam); break;
+            case "League of Legends" :
+                platform = getResources().getString(R.string.textViewPopupWindowNickRiotGames); break;
+            case "Fortnite" :
+                platform = getResources().getString(R.string.textViewPopupWindowNickEpicGames); break;
+            case "Among Us" :
+                platform = getResources().getString(R.string.textViewPopupWindowNickDiscord); break;
+            default:
+                platform = getResources().getString(R.string.textViewPopupWindowNick); break;
+        }
+        popupWindowNick.setText(platform + " " + document.getString("nick"));
         popupWindowRank.setText(getResources().getString(R.string.textViewPopupWindowRank) + " " + document.getString("rank"));
         popupWindowMic.setText(getResources().getString(R.string.textViewPopupWindowMic) + " " + document.getString("mic"));
         String hours = document.get("hours").toString();

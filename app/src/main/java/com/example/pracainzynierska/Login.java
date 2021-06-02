@@ -29,11 +29,11 @@ public class Login extends AppCompatActivity {
     EditText Email,Password;
     Button Login;
     TextView Forgot;
-    FirebaseAuth fAuth; // autentykacja
-    FirebaseFirestore fStore; // baza danych firestore
-    ProgressBar progressBar; // progress zadania (obrajace sie kolko)
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
+    ProgressBar progressBar;
 
-    CheckBox rememberMe; //
+    CheckBox rememberMe;
     SharedPreferences preferences;
 
     @Override
@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         rememberMe = (CheckBox) findViewById(R.id.checkBoxRememberMe);
-        String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName); // nazwa preferencji / pliku gdzie skladowane beda klucz-wartosc
+        String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName);
         preferences = getSharedPreferences(AUTO_LOGIN_PREF_NAME, MODE_PRIVATE);
 
         Login.setOnClickListener(new View.OnClickListener() {
@@ -83,11 +83,10 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             progressBar.setVisibility(View.INVISIBLE);
-                            //startActivity(new Intent(getApplicationContext(),AfterRegister.class));
                             DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
                             usersDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) { //
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(Login.this, "Zostałeś pomyślnie zalogowany!", Toast.LENGTH_SHORT).show();
                                         DocumentSnapshot document = task.getResult();
@@ -95,7 +94,7 @@ public class Login extends AppCompatActivity {
                                             Log.i(TAG, "Document Snapshot data: " + document.getData());
                                             String age = document.getString("age");
 
-                                            if (rememberMe.isChecked()) { // jezeli zaznaczony checkbox - zapisz preferencje autologowania
+                                            if (rememberMe.isChecked()) {
 
                                                 Boolean isChecked = rememberMe.isChecked();
                                                 SharedPreferences.Editor editor = preferences.edit();
@@ -104,13 +103,12 @@ public class Login extends AppCompatActivity {
                                                 editor.putBoolean("pref_automaticLogin", isChecked);
                                                 editor.apply();
                                                 Log.i(TAG, "Ustawiono autologowanie - zapisano email, password, check");
-                                                //Toast.makeText(getApplicationContext(),"Autologowanie ustawione",Toast.LENGTH_SHORT).show();
-                                            } else { // jezeli odznaczony checkbox - wyczysc preferencje autologowania
+                                            } else {
                                                 preferences.edit().clear().apply();
                                                 Log.i(TAG, "Usunieto autologowanie");
                                             }
 
-                                            if (age == null) { // wybranie dashboard lub after register zaleznie od uzupelnionych danych
+                                            if (age == null) {
                                                 progressBar.setVisibility(View.INVISIBLE);
                                                 startActivity(new Intent(getApplicationContext(),AfterRegister.class));
                                             } else {
@@ -127,7 +125,6 @@ public class Login extends AppCompatActivity {
                             });
                         }else{
                             Toast.makeText(Login.this, "Niepoprawny E-mail lub hasło!", Toast.LENGTH_SHORT).show();
-                            //Toast.makeText(Login.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "Niezalogowano bo: ", task.getException());
                             progressBar.setVisibility(View.INVISIBLE);
                         }

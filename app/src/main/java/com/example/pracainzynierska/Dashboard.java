@@ -12,8 +12,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Dashboard extends AppCompatActivity {
@@ -31,7 +31,7 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         //topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
-       // bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+        //bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
         FindPeople = findViewById(R.id.buttonFindPeople);
         GoProfile = findViewById(R.id.buttonGoProfile);
@@ -39,10 +39,11 @@ public class Dashboard extends AppCompatActivity {
         About = findViewById(R.id.buttonAbout);
         Logout = findViewById(R.id.buttonLogout);
 
-       // appName.setAnimation(topAnim);
+        //appName.setAnimation(topAnim);
         //FindPeople.setAnimation(bottomAnim);
         //GoProfile.setAnimation(bottomAnim);
-       // Settings.setAnimation(bottomAnim);
+        //Settings.setAnimation(bottomAnim);
+        //About.setAnimation(bottomAnim);
         //Logout.setAnimation(bottomAnim);
 
 
@@ -162,9 +163,9 @@ public class Dashboard extends AppCompatActivity {
                     }
                     case MotionEvent.ACTION_UP:
 
-                        String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName); // nazwa preferencji / pliku gdzie skladowane beda klucz-wartosc
+                        String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName); // preference name - file with key-value
                         SharedPreferences preferences = getSharedPreferences(AUTO_LOGIN_PREF_NAME, MODE_PRIVATE);
-                        preferences.edit().clear().apply(); //usuwa autologowanie po wylogowaniu sie
+                        preferences.edit().clear().apply(); // autologing disabled after logout
                         Log.i(TAG, "Usunieto autologowanie");
                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
 

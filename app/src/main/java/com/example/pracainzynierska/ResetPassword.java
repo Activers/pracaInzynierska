@@ -65,8 +65,8 @@ public class ResetPassword extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
 
-                                        // podmiana SharedPreferences
-                                        String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName); // nazwa preferencji / pliku gdzie skladowane beda klucz-wartosc
+                                        // SharedPreferences
+                                        String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName); // preference name - file with key-value
                                         SharedPreferences preferences = getSharedPreferences(AUTO_LOGIN_PREF_NAME, MODE_PRIVATE);
                                         if (preferences.contains("pref_automaticLogin")) {
                                             SharedPreferences.Editor editor = preferences.edit();
@@ -74,7 +74,7 @@ public class ResetPassword extends AppCompatActivity {
                                             editor.apply();
                                             Log.i(TAG, "Zmieniono hasło autologowania - zapisano password");
                                         }
-                                        // koniec podmianki
+                                        // End of SharedPreferences
 
                                         Log.d(TAG, "Hasło zaktualizowanie");
                                         Toast.makeText(ResetPassword.this, "Hasło zostało zmienione!", Toast.LENGTH_SHORT).show();

@@ -56,14 +56,14 @@ public class Players extends AppCompatActivity {
     LinearLayoutManager layoutManager; // or RecyclerView.LayoutManager
 
     private ArrayList<Model> modelListPlayers;
-    private RecyclerAdapterPlayers recyclerAdapterPlayers; // or RecyclerView.Adapter (<-- to jest domyslne... a RecyclerAdapterPlayers to nasza klasa z dodanymi customowymi metodami)
+    private RecyclerAdapterPlayers recyclerAdapterPlayers;
 
 
     RelativeLayout relativeLayoutFilter;
 
     ImageView imageViewGame;
 
-    String game; // jaka gre wybral uzytkownik - sciagane z intentu
+    String game; // which game the user selected - downloaded from intent
 
     // Popup Window
     private AlertDialog.Builder dialogBuilder;
@@ -146,9 +146,9 @@ public class Players extends AppCompatActivity {
 
         modelListPlayers = new ArrayList<>();
 
-         ClearAll(); // nie wiem czy jest sens dodawac - w MyProfile niby jest ale to nie robi roznicy
+         ClearAll();
 
-        recyclerAdapterPlayers = new RecyclerAdapterPlayers(getApplicationContext(), modelListPlayers); // musi byc zadeklarowane przed sciagnieciem danych z bazy przez to ze lekko zamula
+        recyclerAdapterPlayers = new RecyclerAdapterPlayers(getApplicationContext(), modelListPlayers); // have to be declared before downloading the data (even if the list is empty)
         recyclerViewPlayers.setAdapter(recyclerAdapterPlayers);
 
         GetPlayersDataFromFirebase();
@@ -176,7 +176,7 @@ public class Players extends AppCompatActivity {
 
                     String[] playersUsernameArray = playersMap.keySet().toArray(new String[0]);
 
-                    Map<String,String>[] playersMapArray = playersMap.values().toArray(new Map[0]); // po konwersji na tablice dane sa wkladane odwrotnie niz jest w bazie
+                    Map<String,String>[] playersMapArray = playersMap.values().toArray(new Map[0]); //After the conversion to the table data is in opposite order
 
                     if (playersUsernameArray.length == playersMapArray.length) {
                         if (playersMapArray != null) {
@@ -220,9 +220,9 @@ public class Players extends AppCompatActivity {
 
         String username = modelListPlayers.get(position).getUsername();
 
+        // Downloading and inserting the data
         try {
             fStorage = FirebaseStorage.getInstance().getReference();
-            //StorageReference profileRef = fStorage.child("users/" + fAuth.getCurrentUser().getUid() + "/profile.jpg");
             StorageReference profileRef = fStorage.child("users/" + username + "/profile.jpg");
             profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
@@ -241,7 +241,7 @@ public class Players extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        InsertDocumentIntoPopupWindow(document);
+                        InsertDocumentIntoPopupWindow(document, game);
                     } else {
                         Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
                     }
@@ -257,7 +257,7 @@ public class Players extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        InsertDocumentIntoPopupWindow(document);
+                        InsertDocumentIntoPopupWindow(document, game);
                     } else {
                         Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
                     }
@@ -273,7 +273,7 @@ public class Players extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        InsertDocumentIntoPopupWindow(document);
+                        InsertDocumentIntoPopupWindow(document, game);
                     } else {
                         Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
                     }
@@ -289,7 +289,7 @@ public class Players extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        InsertDocumentIntoPopupWindow(document);
+                        InsertDocumentIntoPopupWindow(document, game);
                     } else {
                         Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
                     }
@@ -305,7 +305,7 @@ public class Players extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        InsertDocumentIntoPopupWindow(document);
+                        InsertDocumentIntoPopupWindow(document, game);
                     } else {
                         Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
                     }
@@ -321,14 +321,14 @@ public class Players extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        InsertDocumentIntoPopupWindow(document);
+                        InsertDocumentIntoPopupWindow(document, game);
                     } else {
                         Log.i(TAG, "Document onComplete failure - Niepowodzenie spowodowane: ", task.getException());
                     }
                 }
             });
         }
-        // koniec uzupelniania danych
+        // End of downloading and inserting
 
         dialogBuilder.setView(windowPopupView);
         dialog = dialogBuilder.create();
@@ -344,14 +344,29 @@ public class Players extends AppCompatActivity {
 
     }
 
-    private void InsertDocumentIntoPopupWindow(DocumentSnapshot document) { // precz kodzie spaghetti!
-        // uzupelnianie danych profilowych
+    private void InsertDocumentIntoPopupWindow(DocumentSnapshot document, String gameName) { // precz kodzie spaghetti!
+        // filling up profile data
         popupWindowProfileUsername.setText(getResources().getString(R.string.textViewProfileUsername) + " " + document.getString("username"));
         popupWindowCountry.setText(getResources().getString(R.string.textViewCountry) + " " + document.getString("country"));
         popupWindowAge.setText(getResources().getString(R.string.textViewAge) + " " + document.getString("age"));
 
-        // uzupelnianie danych gry
-        popupWindowNick.setText(getResources().getString(R.string.textViewPopupWindowNick) + " " + document.getString("nick"));
+        // filling up game data
+        String platform = "";
+        switch (gameName) {
+            case "csgo" :
+            case "pubg" :
+            case "apex" :
+                platform = getResources().getString(R.string.textViewPopupWindowNickSteam); break;
+            case "lol" :
+                platform = getResources().getString(R.string.textViewPopupWindowNickRiotGames); break;
+            case "fortnite" :
+                platform = getResources().getString(R.string.textViewPopupWindowNickEpicGames); break;
+            case "amongus" :
+                platform = getResources().getString(R.string.textViewPopupWindowNickDiscord); break;
+            default:
+                platform = getResources().getString(R.string.textViewPopupWindowNick); break;
+        }
+        popupWindowNick.setText(platform + " " + document.getString("nick"));
         popupWindowRank.setText(getResources().getString(R.string.textViewPopupWindowRank) + " " + document.getString("rank"));
         popupWindowMic.setText(getResources().getString(R.string.textViewPopupWindowMic) + " " + document.getString("mic"));
         String hours = document.get("hours").toString();
@@ -401,7 +416,7 @@ public class Players extends AppCompatActivity {
                 adapterRanks.setDropDownViewResource(R.layout.spinner_dropdown_item);
                 FilterPopupWindowRank.setAdapter(adapterRanks); break;
 
-            case "fortnite": // identyczna arrayka dla fortnite i amongus
+            case "fortnite":
             case "amongus":
                 adapterRanks = ArrayAdapter.createFromResource(this, R.array.ArrayFilterFortniteRanks, R.layout.spinner_item_filter);
                 adapterRanks.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -496,7 +511,6 @@ public class Players extends AppCompatActivity {
                 int filterCount = 0;
                 String[] filtersKeys = new String[5];
                 String[] filtersValues = new String[5];
-                ArrayList<String> hoursValuesList = new ArrayList<>();
 
                 if (FilterPopupWindowCountry.getSelectedItemId() > 0) {
                     filtersKeys[filterCount] = "country";
@@ -530,9 +544,8 @@ public class Players extends AppCompatActivity {
                     if (prefEvening) prefHoursArrayList.add("Wieczorem");
                     if (prefNight) prefHoursArrayList.add("W nocy");
                     filterCount++;
-                    //Toast.makeText(Players.this, "Wchodze do query", Toast.LENGTH_SHORT).show();
 
-                    switch (filterCount) { // ile zastosowac filtrow (z hours)
+                    switch (filterCount) { // how many filters selected (with "hours")
                         case 1:
                             query = playersDocRef.whereArrayContainsAny("hours", prefHoursArrayList);
                             break;
@@ -550,7 +563,7 @@ public class Players extends AppCompatActivity {
                             break;
                     }
                 } else {
-                    switch (filterCount) { // ile zastosowac filtrow (bez hours)
+                    switch (filterCount) { // how many filters selected (without "hours")
                         case 0:
                             query = playersDocRef;
                             break;
@@ -573,7 +586,6 @@ public class Players extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
-                                //ClearAll();
                                 modelListPlayers.clear();
                                 QuerySnapshot query = task.getResult();
                                 List<DocumentSnapshot> documentList = query.getDocuments();
@@ -585,19 +597,15 @@ public class Players extends AppCompatActivity {
 
                                     Map<String, Object> playerDataMap = (Map<String, Object>) document.getData();
                                     String playerUsername = (String) playerDataMap.get("username");
-                                    //String playerCountry = (String) playerDataMap.get("country");
-                                    //String playerAge = (String) playerDataMap.get("age");
-
                                     String playerNick = (String) playerDataMap.get("nick");
                                     String playerMic = (String) playerDataMap.get("mic");
-                                    //ArrayList<String> playerHours = (ArrayList<String>) playerDataMap.get("hours");
                                     String playerRank = (String) playerDataMap.get("rank");
                                     modelListPlayers.add(new Model(playerUsername, playerNick, playerRank, playerMic));
                                 }
 
                                 Collections.shuffle(modelListPlayers);
 
-                                recyclerViewPlayers.setAdapter(recyclerAdapterPlayers); // wlozenie listy do recyclerView
+                                recyclerViewPlayers.setAdapter(recyclerAdapterPlayers);
                             }
                         }
                     });
