@@ -39,8 +39,7 @@ public class AmongUsData extends AppCompatActivity {
 
     boolean prefMorning = false;
     boolean prefAfternoon = false;
-    boolean prefEvening = false;
-    boolean prefNight = false;
+    boolean prefEvening = false;    boolean prefNight = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

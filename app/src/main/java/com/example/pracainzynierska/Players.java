@@ -189,7 +189,7 @@ public class Players extends AppCompatActivity {
                     }
 
 
-                    recyclerViewPlayers.setAdapter(recyclerAdapterPlayers); // wlozenie listy do recyclerView
+                    recyclerViewPlayers.setAdapter(recyclerAdapterPlayers);
                 }
             }
         });
