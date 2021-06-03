@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:weightSum="10"
     android:focusable="false"
@@ -110,6 +110,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
+                android:layout_marginBottom="10dp"
                 android:background="@android:color/white"/>
 
             <TextView
@@ -122,7 +123,7 @@
                 android:layout_margin="10dp"
                 android:text="@string/textViewPopupWindowNick"
                 android:textColor="#F5F5F5"
-                android:textSize="25sp"
+                android:textSize="21sp"
                 android:textStyle="bold"/>
 
             <TextView
@@ -135,7 +136,7 @@
                 android:layout_margin="10dp"
                 android:text="@string/textViewPopupWindowRank"
                 android:textColor="#F5F5F5"
-                android:textSize="25sp"
+                android:textSize="21sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -148,7 +149,7 @@
                 android:layout_margin="10dp"
                 android:text="@string/textViewPopupWindowMic"
                 android:textColor="#F5F5F5"
-                android:textSize="25sp"
+                android:textSize="21sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -161,7 +162,7 @@
                 android:layout_margin="10dp"
                 android:text="@string/textViewPopupWindowHours"
                 android:textColor="#F5F5F5"
-                android:textSize="25sp"
+                android:textSize="21sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -174,31 +175,34 @@
                 android:layout_margin="10dp"
                 android:text="@string/textViewPopupWindowDesc"
                 android:textColor="#F5F5F5"
-                android:textSize="25sp"
+                android:textSize="21sp"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonPopupWindowBack"
                 android:layout_width="209dp"
                 android:layout_height="57dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/button_bg"
                 android:fontFamily="sans-serif-light"
                 android:text="@string/buttonPopupWindowBack"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#424242"
-                android:textSize="24sp"
+                android:textSize="21sp"
                 android:textStyle="bold" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:background="@android:color/white"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="45dp"
+                />
 
         </LinearLayout>
 
     </ScrollView>
+
+
 
 </LinearLayout>
 

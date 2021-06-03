@@ -139,7 +139,7 @@
     <string name="textViewProfileData">ZMIEŃ DANE UŻYTKOWNIKA</string>
     <string name="editTextDesctiption">Dodaj opis:</string>
     <!--activity_about-->
-    <string name="textViewAbout">Aplikacja została stworzona na potrzeby pracy dyplomowej na Uniwersytecie Kazimierza Wielkiego przez Tomasza Szymańskiego i Mateusza Grużewskiego</string>
+    <string name="textViewAbout">Aplikacja została stworzona na potrzeby pracy dyplomowej na Uniwersytecie Kazimierza Wielkiego przez Tomasza Grużewskiego i Mateusza Szymańskiego</string>
 
 
     <!--preferences-->

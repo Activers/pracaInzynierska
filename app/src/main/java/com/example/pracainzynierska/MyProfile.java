@@ -648,7 +648,7 @@ public class MyProfile extends AppCompatActivity {
         } catch (Exception e) {}
     }
 
-    private void InsertDocumentIntoPopupWindow(DocumentSnapshot document, String gameName) { // precz kodzie spaghetti!
+    private void InsertDocumentIntoPopupWindow(DocumentSnapshot document, String gameName) {
         // Filling up game data
         String platform = "";
         switch (gameName) {

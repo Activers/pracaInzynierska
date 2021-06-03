@@ -11,22 +11,23 @@
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center|top"
         android:focusable="false"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:weightSum="10">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="165dp"
-            android:gravity="center"
+            android:layout_width="255dp"
+            android:layout_height="255dp"
             android:layout_marginTop="20dp"
-            android:padding="10dp">
+            android:gravity="center">
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/about_button"/>
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/logo_ukw"/>
 
 
         </LinearLayout>
@@ -34,7 +35,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewAbout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="145dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="25dp"
             app:cardBackgroundColor="#33676767">
@@ -42,20 +43,20 @@
             <LinearLayout
                 android:id="@+id/About"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/textViewAbout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
                     android:layout_marginStart="20dp"
-                    android:textStyle="bold"
+                    android:layout_marginEnd="20dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-light"
                     android:text="@string/textViewAbout"
                     android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
