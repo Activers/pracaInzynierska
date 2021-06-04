@@ -63,8 +63,7 @@
             android:textColorHighlight="#FFFFFF"
             android:textColorHint="#FFFFFF"
             android:textColorLink="#FFFFFF"
-            android:textSize="19sp"
-            android:autofillHints="" />
+            android:textSize="19sp" />
 
 
         <TextView
@@ -83,9 +82,7 @@
             android:background="@drawable/spinner_bg"
             android:layout_width="318dp"
             android:layout_height="53dp"
-            android:autofillHints=""
-            android:textSize="19sp"
-            />
+            android:textSize="19sp" />
 
 
         <TextView
@@ -172,7 +169,6 @@
             android:background="@drawable/spinner_bg"
             android:layout_width="318dp"
             android:layout_height="53dp"
-            android:autofillHints=""
             android:textSize="19sp" />
 
         <TextView
@@ -202,8 +198,7 @@
             android:textColorHighlight="#FFFFFF"
             android:textColorHint="#FFFFFF"
             android:textColorLink="#FFFFFF"
-            android:textSize="19sp"
-            android:autofillHints="" />
+            android:textSize="19sp" />
 
 
 

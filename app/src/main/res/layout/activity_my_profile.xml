@@ -143,18 +143,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/TextViewDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/textViewDescription"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            tools:ignore="RtlHardcoded" />
-
     </LinearLayout>
 
     <View

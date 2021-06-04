@@ -48,7 +48,6 @@
     <string name="textViewProfileUsername">Użytkownik:</string>
     <string name="textViewCountry">Kraj:</string>
     <string name="textViewAge">Wiek:</string>
-    <string name="textViewDescription">Dodaj opis w zakładce ustawienia..</string>
     <string name="textViewUserGames">GRY UŻYTKOWNIKA</string>
     <string name="textViewAddGame">DODAJ GRĘ</string>
     <!--prefHours_data-->
@@ -137,7 +136,6 @@
     <string name="textViewNewPassword">ZMIEŃ HASŁO</string>
     <!--activity_change_profile_data-->
     <string name="textViewProfileData">ZMIEŃ DANE UŻYTKOWNIKA</string>
-    <string name="editTextDesctiption">Dodaj opis:</string>
     <!--activity_about-->
     <string name="textViewAbout">Aplikacja została stworzona na potrzeby pracy dyplomowej na Uniwersytecie Kazimierza Wielkiego przez Tomasza Grużewskiego i Mateusza Szymańskiego</string>
 

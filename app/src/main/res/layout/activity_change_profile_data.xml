@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -43,7 +46,6 @@
             android:layout_height="53dp"
             android:layout_marginTop="50dp"
             android:layout_gravity="center"
-            android:autofillHints=""
             android:backgroundTint="#FFFFFF"
             android:hint="@string/editTextAge"
             android:inputType="number"
@@ -61,31 +63,6 @@
             android:layout_height="53dp"
             android:layout_marginTop="40dp"
             android:textAlignment="center"
-            android:autofillHints=""
-            android:textSize="20sp"
-            />
-
-        <EditText
-            android:id="@+id/editTextDesctiption"
-            android:layout_width="326dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:autofillHints=""
-            android:gravity="center_horizontal"
-            android:hint="@string/editTextDesctiption"
-            android:inputType="textMultiLine"
-            android:lines="3"
-            android:maxLength="80"
-            android:maxLines="5"
-            android:minLines="3"
-            android:padding="10dp"
-            android:scrollbars="vertical"
-            android:selectAllOnFocus="false"
-            android:singleLine="false"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:textColorLink="#FFFFFF"
-            android:backgroundTint="#FFFFFF"
             android:textSize="20sp" />
 
 
