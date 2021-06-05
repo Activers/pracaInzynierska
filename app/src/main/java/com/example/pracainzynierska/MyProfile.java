@@ -81,6 +81,7 @@ public class MyProfile extends AppCompatActivity {
     // End of Global Variables
 
     boolean inEdit;
+    boolean downloadProfileImage = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +102,7 @@ public class MyProfile extends AppCompatActivity {
 
         if (globalUsername != null) { // jest problem ze zmienna globalna ze przy pierwszym wejsciu do activity
             DownloadProfileImage();
+            downloadProfileImage = true;
         }
 
         // MyProfile Edit
@@ -206,7 +208,7 @@ public class MyProfile extends AppCompatActivity {
                     country.setText(getResources().getString(R.string.textViewCountry) + " " + document.getString("country"));
                     age.setText(getResources().getString(R.string.textViewAge) + " " + document.getString("age"));
 
-                    DownloadProfileImage();
+                    if (!downloadProfileImage) DownloadProfileImage();
 
                     if (document.contains("usernames")) {
 

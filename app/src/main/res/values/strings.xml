@@ -13,6 +13,7 @@
     <string name="textViewNewAcc">Stwórz nowe konto:</string>
     <string name="editTextUsername">Nazwa użytkownika</string>
     <string name="editTextPassword">Hasło</string>
+    <string name="editTextRepeatPassword">Powtórz Hasło</string>
     <string name="editTextEmail">E-mail</string>
     <string name="checkBoxTerms">Akceptuje regulamin oraz politykę prywatności</string>
     <string name="buttonRegister">ZAREJESTRUJ</string>
@@ -126,16 +127,23 @@
     <string name="textViewFilterPopupWindowMic">Mikrofon:</string>
     <string name="textViewFilterPopupWindowHours">Godziny:</string>
     <!--activity_settings-->
+    <string name="textViewSettings">USTAWIENIA</string>
     <string name="buttonChangePassword">ZMIEŃ HASŁO</string>
     <string name="buttonChangeProfile">ZMIEŃ DANE PROFILOWE</string>
-    <!--activity_ResetPassword-->
-    <string name="textViewSettings">USTAWIENIA</string>
+    <string name="buttonDeleteAccount">USUŃ KONTO</string>
+    <!--activity_reset_password-->
     <string name="editTextOldPassword">Podaj stare hasło</string>
     <string name="editTextNewPassword">Podaj nowe hasło</string>
     <string name="editTextRepeatNewPass">Powtórz nowe hasło</string>
     <string name="textViewNewPassword">ZMIEŃ HASŁO</string>
     <!--activity_change_profile_data-->
-    <string name="textViewProfileData">ZMIEŃ DANE UŻYTKOWNIKA</string>
+    <string name="textViewProfileData">ZMIEŃ DANE PROFILOWE</string>
+    <string name="buttonUpdate">ZAKTUALIZUJ</string>
+    <!--activity_delete_account-->
+    <string name="textViewDeleteAccount">USUŃ KONTO</string>
+    <string name="editTextDeleteAccountPassword">Podaj Hasło</string>
+    <string name="editTextDeleteAccountRepeatPassword">Powtórz hasło</string>
+    <string name="buttonDeleteAccountConfirm">ZATWIERDŹ</string>
     <!--activity_about-->
     <string name="textViewAbout">Aplikacja została stworzona na potrzeby pracy dyplomowej na Uniwersytecie Kazimierza Wielkiego przez Tomasza Grużewskiego i Mateusza Szymańskiego</string>
 

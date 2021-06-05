@@ -78,8 +78,8 @@ public class AfterRegister extends AppCompatActivity {
             EndReg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String age = Age.getText().toString();
-                    String country = Countries.getSelectedItem().toString();
+                    final String age = Age.getText().toString();
+                    final String country = Countries.getSelectedItem().toString();
 
 
                     if (TextUtils.isEmpty(age)) {
@@ -97,22 +97,28 @@ public class AfterRegister extends AppCompatActivity {
                     }
 
                     DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
-                    Map<String, Object> user = new HashMap<>();
-                    user.put("age", age);
-                    user.put("country", country);
-                    usersDocRef.update(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    Map<String, Object> userData = new HashMap<>();
+                    userData.put("age", age);
+                    userData.put("country", country);
+                    usersDocRef.update(userData).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Log.d(TAG, "Dane(name,age,country) dodane do bazy");
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "Dane(name,age,country) dodane do bazy");
+                                MyProfile.globalUsername = username;
+                                MyProfile.globalAge = age;
+                                MyProfile.globalCountry = country;
+                                startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                            }
+                            else { Toast.makeText(AfterRegister.this,"Operacja nie powiodła się. Spróbuj później!", Toast.LENGTH_SHORT).show(); }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.d(TAG, "Dane(name,age,country) nie dodane do bazy");
+                            Toast.makeText(AfterRegister.this,"Operacja nie powiodła się. Spróbuj później!", Toast.LENGTH_SHORT).show();
                         }
                     });
-
-                    startActivity(new Intent(getApplicationContext(), Dashboard.class));
 
                 }
             });

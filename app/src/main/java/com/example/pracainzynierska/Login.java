@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -61,18 +62,16 @@ public class Login extends AppCompatActivity {
                 final String password = Password.getText().toString().trim();
                 final String TAG = "Login";
 
-                if (TextUtils.isEmpty(email)) {
-                    Email.setError("To pole jest wymagane!");
-                    return;
+                boolean wrongData = false;
+
+                if (TextUtils.isEmpty(email)) { Email.setError("To pole jest wymagane!"); wrongData = true; }
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() && !TextUtils.isEmpty(email)) { // checking if email is valid
+                    Email.setError("Podany format jest nieprawidłowy!"); wrongData = true;
                 }
-                if (TextUtils.isEmpty(password)){
-                    Password.setError("To pole jest wymagane!");
-                    return;
-                }
-                if (password.length() < 6){
-                    Password.setError("Hasło musi zawierać minimum 6 znaków");
-                    return;
-                }
+                if (TextUtils.isEmpty(password)) { Password.setError("To pole jest wymagane!"); wrongData = true; }
+                if (password.length() < 6 && !TextUtils.isEmpty(password)) { Password.setError("Hasło musi zawierać minimum 6 znaków"); wrongData = true; }
+
+                if (wrongData) { return; }
 
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -113,6 +112,9 @@ public class Login extends AppCompatActivity {
                                                 startActivity(new Intent(getApplicationContext(),AfterRegister.class));
                                             } else {
                                                 progressBar.setVisibility(View.INVISIBLE);
+                                                MyProfile.globalUsername = document.getString("username");
+                                                MyProfile.globalAge = document.getString("age");
+                                                MyProfile.globalCountry = document.getString("country");
                                                 startActivity(new Intent(getApplicationContext(),Dashboard.class));
                                             }
                                         } else {

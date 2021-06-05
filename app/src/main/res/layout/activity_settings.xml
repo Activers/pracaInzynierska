@@ -80,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="25dp"
             app:cardBackgroundColor="#33676767">
 
             <LinearLayout
@@ -108,6 +109,44 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewDeleteAccount"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="#33676767">
+
+            <LinearLayout
+                android:id="@+id/DeleteAccount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginStart="20dp"
+                    android:textStyle="bold"
+                    android:text="@string/buttonDeleteAccount"
+                    android:textColor="#FFFFFF"
+                    android:textSize="21sp" />
+
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/next_icon" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
 
     </LinearLayout>
 

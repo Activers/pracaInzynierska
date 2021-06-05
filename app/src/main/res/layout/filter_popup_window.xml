@@ -112,15 +112,16 @@
                             android:id="@+id/editTextFilterPopupWindowAge"
                             android:layout_width="match_parent"
                             android:layout_height="60dp"
-                            android:gravity="center"
+                            android:layout_marginEnd="7dp"
                             android:backgroundTint="#FFFFFF"
+                            android:gravity="center"
                             android:hint="@string/editTextFilterPopupWindowAgeHint"
                             android:inputType="number"
+                            android:maxLength="2"
                             android:textColor="#FFFFFF"
                             android:textColorHint="#FFFFFF"
                             android:textColorLink="#FFFFFF"
-                            android:textSize="15sp"
-                            android:layout_marginEnd="7dp"/>
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <LinearLayout

@@ -87,6 +87,9 @@ public class SplashScreen extends AppCompatActivity {
                                         if (age == null) {
                                             intent = new Intent(SplashScreen.this,  AfterRegister.class);
                                         } else {
+                                            MyProfile.globalUsername = document.getString("username");
+                                            MyProfile.globalAge = document.getString("age");
+                                            MyProfile.globalCountry = document.getString("country");
                                             intent = new Intent(SplashScreen.this,  Dashboard.class);
                                         }
                                     } else {

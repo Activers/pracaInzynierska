@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -30,7 +31,7 @@ import java.util.Map;
 
 public class Register extends AppCompatActivity {
 
-    EditText Username,Email,Password;
+    EditText Username,Email,Password, RepeatPassword;
     Button Register;
     TextView Login;
     FirebaseAuth fAuth;
@@ -46,6 +47,7 @@ public class Register extends AppCompatActivity {
         Username = findViewById(R.id.editTextUsername);
         Email = findViewById(R.id.editTextEmail);
         Password = findViewById(R.id.editTextPassword);
+        RepeatPassword = findViewById(R.id.editTextRepeatPassword);
         Register = findViewById(R.id.buttonRegister);
         Login = findViewById(R.id.textViewLogin);
 
@@ -68,26 +70,40 @@ public class Register extends AppCompatActivity {
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean wrongData = false;
+
                 final String email = Email.getText().toString().trim();
                 final String password = Password.getText().toString().trim();
+                final String repeatPassword = RepeatPassword.getText().toString().trim();
                 final String username = Username.getText().toString();
 
                 if (TextUtils.isEmpty(username)){ // checking the username
-                    Username.setError("To pole jest wymagane!");
-                    return;
+                    Username.setError("To pole jest wymagane!"); wrongData = true;
                 }
                 if (TextUtils.isEmpty(password)){ // checking the password
-                    Password.setError("To pole jest wymagane!");
-                    return;
+                    Password.setError("To pole jest wymagane!"); wrongData = true;
                 }
-                if (password.length() < 6){ // checking the password length
-                    Password.setError("Hasło musi zawierać minimum 6 znaków");
-                    return;
+                if (TextUtils.isEmpty(repeatPassword)){ // checking repeated password
+                    RepeatPassword.setError("To pole jest wymagane!"); wrongData = true;
                 }
                 if (TextUtils.isEmpty(email)) { // checking the email
-                    Email.setError("To pole jest wymagane!");
-                    return;
+                    Email.setError("To pole jest wymagane!"); wrongData = true;
                 }
+
+                if (password.length() < 6 && !TextUtils.isEmpty(password)){ // checking the password length
+                    Password.setError("Hasło musi zawierać minimum 6 znaków"); wrongData = true;
+                    if (password.equals(repeatPassword)) RepeatPassword.setError(null);
+                }
+                if (!password.equals(repeatPassword) && !TextUtils.isEmpty(repeatPassword)) { // checking if repeated password is the same
+                    RepeatPassword.setError("Hasła nie są takie same!"); wrongData = true;
+                }
+
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() && !TextUtils.isEmpty(email)) { // checking if email is valid
+                    Email.setError("Podany format jest nieprawidłowy!"); wrongData = true;
+                }
+                if (password.equals(repeatPassword) && password.length() >= 6) RepeatPassword.setError(null);
+                if (wrongData) { return; }
+
                 if (!checkBoxTerms.isChecked()){ // checking the rules
                     Toast.makeText(Register.this, "Musisz zaakceptować regulamin!", Toast.LENGTH_SHORT).show();
                     return;
@@ -109,7 +125,7 @@ public class Register extends AppCompatActivity {
                                         String uid = fAuth.getCurrentUser().getUid();
                                         fStore.collection("users").document(uid).set(user);
                                         Toast.makeText(Register.this, "Zostałeś pomyślnie zarejestrowany!", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                        startActivity(new Intent(getApplicationContext(),Login.class));
                                     }
                                 }
                             });
