@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,8 @@ import java.util.Map;
 
 
 public class Register extends AppCompatActivity {
+
+    final String TAG = "Register";
 
     EditText Username,Email,Password, RepeatPassword;
     Button Register;
@@ -125,6 +128,7 @@ public class Register extends AppCompatActivity {
                                         String uid = fAuth.getCurrentUser().getUid();
                                         fStore.collection("users").document(uid).set(user);
                                         Toast.makeText(Register.this, "Zostałeś pomyślnie zarejestrowany!", Toast.LENGTH_SHORT).show();
+                                        Log.i(TAG, "Creation of user account - success ");
                                         startActivity(new Intent(getApplicationContext(),Login.class));
                                     }
                                 }

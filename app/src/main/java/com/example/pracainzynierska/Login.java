@@ -49,7 +49,7 @@ public class Login extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBarLogin);
 
         rememberMe = (CheckBox) findViewById(R.id.checkBoxRememberMe);
         String AUTO_LOGIN_PREF_NAME = getString(R.string.autoLoginPreferenceName);
@@ -101,10 +101,10 @@ public class Login extends AppCompatActivity {
                                                 editor.putString("pref_password", password);
                                                 editor.putBoolean("pref_automaticLogin", isChecked);
                                                 editor.apply();
-                                                Log.i(TAG, "Ustawiono autologowanie - zapisano email, password, check");
+                                                Log.i(TAG, "Auto Sign-In Save - success");
                                             } else {
                                                 preferences.edit().clear().apply();
-                                                Log.i(TAG, "Usunieto autologowanie");
+                                                Log.i(TAG, "Auto Sign-In Delete - success");
                                             }
 
                                             if (age == null) {
@@ -118,16 +118,16 @@ public class Login extends AppCompatActivity {
                                                 startActivity(new Intent(getApplicationContext(),Dashboard.class));
                                             }
                                         } else {
-                                            Log.i(TAG, "Nie znaleziono dokumentu");
+                                            Log.i(TAG, "Document not found: " + task.getException());
                                         }
                                     } else {
-                                        Log.i(TAG, "niepowodzenie spowodowane: ", task.getException());
+                                        Log.i(TAG, "Task - download document - failure: ", task.getException());
                                     }
                                 }
                             });
                         }else{
                             Toast.makeText(Login.this, "Niepoprawny E-mail lub hasło!", Toast.LENGTH_SHORT).show();
-                            Log.d(TAG, "Niezalogowano bo: ", task.getException());
+                            Log.d(TAG, "Sign-In - failure: ", task.getException());
                             progressBar.setVisibility(View.INVISIBLE);
                         }
                     }

@@ -5,12 +5,10 @@ public class Model {
 
     String Nick, Username;
     String Game; // Myprofile
-    String Rank, Avatar, Mic; // Players
-
+    String Rank, Mic; // Players
     int Visibility = 8; // MyProfile Edit
 
     public Model(String Game, String Nick) {
-
         this.Game = Game;
         this.Nick = Nick;
     }
@@ -22,7 +20,6 @@ public class Model {
         this.Mic = Mic;
     }
 
-
     public String getNick() {
         return Nick;
     }
@@ -31,27 +28,14 @@ public class Model {
     public String getUsername() { return Username; }
     public void setUsername(String username) { Username = username; }
 
-    public void changeGameText(String text) {
-        this.Game = text;
-    }
-
-
     // MyProfile
     public String getGame() {
         return Game;
     }
-    public void setGame(String game) {
-        this.Game = game;
-    }
     // End MyProfile
-
 
     // Players
     public String getRank() { return Rank; }
-    public void setRank(String rank) { this.Rank = rank; }
-
-    public String getAvatar() { return Avatar; }
-    public void setAvatar(String avatar) { this.Avatar = avatar; }
 
     public String getMic() { return Mic; }
     public void setMic(String mic) { this.Mic = mic; }

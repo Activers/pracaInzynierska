@@ -192,6 +192,8 @@ public class MyProfile extends AppCompatActivity {
 
     }
 
+
+
     private void GetProfileDataFromFirebase() {
         DocumentReference usersDocRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
         usersDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -290,7 +292,6 @@ public class MyProfile extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     modelList.remove(position);
                     recyclerAdapter.notifyItemRemoved(position);
-                    Toast.makeText(MyProfile.this, gameName + " usunięte z pozycji: " + position, Toast.LENGTH_SHORT).show();
                     Log.d(TAG, gameName + " usunięte z pozycji: " + position);
                 }
             });
@@ -321,7 +322,6 @@ public class MyProfile extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     modelList.remove(position);
                     recyclerAdapter.notifyItemRemoved(position);
-                    Toast.makeText(MyProfile.this, gameName + " usunięte z pozycji: " + position, Toast.LENGTH_SHORT).show();
                     Log.d(TAG, gameName + " usunięte z pozycji: " + position);
                 }
             });
@@ -352,7 +352,6 @@ public class MyProfile extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     modelList.remove(position);
                     recyclerAdapter.notifyItemRemoved(position);
-                    Toast.makeText(MyProfile.this, gameName + " usunięte z pozycji: " + position, Toast.LENGTH_SHORT).show();
                     Log.d(TAG, gameName + " usunięte z pozycji: " + position);
                 }
             });
@@ -383,7 +382,6 @@ public class MyProfile extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     modelList.remove(position);
                     recyclerAdapter.notifyItemRemoved(position);
-                    Toast.makeText(MyProfile.this, gameName + " usunięte z pozycji: " + position, Toast.LENGTH_SHORT).show();
                     Log.d(TAG, gameName + " usunięte z pozycji: " + position);
                 }
             });
@@ -414,7 +412,6 @@ public class MyProfile extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     modelList.remove(position);
                     recyclerAdapter.notifyItemRemoved(position);
-                    Toast.makeText(MyProfile.this, gameName + " usunięte z pozycji: " + position, Toast.LENGTH_SHORT).show();
                     Log.d(TAG, gameName + " usunięte z pozycji: " + position);
                 }
             });
@@ -445,7 +442,6 @@ public class MyProfile extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     modelList.remove(position);
                     recyclerAdapter.notifyItemRemoved(position);
-                    Toast.makeText(MyProfile.this, gameName + " usunięte z pozycji: " + position, Toast.LENGTH_SHORT).show();
                     Log.d(TAG, gameName + " usunięte z pozycji: " + position);
                 }
             });
