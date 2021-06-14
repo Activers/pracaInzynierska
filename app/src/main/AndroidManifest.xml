@@ -39,6 +39,9 @@
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/color_spinner_layout" />
+        <meta-data
+            android:name="firebase_performance_logcat_enabled"
+            android:value="true"/>
 
         <activity android:name=".AfterRegister" />
         <activity android:name=".Terms" />
